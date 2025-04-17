@@ -1,0 +1,21 @@
+- image: /assets/gallery/m81m82.jpg
+  title: Bode's and the Cigar Galaxy
+  description: Bode’s Galaxy and the Cigar Galaxy in Ursa Major
+
+- image: /assets/gallery/triangulum.jpg
+  title: The Triangulum Galaxy
+  description: A Spiral Galaxy in the Triangulum star constellation.
+
+- image: /assets/gallery/andromeda.jpg
+  title: Andromeda Galaxy (M31)
+  description: A closer look at the Andromeda Galaxy.
+
+- image: /assets/gallery/mwtenerife.jpg
+  title: Milky Way from Tenerife!
+  description: The Milky Way seen from Tenerife.
+
+- image: /assets/gallery/mwfrance.jpg
+  title: Milky Way from France!
+  description: A super wide-field view of the milky way.
+
+# Add more...
