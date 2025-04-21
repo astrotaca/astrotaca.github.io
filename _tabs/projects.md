@@ -23,8 +23,6 @@ And that’s exactly why I built the Flap Flat Panel.
 
 ## The Design
 
-Every detail of the Flap Flat Panel was tailored for seamless integration and reliable performance:
-
 - **3D-Printed Housing**  
   Made from black PETG for strength and minimal reflections. It sticks to your telescope hood with a clamp.
 

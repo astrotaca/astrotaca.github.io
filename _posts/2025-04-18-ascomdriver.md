@@ -4,17 +4,17 @@ date: 2025-04-18 00:00:00 +0000
 categories: [guides, ascom]
 pin: true
 image: "assets/posts/ascomdriver.jpg"
-excerpt: "Building a custom ASCOM driver that works seamlessly with NINA, without external apps or flaky behavior. Here's what I learned making mine."
+excerpt: "Building a custom ASCOM driver that works seamlessly with NINA, without external apps. Here's what I learned making mine."
 ---
 
 # Making a Custom ASCOM Driver for NINA
 
-When I designed the flap flat panel, I wanted it to feel like part of my imaging rig—not an accessory I had to manually manage every session. That meant tight software integration. No clunky third-party tools, no command-line utilities, no external GUIs just to flip a panel open.
+When I designed the flap flat panel, I wanted it to feel like part of my imaging rig, not an accessory I had to manually manage every session. No clunky third-party tools, no command-line utilities, no external GUIs just to flip a panel open.
 
 It had to work directly inside NINA, as if it were any other piece of imaging gear.  
 So I built my own ASCOM driver.
 
-This post isn’t a how-to. I’m not handing out the code. But if you’re thinking about building your own ASCOM device—or you’re just curious how it all fits together—this will give you a solid idea of what’s involved.
+This post isn’t a how-to. I’m not handing out the code. But if you’re thinking about building your own ASCOM device or you’re just curious how it all fits together, this will give you a solid idea of what’s involved.
 
 ---
 
@@ -32,11 +32,12 @@ Anything less would be friction.
 
 ## What the Driver Actually Does
 
-At a high level, the ASCOM driver is just a middleman. It listens to NINA (or any ASCOM host), translates requests into serial commands, sends them to the flap controller, and returns status info back to the imaging software.
+At a high level, the ASCOM driver is just a middleman. It listens to NINA (or any ASCOM host), translates requests into serial commands, sends them to the microcontroller, and returns status info back to the imaging software.
 
 The basics are simple:  
 - Turn panel on/off  
 - Adjust brightness (PWM)  
+- Open/Close panel
 - Report state (is it open? is it lit?)  
 
 But making it feel *seamless* required a lot more thought.
@@ -49,13 +50,11 @@ You can’t just fire off serial commands and hope they land. Imaging software e
 
 So the driver had to maintain a live connection, confirm receipt of each instruction, and gracefully handle disconnects or timeouts—especially since USB ports can be unreliable mid-session.
 
-The goal: zero surprises in the field.
-
 ---
 
 ## Going Beyond ASCOM
 
-ASCOM is great for standardization—but it’s not magic. It won’t auto-detect your baud rate, parse custom commands, or debug serial issues for you. And it won’t implement any actual logic for how your hardware works.
+ASCOM is great for standardization, but it’s not magic. It won’t auto-detect your baud rate, parse custom commands, or debug serial issues for you. And it won’t implement any actual logic for how your hardware works.
 
 That part’s all on you.
 
@@ -76,8 +75,6 @@ Once the driver was functional, the next step was real-world testing. That meant
 - Testing behavior after sleep/wake cycles  
 - Unplugging/replugging the USB mid-session  
 - Capturing flats with different exposure times and checking for PWM banding
-
-I also had to make sure it played nicely with other devices in the ASCOM chain—mount, focuser, camera, etc. No one wants a flaky driver crashing their entire setup at 3am.
 
 ---
 
@@ -104,7 +101,7 @@ A proper ASCOM driver makes your hardware feel native. And when done right, it m
 ## Want One?
 
 The flap flat panel is still in testing, but it’s coming soon.  
-It’ll ship ready to go with USB-C, automated ASCOM control, and all the hardware you need to get clean flats with zero fuss.
+It’ll ship ready to go with USB-C for DATA transfer from the mini pc, a 12v DC for power, automated ASCOM control, and all the hardware you need to get clean flats.
 
 Stay tuned.
 

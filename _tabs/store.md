@@ -1,4 +1,4 @@
----
+--- 
 layout: default
 icon: fas fa-bag-shopping
 order: 2
@@ -24,17 +24,19 @@ So I built something better. A lightweight, motorized flat panel that mounts dir
 
 ### Early Bird Offer
 
-Right now, I’m looking for testers to help put the panel through real-world use. That means it’s **cheaper than it’ll ever be** — no markup, just the parts and time that went into making it.
+Right now, I’m looking for testers to help put the panel through real-world use. That means it’s **cheaper than it’ll ever be** — no markup, just the parts and time that went into making it. For comparison, similar panels retail for $300 elsewhere.
 
-If you’re cool with giving feedback and maybe snapping a few pics of your setup, you can grab one below:
-
+If you’re cool with giving feedback and maybe snapping a few pics of your setup, you can grab one below for $149 (first 10 units only)
 ---
 
 <!-- Product Layout with Button Above and Image Below -->
 
 <div class="product-layout">
   <!-- Buy Now Button -->
-  <a href="https://your-buy-link.com" class="buy-now-button">Get the Tester Price</a>
+  <a href="https://your-buy-link.com" class="buy-now-button">
+  <span style="text-decoration: line-through; opacity: 0.7;">$199</span> Now only $149 <span style="font-weight: normal;">(first 10 units only!)</span>
+</a>
+
 
   <!-- Image Section -->
   <div class="product-image-container">
@@ -107,3 +109,29 @@ If you’re cool with giving feedback and maybe snapping a few pics of your setu
 
 If you're not sure if it'll fit, want to know more, or have any questions, [send me an email](mailto:tacavonius@gmail.com). Always happy to chat.  
 If the link doesn’t open your email client, you can manually send an email to **tacavonius@gmail.com**.
+
+---
+
+### Frequently Asked Questions (FAQ)
+
+**Q: Will the flap panel work with scopes other than the ZWO FF65 APO and ASKAR 65PHQ?**  
+A: Currently, the flap panel is only compatible with the ZWO FF65 APO and ASKAR 65PHQ scopes. However, we may expand compatibility in future versions.
+
+**Q: How do I install the flap panel on my telescope?**  
+A: The flap panel mounts directly to the telescope, following an easy setup process. You can refer to the included instructions for step-by-step installation details.
+
+**Q: Does the flap panel require any special maintenance?**  
+A: No special maintenance is required, but we recommend keeping the panel clean and free of debris to ensure optimal performance.
+
+**Q: Can I control the flat panel remotely?**  
+A: Yes! The flap panel follows a fully automated sequence, allowing you to control it remotely without needing to manually adjust it.
+
+**Q: What kind of feedback are you looking for from testers?**  
+A: Testers are asked to provide feedback on the panel’s performance, usability, and any issues they encounter during use. We also appreciate photos of your setup for promotional purposes!
+
+**Q: Is the "Early Bird Offer" price the final price?**  
+A: No, the early bird offer is a discounted price for testers only. After this phase, the price will go up to cover markup and retail costs.
+
+---
+
+Feel free to reach out if you have any other questions!
