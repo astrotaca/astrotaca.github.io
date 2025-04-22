@@ -1,7 +1,6 @@
 ---
 title: "What Should Stacked Images Look Like?"
 date: 2025-04-18 00:00:00 +0000
-categories: [guides, processing]
 image: "assets/posts/rawimages.jpg"
 excerpt: "If your stacked FITS image looks dark, green, and low contrast—that's correct. Here's why, and what it means to work with linear vs stretched data."
 ---

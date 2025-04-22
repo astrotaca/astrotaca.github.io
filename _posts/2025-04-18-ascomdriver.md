@@ -1,7 +1,6 @@
 ---
 title: "Making a Custom ASCOM Driver for NINA"
 date: 2025-04-18 00:00:00 +0000
-categories: [guides, ascom]
 pin: true
 image: "assets/posts/ascomdriver.jpg"
 excerpt: "Building a custom ASCOM driver that works seamlessly with NINA, without external apps. Here's what I learned making mine."
