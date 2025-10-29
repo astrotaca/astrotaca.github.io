@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making a Custom ASCOM Driver for NINA - Astrotaca</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700;900&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="dark-mode">
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-resize-handle"></div>
+        <div class="sidebar-bg"></div>
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <img src="../avatar/avatar.jpg" alt="Astrotaca" class="avatar">
+                <h1 class="site-title">Astrotaca</h1>
+                <p class="site-subtitle">19 year old Student & Astrophotographer</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="../gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="../guides.html" class="nav-link active">Guides</a></li>
+                    <li><a href="../software.html" class="nav-link">Software</a></li>
+                    <li><a href="../about.html" class="nav-link">About</a></li>
+                    <li><a href="../contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-social">
+                <ul>
+                    <li>
+                        <a href="https://github.com/astrotaca" target="_blank" title="GitHub">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://youtube.com/@astrotaca" target="_blank" title="YouTube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.astrobin.com/users/astrotaca/" target="_blank" title="AstroBin">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:tacavonius@gmail.com" title="Email">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <nav class="top-nav">
+            <button id="sidebar-toggle" class="sidebar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <h1 class="page-title">Making a Custom ASCOM Driver for NINA</h1>
+        </nav>
+
+        <section class="content-section active">
+            <div class="container">
+                <header class="section-header">
+                    <h1>Making a Custom ASCOM Driver for NINA</h1>
+                </header>
+
+                <div class="guide-detail">
+                    <div class="guide-detail-image-container"></div>
+                    
+                    <div class="guide-detail-content">
+                        <p>When diving into astrophotography automation, one of the first hurdles is making sure your gear actually talks to your software. That’s where ASCOM comes in. ASCOM (Astronomy Common Object Model) is the bridge between software like NINA and your physical devices—mounts, focusers, filter wheels, flat panels, and more. Without a compliant driver, even the smartest device won’t integrate smoothly.</p>
+
+                        <h2>What ASCOM Provides</h2>
+                        <p>At its core, ASCOM is a specification of standard interfaces. Instead of NINA (or any other client software) needing to understand your hardware’s unique commands, it only needs to call ASCOM’s standardized methods. Your driver translates those calls into serial messages, USB commands, or network requests. This standardization is why an old focuser, a DIY Arduino dew heater, and a high-end observatory mount can all coexist inside NINA.</p>
+
+                        <h2>Why Build a Custom Driver?</h2>
+                        <p>Sometimes commercial support just doesn’t exist. Maybe you’re experimenting with homemade gear, or you’re using niche equipment from a smaller vendor. By building an ASCOM driver, you’re effectively “teaching” NINA to recognize and operate your hardware just like it does with mainstream devices. This not only enables full automation but also makes your hardware reusable across different software ecosystems.</p>
+
+                        <h2>How Drivers Fit In</h2>
+                        <p>Drivers act as translators. If NINA calls <code>Move()</code> on a focuser, your driver takes that command and sends the right electrical pulses or serial string to your device. At the same time, it reports back status: whether the device is moving, idle, or errored. A good driver never lies about state—automation depends on truthful feedback.</p>
+
+                        <h2>Best Practices</h2>
+                        <ul>
+                            <li><strong>Implement required methods:</strong> If something isn’t supported, respond with a clear “NotImplemented” rather than failing silently.</li>
+                            <li><strong>Connection handling:</strong> Provide reliable <em>Connect</em> and <em>Disconnect</em> logic. Half-failed connections are a recipe for frustration.</li>
+                            <li><strong>Responsiveness matters:</strong> Don’t block software waiting for hardware. Use background tasks or timeouts so NINA doesn’t hang.</li>
+                            <li><strong>State accuracy:</strong> Always report <em>Moving</em>, <em>Open</em>, <em>Closed</em>, or similar states truthfully. Wrong states can break sequences.</li>
+                            <li><strong>Error handling:</strong> If something goes wrong, throw the correct ASCOM exception type instead of crashing the driver.</li>
+                            <li><strong>Logging:</strong> Use ASCOM’s <code>TraceLogger</code> for consistent logs—critical when debugging odd issues in the field.</li>
+                            <li><strong>Don’t hardcode:</strong> Let users pick ports, speeds, or network addresses. Flexibility improves usability.</li>
+                        </ul>
+
+                        <h2>Step-by-Step Workflow</h2>
+                        <ol>
+                            <li>Install the <a href="https://ascom-standards.org/" target="_blank">ASCOM Platform SDK</a> and set up the Visual Studio templates.</li>
+                            <li>Choose the correct interface (e.g. <code>IFocuserV3</code>, <code>ICoverCalibratorV2</code>).</li>
+                            <li>Sketch your hardware’s command set—what serial strings or pins do what?</li>
+                            <li>Implement connection logic and basic functionality first, before layering on advanced features.</li>
+                            <li>Test often in NINA. It surfaces missing methods and incorrect responses quickly.</li>
+                            <li>Add user settings through the ASCOM Profile store so preferences persist across sessions.</li>
+                            <li>Iterate—release an initial working version, then expand features gradually.</li>
+                        </ol>
+
+                        <h2>Common Pitfalls</h2>
+                        <ul>
+                            <li><strong>Endless states:</strong> Reporting “Moving” forever will stall an entire sequence.</li>
+                            <li><strong>Timeout issues:</strong> Not handling slow responses can freeze client software.</li>
+                            <li><strong>Threading mistakes:</strong> Running blocking code on the main thread leads to lockups.</li>
+                            <li><strong>Silent failures:</strong> Crashing without clear exceptions makes troubleshooting painful.</li>
+                        </ul>
+
+                        <h2>Example Scenario</h2>
+                        <p>Imagine you’ve built a motorized flat panel. You implement <code>OpenCover()</code> and <code>CloseCover()</code> in your driver, mapping them to your stepper motor controls. When NINA runs a flat sequence, it simply calls those ASCOM methods. Because the driver returns correct states, NINA knows when the cover is open, when the light is on, and when it’s safe to capture frames. No hacks required—your DIY hardware behaves like a professional device.</p>
+
+                        <h2>Checklist for Getting Started</h2>
+                        <ul>
+                            <li>Install ASCOM Platform and SDK.</li>
+                            <li>Create a new driver project from the template.</li>
+                            <li>Map out your hardware commands.</li>
+                            <li>Implement connection/disconnection first.</li>
+                            <li>Test in NINA after every milestone.</li>
+                            <li>Use logging extensively.</li>
+                            <li>Expand features gradually.</li>
+                        </ul>
+                    </div>
+
+                    <div class="back-button">
+                        <a href="../guides.html" class="btn-link">← Back to Guides</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../guides-data.js"></script>
+    <script src="../sidebar.js"></script>
+</body>
+</html>
