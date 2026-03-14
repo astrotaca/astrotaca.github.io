@@ -1,5 +1,30 @@
 const galleryImages = [
     {
+        id: 'mw-tenerife-2',
+        title: 'Milky Way over the Volcanic Landscape of Tenerife',
+        date: '2026-02-20',
+        image: 'images/previews/mw-tenerife-2.jpg',
+        alt: 'Milky Way over volcanic rocks in Teide National Park, Tenerife',
+        filters: 'RGB',
+        duration: '48 minutes',
+        categories: ['widefield'],
+        link: 'gallery/mw-tenerife-2.html',
+        detailImage: '../images/mw-tenerife-2.jpg',
+        webImage: '../images/web/mw-tenerife-2.jpg',
+        acquisition: [
+            { filter: 'None', exposure: '90s', count: '32', total: '48m' },
+        ],
+        equipment: [
+            { label: 'Lens', value: 'Sigma 16mm F1.4' },
+            { label: 'Camera', value: 'Sony A6000' },
+            { label: 'Mount', value: 'SkyWatcher Star Adventurer 2i' }
+        ],
+        description: [
+            'The Milky Way rising over the volcanic landscape of Teide National Park in Tenerife. The ancient lava formations in the foreground contrast with the galactic core stretching overhead.',
+            'Captured at over 2,000 meters elevation where the thin, dry atmosphere and minimal light pollution make Tenerife one of the best locations in Europe for nightscape photography.'
+        ]
+    },
+    {
         id: 'ngc7000',
         title: 'The Cygnus wall in NGC 7000',
         date: '2026-02-28',
