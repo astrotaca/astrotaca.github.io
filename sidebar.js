@@ -1,92 +1,126 @@
-const sidebarToggle = document.getElementById('sidebar-toggle');
-const sidebar = document.getElementById('sidebar');
-const sidebarOverlay = document.getElementById('sidebar-overlay');
-const mainContent = document.querySelector('.main-content');
+const sidebarOverlay = document.getElementById("sidebar-overlay")
+const mainContent = document.querySelector(".main-content")
 
-let isResizing = false;
-let startX = 0;
-let startWidth = 0;
+window.initSidebar = function () {
 
-function toggleSidebar() {
-    sidebar.classList.toggle('open');
-    sidebarOverlay.classList.toggle('active');
-}
+    const sidebar = document.getElementById("sidebar")
+    if (!sidebar) return
 
-if (sidebarToggle) {
-    sidebarToggle.addEventListener('click', toggleSidebar);
-}
+    const sidebarToggle = document.getElementById("sidebar-toggle")
 
-if (sidebarOverlay) {
-    sidebarOverlay.addEventListener('click', toggleSidebar);
-}
+    const baseWidthValue = getComputedStyle(document.documentElement)
+        .getPropertyValue('--sidebar-width')
+        .trim();
 
-if (sidebar) {
-    sidebar.addEventListener('mousedown', (e) => {
-        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || 
-            e.target.closest('a') || e.target.closest('button') ||
-            e.target.tagName === 'IMG') {
-            return;
-        }
-        
-        isResizing = true;
-        startX = e.clientX;
-        startWidth = sidebar.offsetWidth;
-        sidebar.style.transition = 'none';
-        document.addEventListener('mousemove', handleResize);
-        document.addEventListener('mouseup', stopResize);
-        e.preventDefault();
-    });
-}
+    // Ensure we have a valid CSS size string (e.g. "345px").
+    const baseWidth = baseWidthValue.endsWith('px') ? baseWidthValue : `${parseInt(baseWidthValue, 10)}px`;
 
-function handleResize(e) {
-    if (!isResizing) return;
-    
-    const deltaX = e.clientX - startX;
-    const newWidth = Math.max(280, Math.min(window.innerWidth, startWidth + deltaX));
-    sidebar.style.width = newWidth + 'px';
-    
-    if (window.innerWidth > 768 && mainContent) {
-        mainContent.style.marginLeft = newWidth + 'px';
+    sidebar.style.width = baseWidth;
+
+    let isResizing = false
+    let startX = 0
+    let startWidth = 0
+
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener("click", () => {
+            const isOpen = sidebar.classList.contains("open")
+
+            if (isOpen) {
+                sidebar.classList.remove("open")
+                sidebar.style.width = baseWidth
+                if (sidebarOverlay) sidebarOverlay.classList.remove("active")
+            } else {
+                sidebar.classList.add("open")
+                sidebar.style.width = "100vw"
+                if (sidebarOverlay) sidebarOverlay.classList.add("active")
+            }
+        })
     }
-}
 
-function stopResize(e) {
-    if (!isResizing) return;
-    
-    isResizing = false;
-    document.removeEventListener('mousemove', handleResize);
-    document.removeEventListener('mouseup', stopResize);
-    
-    const currentWidth = sidebar.offsetWidth;
-    const threshold = window.innerWidth * 0.5;
-    
-    sidebar.style.transition = 'width 0.3s ease';
-    
-    if (currentWidth > threshold) {
-        sidebar.style.width = '100vw';
-        if (window.innerWidth > 768 && mainContent) {
-            mainContent.style.marginLeft = '100vw';
-            mainContent.style.transition = 'margin-left 0.3s ease';
-        }
-    } else {
-        sidebar.style.width = '21rem';
-        if (window.innerWidth > 768 && mainContent) {
-            mainContent.style.marginLeft = '21rem';
-            mainContent.style.transition = 'margin-left 0.3s ease';
-        }
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener("click", () => {
+            sidebar.classList.remove("open")
+            sidebar.style.width = baseWidth
+            sidebarOverlay.classList.remove("active")
+        })
     }
-    
-    setTimeout(() => {
-        sidebar.style.transition = '';
-        if (mainContent) {
-            mainContent.style.transition = '';
-        }
-    }, 300);
-}
 
-window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-        if (sidebar) sidebar.classList.remove('open');
-        if (sidebarOverlay) sidebarOverlay.classList.remove('active');
+    sidebar.addEventListener("mousedown", (e) => {
+
+        const interactive = e.target.closest("a, button, input, textarea, select")
+
+        if (interactive) return
+
+        isResizing = true
+        startX = e.clientX
+        startWidth = sidebar.offsetWidth
+
+        sidebar.style.transition = "none"
+
+        document.addEventListener("mousemove", handleResize)
+        document.addEventListener("mouseup", stopResize)
+
+        e.preventDefault()
+    })
+
+    function handleResize(e) {
+        if (!isResizing) return
+        if (e.buttons === 0) return
+
+        const deltaX = e.clientX - startX
+        const newWidth = Math.max(315, Math.min(window.innerWidth, startWidth + deltaX))
+
+        sidebar.style.width = newWidth + "px"
+
+        // When resizing, keep main content margin constant so the sidebar overlays.
+        // This makes the sidebar expand over the content instead of pushing it.
+        // (Main content margin is set once on init based on the base CSS variable.)
     }
-});
+
+    function stopResize() {
+
+        if (!isResizing) return
+        isResizing = false
+
+        document.removeEventListener("mousemove", handleResize)
+        document.removeEventListener("mouseup", stopResize)
+
+        const currentWidth = sidebar.offsetWidth
+        const snapThreshold = window.innerWidth * 0.5
+
+        sidebar.style.transition = "width 0.25s ease"
+
+        const targetWidth = currentWidth >= snapThreshold ? "100vw" : baseWidth
+        sidebar.style.width = targetWidth
+
+        setTimeout(() => {
+            sidebar.style.transition = "";
+        }, 260);
+    }
+
+    const links = sidebar.querySelectorAll(".nav-link")
+
+    const path = window.location.pathname
+    const section = path.split("/")[1]
+
+    links.forEach(link => {
+
+        const href = link.getAttribute("href")
+
+        if (
+            path === href ||
+            href === `/${section}.html`
+        ) {
+            link.classList.add("active")
+        } else {
+            link.classList.remove("active")
+        }
+
+    })
+
+    window.addEventListener("resize", () => {
+        sidebar.classList.remove("open")
+        sidebar.style.width = baseWidth
+        if (sidebarOverlay) sidebarOverlay.classList.remove("active")
+    })
+}
