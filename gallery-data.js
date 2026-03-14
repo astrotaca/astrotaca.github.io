@@ -27,7 +27,7 @@ const galleryImages = [
     {
         id: 'ngc7000',
         title: 'The Cygnus wall in NGC 7000',
-        date: '2026-02-28',
+        date: '2025-09-24',
         image: 'images/previews/NGC7000.jpg',
         alt: 'NGC 7000 - North America Nebula',
         filters: 'SHO',
@@ -56,7 +56,7 @@ const galleryImages = [
     {
         id: 'bodes-cigar',
         title: 'Bode\u2019s Galaxy and the Cigar Galaxy in Ursa Major',
-        date: '2026-02-28',
+        date: '2025-02-23',
         image: 'images/previews/bodes-cigar.jpg',
         alt: 'Bode\u2019s Galaxy and the Cigar Galaxy in Ursa Major',
         filters: 'RGB',
@@ -81,7 +81,7 @@ const galleryImages = [
     {
         id: 'm33',
         title: 'The Triangulum Galaxy, a Spiral Galaxy in Triangulum',
-        date: '2026-02-28',
+        date: '2024-12-08',
         image: 'images/previews/m33.jpg',
         alt: 'The Triangulum Galaxy, a Spiral Galaxy in Triangulum',
         filters: 'RGB',
@@ -106,7 +106,7 @@ const galleryImages = [
     {
         id: 'm31',
         title: 'A closer look at the Andromeda Galaxy',
-        date: '2026-02-28',
+        date: '2024-11-02',
         image: 'images/previews/m31.jpg',
         alt: 'Andromeda Galaxy',
         filters: 'RGB',
@@ -131,7 +131,7 @@ const galleryImages = [
     {
         id: 'mw-tenerife',
         title: 'Milky Way from Tenerife',
-        date: '2026-02-28',
+        date: '2024-02-26',
         image: 'images/previews/mw-tenerife.jpg',
         alt: 'Milky Way from Tenerife',
         filters: 'RGB',
