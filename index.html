@@ -96,17 +96,17 @@
             });
         }
 
-        const homeGuides = document.getElementById('home-guides');
-        if (homeGuides) {
-            homeGuides.innerHTML = guidesData.slice(0, 4).map(guide => `
-                <a href="${guide.link}" class="guide-card" data-category="${guide.categories.join(' ')}">
-                    <img src="${guide.image}" alt="${guide.title}" class="guide-image">
-                    <div class="guide-content">
-                        <h3>${guide.title}</h3>
-                        <p>${guide.shortDescription}</p>
-                    </div>
-                </a>
-            `).join('');
+    const homeGuides = document.getElementById('home-guides');
+    if (homeGuides) {
+        homeGuides.innerHTML = guidesData.slice(0, 4).map(guide => `
+            <a href="${guide.link}" class="guide-card" data-category="${guide.category}">
+                <img src="${guide.image}" alt="${guide.title}" class="guide-image">
+                <div class="guide-content">
+                    <h3>${guide.title}</h3>
+                    <p>${guide.shortDescription}</p>
+                </div>
+            </a>
+        `).join('');
 
             homeGuides.querySelectorAll('.guide-image').forEach(img => {
                 if (img.complete) img.classList.add('loaded');
