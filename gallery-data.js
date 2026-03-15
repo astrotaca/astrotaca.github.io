@@ -1,14 +1,14 @@
 const galleryImages = [
     {
-        id: 'mw-tenerife-2',
-        title: 'Milky Way over the Volcanic Landscape of Tenerife',
+        id: 'milky-way-minas-de-san-jose',
+        title: 'Winter Milky Way above Minas de San José in Tenerife',
         date: '2026-02-20',
         image: 'images/previews/mw-tenerife-2.jpg',
-        alt: 'Milky Way over volcanic rocks in Teide National Park, Tenerife',
+        alt: 'Winter Milky Way rising above volcanic formations in Minas de San José, Teide National Park, Tenerife',
         filters: 'RGB',
         duration: '48 minutes',
         categories: ['widefield'],
-        link: 'gallery/mw-tenerife-2.html',
+        link: 'gallery/milky-way-minas-de-san-jose.html',
         detailImage: '../images/mw-tenerife-2.jpg',
         webImage: '../images/web/mw-tenerife-2.jpg',
         acquisition: [
@@ -20,8 +20,10 @@ const galleryImages = [
             { label: 'Mount', value: 'SkyWatcher Star Adventurer 2i' }
         ],
         description: [
-            'The Milky Way rising over the volcanic landscape of Teide National Park in Tenerife. The ancient lava formations in the foreground contrast with the galactic core stretching overhead.',
-            'Captured at over 2,000 meters elevation where the thin, dry atmosphere and minimal light pollution make Tenerife one of the best locations in Europe for nightscape photography.'
+            'During a week in Tenerife I spent one night photographing in Minas de San José, a volcanic area in Teide National Park at an elevation of roughly 2200 meters. The landscape there is scattered with lava formations and small shrubs shaped by past eruptions from Mount Teide and the surrounding volcanic fields. The park is well known for its dark skies and high elevation, making it a popular location for night sky photography.',
+            'In February the galactic core only rises modestly above the southern horizon from this latitude. During this session it reached roughly 20–25 degrees above the horizon before dawn, gradually revealing more of the central Milky Way and its dust lanes as it cleared the distant volcanic ridges.',
+            'While setting up that night I discovered that the intervalometer I had brought had a faulty cable, which meant running an automated sequence was not possible. Instead I used a shutter release with a hold function and triggered each exposure manually while staying beside the camera throughout the sequence.',
+            'In total I captured 49 exposures during the night. Because the foreground terrain covered a significant portion of the Milky Way in the earliest frames, I ultimately selected 32 exposures that best matched the final composition as the galaxy climbed higher in the sky.'
         ]
     },
     {
@@ -85,7 +87,7 @@ const galleryImages = [
         image: 'images/previews/m33.jpg',
         alt: 'The Triangulum Galaxy, a Spiral Galaxy in Triangulum',
         filters: 'RGB',
-        duration: '22,5 hours',
+        duration: '22.5 hours',
         categories: ['galaxies'],
         link: 'gallery/m33.html',
         detailImage: '../images/m33.jpg',
@@ -144,7 +146,7 @@ const galleryImages = [
             { filter: 'None', exposure: '101s', count: 42, total: '1h' },
         ],
         equipment: [
-            { label: 'Telescope', value: 'Sigma 16mm F1.4' },
+            { label: 'Lens', value: 'Sigma 16mm F1.4' },
             { label: 'Camera', value: 'Sony A6000' },
             { label: 'Mount', value: 'SkyWatcher Star Adventurer 2i' }
         ],
