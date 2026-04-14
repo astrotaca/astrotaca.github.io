@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A closer look at the Andromeda Galaxy - Astrotaca</title>
+    <meta name="description" content="A simple note about a motorized flat panel project for astrophotography.">
+    <title>Astrotaca - Motorized Flat Panel</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700;900&family=Noto+Sans:wght@400;700&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700;900&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="dark-mode">
@@ -93,87 +89,71 @@
             </button>
         </nav>
 
-        <section class="content-section active">
-
+        <section class="content-section active flatpanel-page">
             <div class="container">
+                <header class="section-header centered">
+                    <h1>Motorized Flat Panel</h1>
+                </header>
 
-                <header class="section-header">
-                    <h1>A closer look at the Andromeda Galaxy</h1>
-                                    </header>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Overview</h2>
+                        <p class="box-subtitle">Motorized flat panel for automated astrophotography flat frame capture</p>
+                        <p>This motorized flat panel mounts on a telescope and automates flat frame capture.</p>
+                        <p>It removes the need to wake up at the end of a session or skip flats and fix them later in processing. The panel opens and closes automatically, controls brightness, and integrates directly with NINA through a custom ASCOM CoverCalibrator driver.</p>
+                        <p>Current working prototype mounted on ZWO FF65 APO, compatible with ASKAR 65 PHQ.</p>
 
-        <div class="detail-nav">
-            <a href="m33.html" title="Previous: The Triangulum Galaxy, a Spiral Galaxy in Triangulum" class="">←</a>
-            <a href="mw-tenerife.html" title="Next: Milky Way from Tenerife" class="">→</a>
-        </div>
-        <div class="image-detail">
+                        <hr>
 
-                    <img src="../images/web/m31.jpg" alt="Andromeda Galaxy" class="detail-image">
+                        <figure>
+                            <img src="images/flatpanel/front-view.png" alt="motorized flat panel mounted on ZWO FF65 APO telescope front view" class="detail-image">
+                            <figcaption>Motorized flat panel mounted on ZWO FF65 APO</figcaption>
+                        </figure>
 
-                    <div class="detail-actions">
-                        <a href="../images/m31.jpg" target="_blank" class="btn-link">
-                            View Full Resolution
-                        </a>
+                        <hr>
+
+                        <figure>
+                            <img src="images/flatpanel/side-view.png" alt="motorized flat panel mounted on telescope side view" class="detail-image">
+                            <figcaption>Panel arm open position showing mounting and clearance.</figcaption>
+                        </figure>
+
+                        <hr>
+
+                        <h2>What it does</h2>
+                        <ul>
+                            <li>Motorized flap, opens and closes from NINA sequence</li>
+                            <li>Brightness control for repeatable flat frames</li>
+                            <li>ASCOM integration, no manual steps</li>
+                            <li>Uniform illumination across the panel</li>
+                            <li>Compact design stays mounted on the scope</li>
+                            <li>Custom PCB with integrated electronics</li>
+                        </ul>
+
+                        <hr>
+
+                        <h2>Why I built it</h2>
+                        <p>My previous setup was a t-shirt in front of the scope and a screen showing a white image.</p>
+                        <p>It worked, but it completely broke the idea of an automated workflow.</p>
+                        <p>I wanted a flat panel that could stay mounted and handle flats without me being there.</p>
+
+                        <hr>
+
+                        <h2>Status</h2>
+                        <p>Currently in active prototyping.</p>
+                        <p>The system works, but I am still refining the mechanical design.</p>
+
+                        <hr>
+
+                        <h2>Interested?</h2>
+                        <p>If you would use this, join the Discord for updates and early access.</p>
+                        <a href="https://discord.gg/Xcgum8ekWb" target="_blank" class="btn-link">Join the Discord for updates and early access</a>
                     </div>
-
-                    <div class="image-info-grid">
-
-                        <div class="info-section">
-
-                            <h3>Acquisition Details</h3>
-
-                            <table class="acquisition-table">
-                                <thead>
-                                    <tr>
-                                        <th>Filter</th>
-                                        <th>Exposure</th>
-                                        <th>Count</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                <tr>
-                    <td>None</td>
-                    <td>240s</td>
-                    <td>136</td>
-                    <td>9h</td>
-                </tr>
-                <tr class="total-row">
-                    <td colspan="3"><strong>Total Integration</strong></td>
-                    <td><strong>9 hours</strong></td>
-                </tr>
-                            </tbody>
-                            </table>
-
-                            <ul class="equipment-list">
-                <li><strong>Telescope:</strong> ZWO FF65 APO</li>
-                <li><strong>Camera:</strong> Sony A6000</li>
-                <li><strong>Mount:</strong> ZWO AM5N</li>
-                            </ul>
-
-                        </div>
-
-                        <div class="info-section">
-            <h3>About the Target</h3>
-                <p>M31, the Andromeda Galaxy, is a massive spiral galaxy in the constellation Andromeda and the largest member of the Local Group. It contains hundreds of billions of stars and several satellite galaxies, including M32 and M110.</p>
-                <p>Visible to the naked eye under dark skies, M31 is the closest spiral galaxy to the Milky Way and is on a collision course with it in about 4 billion years.</p>
-                        </div>
-
-                    </div>
-
-                    <div class="back-button">
-                        <a href="../gallery.html" class="btn-link">
-                            ← Back to Gallery
-                        </a>
-                    </div>
-
                 </div>
-
             </div>
-
         </section>
 
-    </main>    <script src="../sidebar.js"></script>
-</body>
+    </main>
 
+    <script src="sidebar.js"></script>
+</body>
 </html>

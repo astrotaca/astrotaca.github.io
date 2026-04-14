@@ -20,9 +20,71 @@
 <body class="dark-mode">
 
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
-    <div id="sidebar-container"></div>
+    <div id="sidebar-container"><aside id="sidebar" class="sidebar">
+    <div class="sidebar-resize-handle"></div>
+    <div class="sidebar-bg"></div>
 
-    <main class="main-content">
+    <div class="sidebar-content">
+
+        <div class="sidebar-header">
+            <img src="/avatar/avatar.jpg" alt="Astrotaca" class="avatar">
+            <h1 class="site-title">Astrotaca</h1>
+            <p class="site-subtitle">20 year old Student & Astrophotographer</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="/index.html" class="nav-link">Home</a></li>
+                <li><a href="/gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="/guides.html" class="nav-link">Guides</a></li>
+                <li><a href="/flatpanel.html" class="nav-link">Flat Panel</a></li>
+                <li><a href="/software.html" class="nav-link">Software</a></li>
+                <li><a href="/about.html" class="nav-link">About</a></li>
+                <li><a href="/contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-social">
+            <ul>
+
+                <li>
+                    <a href="https://github.com/astrotaca" target="_blank" title="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://youtube.com/@astrotaca" target="_blank" title="YouTube">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.astrobin.com/users/astrotaca/" target="_blank" title="AstroBin">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.paypal.com/paypalme/astrotaca" target="_blank" title="PayPal">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 2h5.5c2.48 0 4.5 2.02 4.5 4.5S16.98 11 14.5 11H10v9H7V2zm3 2H9v7h4.5c1.38 0 2.5-1.12 2.5-2.5S14.88 6 13.5 6H12V4z"/>
+                        </svg>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</aside></div>
+<main class="main-content">
 
         <nav class="top-nav">
             <button id="sidebar-toggle" class="sidebar-toggle">
@@ -42,10 +104,11 @@
 
                 <div class="guide-detail">
 
-                    <div class="guide-detail-image-container"></div>
+                    <div class="guide-detail-image-container">
+                        <img src="../guides/sleep-while-using-telescope-nina.jpg" alt="Sleep While Using Your Telescope: A Guide to NINA" class="guide-detail-image">
+                    </div>
 
-                    <div class="guide-detail-content">
-                        <!-- Content populated by guides-data.js -->
+                    <div class="guide-detail-content"><p>This guide covers building NINA sequences that handle target acquisition through shutdown, manage failures automatically, and let you sleep while imaging.</p><p><strong>Prerequisites:</strong> You should know how to connect your equipment to NINA and run a basic sequence. This guide focuses on building reliable, unattended automation.</p><h2>What NINA Does</h2><p>NINA is sequencing software. It controls your mount, camera, focuser, filter wheel, and guider to execute a defined plan.</p><p>The <strong>Advanced Sequencer</strong> uses three container types:</p><ul><li><strong>Sequential containers</strong> execute instructions top to bottom</li><li><strong>Parallel containers</strong> run multiple instructions simultaneously</li><li><strong>Deep Sky Object containers</strong> hold target-specific coordinates and settings</li></ul><p>Within containers, you add <strong>instructions</strong> (commands), <strong>triggers</strong> (event-driven actions), and <strong>loop conditions</strong> (criteria for when to continue or stop).</p><h2>Critical Components for Automation</h2><h2>Triggers: Event-Driven Actions</h2><p>Triggers fire automatically when conditions are met. They evaluate after every instruction and execute without stopping the sequence.</p><ul><li><strong>AF After HFR Increase</strong> Monitors star sharpness and refocuses automatically when HFR exceeds your threshold.</li><li><strong>AF After Temperature Change</strong> Refocuses when ambient temperature shifts.</li><li><strong>Center After Drift</strong> Plate solves periodically and recenters if the target drifts.</li><li><strong>Meridian Flip</strong> Handles flips when crossing the meridian.</li><li><strong>Settle Before Exposure</strong> Waits for guiding to stabilize before exposures.</li><li><strong>Restore Guiding</strong> Automatically restarts guiding if it stops.</li></ul><h2>Loop Conditions: When to Continue</h2><p>Loop conditions determine whether a container repeats. Multiple conditions stack (all must remain true).</p><ul><li><strong>Loop Until Time</strong>: Stops at Nautical Dawn or Astronomical Dawn.</li><li><strong>Loop While Altitude Above Horizon</strong>: Stops when the target drops below your horizon limit.</li></ul><p>Example: Loop Until Time (Nautical Dawn) AND Loop While Altitude Above Horizon.</p><h2>Filter Offsets</h2><p>Filter offsets let NINA adjust focus instantly when switching filters. Use the Filter Offset Calculator plugin to set this up once and save time.</p><h2>Target Sequence Structure</h2><p>Here’s how I structure my LRGB target sequences:</p><ul><li>Global Trigger: Meridian Flip</li><li>Target-Level Triggers: Restore Guiding, Center After Drift, AF After Temp Change, AF After HFR Increase</li><li>Loop Conditions: Until Nautical Dawn, While Altitude Above Horizon</li><li>Instructions: Wait until above horizon, Run Autofocus, Slew and Center, Set Tracking, Start Guiding</li><li>Imaging: LRGB exposures with dithering</li></ul><img src="/guides/nina-sequence-sleep.jpg" alt="LRGB target sequence structure in NINA" class="guide-detail-image"><h2>Key Design Decisions</h2><ul><li>3L : 1R : 1G : 1B ratio for efficiency</li><li>Single dither after a full filter cycle</li><li>Filter rotation to distribute exposures</li><li>Smart Exposure over Take Exposure for reliability</li></ul><h2>Startup & Shutdown</h2><ul><li>Startup: Cool camera, unpark mount, connect to PHD2, run checks</li><li>Shutdown: Stop guiding, warm camera, park mount, disconnect equipment</li></ul><h2>Advanced: Target Scheduler Plugin</h2><p>For complex multi-target sessions, the Target Scheduler plugin can select optimal targets automatically.</p><h2>Safety for Unattended Operation</h2><ul><li>Weather Monitoring: Add Loop While Safe</li><li>Hardware Safety: Use limit switches/safety relay</li><li>Error Handling: Define retries and fallback behavior</li><li>Remote Access: AnyDesk, TeamViewer, Ground Station plugin</li></ul><h2>Common Failures and Fixes</h2><ul><li>Autofocus inconsistent → check step size, use Hocus Focus</li><li>Target drifts despite guiding → add Center After Drift, verify PHD2, balance mount</li><li>Filter changes cause guide star loss → disable guiding during filter change, restore guiding</li><li>Sequence stops unexpectedly → check loop conditions, USB reliability, NINA logs</li></ul><h2>Essential Plugins</h2><ul><li>Hocus Focus</li><li>Filter Offset Calculator</li><li>TPPA (Three Point Polar Alignment)</li><li>Advanced Sequencer Validator</li><li>Ground Station</li><li>Discord Alert / Pushover</li></ul><h2>Building Reliable Automation</h2><p>Start simple. Build one working target with basic triggers and loop conditions. Once solid, add complexity. Test failures (disconnect USB, cover guide scope, etc.) until your sequence recovers reliably.</p>
                     </div>
 
                     <div class="back-button">
@@ -60,12 +123,7 @@
 
         </section>
 
-    </main>
-
-    <script src="../guides-data.js"></script>
-    <script src="../sidebar.js"></script>
-    <script src="../load-sidebar.js"></script>
-
+    </main>    <script src="../sidebar.js"></script>
 </body>
 
 </html>

@@ -20,9 +20,71 @@
 <body class="dark-mode">
 
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
-    <div id="sidebar-container"></div>
+    <div id="sidebar-container"><aside id="sidebar" class="sidebar">
+    <div class="sidebar-resize-handle"></div>
+    <div class="sidebar-bg"></div>
 
-    <main class="main-content">
+    <div class="sidebar-content">
+
+        <div class="sidebar-header">
+            <img src="/avatar/avatar.jpg" alt="Astrotaca" class="avatar">
+            <h1 class="site-title">Astrotaca</h1>
+            <p class="site-subtitle">20 year old Student & Astrophotographer</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="/index.html" class="nav-link">Home</a></li>
+                <li><a href="/gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="/guides.html" class="nav-link">Guides</a></li>
+                <li><a href="/flatpanel.html" class="nav-link">Flat Panel</a></li>
+                <li><a href="/software.html" class="nav-link">Software</a></li>
+                <li><a href="/about.html" class="nav-link">About</a></li>
+                <li><a href="/contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-social">
+            <ul>
+
+                <li>
+                    <a href="https://github.com/astrotaca" target="_blank" title="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://youtube.com/@astrotaca" target="_blank" title="YouTube">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.astrobin.com/users/astrotaca/" target="_blank" title="AstroBin">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.paypal.com/paypalme/astrotaca" target="_blank" title="PayPal">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 2h5.5c2.48 0 4.5 2.02 4.5 4.5S16.98 11 14.5 11H10v9H7V2zm3 2H9v7h4.5c1.38 0 2.5-1.12 2.5-2.5S14.88 6 13.5 6H12V4z"/>
+                        </svg>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</aside></div>
+<main class="main-content">
 
         <nav class="top-nav">
             <button id="sidebar-toggle" class="sidebar-toggle">
@@ -42,10 +104,11 @@
 
                 <div class="guide-detail">
 
-                    <div class="guide-detail-image-container"></div>
+                    <div class="guide-detail-image-container">
+                        <img src="../guides/stacked-images-look-like.jpg" alt="What Should Stacked Images Look Like?" class="guide-detail-image">
+                    </div>
 
-                    <div class="guide-detail-content">
-                        <!-- Content populated by guides-data.js -->
+                    <div class="guide-detail-content"><p>After stacking your astrophotography data into a FITS file, the result might look underwhelming: dim, flat, and possibly green. This is expected, and it's due to the image being in a linear state.</p><h2>Linear vs. Stretched Images</h2><p>Most processing software saves stacked images in linear format. This means:</p><ul><li>The brightness values are preserved exactly as captured by the sensor.</li><li>No adjustments are made to enhance contrast or color balance.</li><li>All the faint detail is compressed into the lower end of the histogram.</li></ul><p>Linear images are optimized for data retention, not for display. They contain the full dynamic range from your exposures, which is important for scientific use or high-quality post-processing.</p><p>On the other hand, a stretched image has had a nonlinear transformation applied (typically a histogram stretch or curve), which redistributes pixel brightness to make faint structures visible on a standard screen.</p><h2>Why It Looks Green</h2><p>If you're using a one-shot color (OSC) camera, your sensor has a Bayer matrix with 2× as many green pixels as red or blue. After stacking, the green channel is usually dominant unless color calibration has been applied. Most stackers don't do this by default.</p><p>This is corrected later in the processing pipeline through proper white balance or photometric color calibration.</p><h2>What to Check in the Stack</h2><p>Although the image will look dim or unprocessed, you can still evaluate a few technical aspects:</p><ul><li>Star shape: Should be round, indicating good tracking and focus.</li><li>Signal presence: Nebulae or galaxies should be faintly visible.</li><li>Noise: Should be reduced compared to a single sub.</li><li>Histogram: Should show most values away from clipping (especially black point).</li></ul><h2>When to Stretch</h2><p>You should only stretch the image after performing critical preprocessing steps like:</p><ul><li>Background extraction</li><li>Color calibration</li><li>Noise reduction (if working in linear space)</li></ul><p>Once you're done with those, a non-linear stretch brings out detail and color, and makes the image suitable for final adjustments.</p><h2>Summary</h2><ul><li>Stacked FITS files are linear by default.</li><li>Linear images will appear dark, flat, and often green.</li><li>This format preserves dynamic range and is meant for further processing.</li><li>Stretching transforms it into a viewable, high-contrast image.</li><li>Don't judge quality based on initial appearance: evaluate data integrity, not aesthetics.</li></ul>
                     </div>
 
                     <div class="back-button">
@@ -60,12 +123,7 @@
 
         </section>
 
-    </main>
-
-    <script src="../guides-data.js"></script>
-    <script src="../sidebar.js"></script>
-    <script src="../load-sidebar.js"></script>
-
+    </main>    <script src="../sidebar.js"></script>
 </body>
 
 </html>

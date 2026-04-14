@@ -124,3 +124,16 @@ window.initSidebar = function () {
         if (sidebarOverlay) sidebarOverlay.classList.remove("active")
     })
 }
+
+function initSidebarOnLoad() {
+    if (typeof window.initSidebar === 'function') {
+        window.initSidebar()
+    }
+    document.body.classList.add('ready')
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSidebarOnLoad)
+} else {
+    initSidebarOnLoad()
+}

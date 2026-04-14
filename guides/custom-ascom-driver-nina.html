@@ -20,9 +20,71 @@
 <body class="dark-mode">
 
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
-    <div id="sidebar-container"></div>
+    <div id="sidebar-container"><aside id="sidebar" class="sidebar">
+    <div class="sidebar-resize-handle"></div>
+    <div class="sidebar-bg"></div>
 
-    <main class="main-content">
+    <div class="sidebar-content">
+
+        <div class="sidebar-header">
+            <img src="/avatar/avatar.jpg" alt="Astrotaca" class="avatar">
+            <h1 class="site-title">Astrotaca</h1>
+            <p class="site-subtitle">20 year old Student & Astrophotographer</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="/index.html" class="nav-link">Home</a></li>
+                <li><a href="/gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="/guides.html" class="nav-link">Guides</a></li>
+                <li><a href="/flatpanel.html" class="nav-link">Flat Panel</a></li>
+                <li><a href="/software.html" class="nav-link">Software</a></li>
+                <li><a href="/about.html" class="nav-link">About</a></li>
+                <li><a href="/contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-social">
+            <ul>
+
+                <li>
+                    <a href="https://github.com/astrotaca" target="_blank" title="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://youtube.com/@astrotaca" target="_blank" title="YouTube">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.astrobin.com/users/astrotaca/" target="_blank" title="AstroBin">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.paypal.com/paypalme/astrotaca" target="_blank" title="PayPal">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 2h5.5c2.48 0 4.5 2.02 4.5 4.5S16.98 11 14.5 11H10v9H7V2zm3 2H9v7h4.5c1.38 0 2.5-1.12 2.5-2.5S14.88 6 13.5 6H12V4z"/>
+                        </svg>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</aside></div>
+<main class="main-content">
 
         <nav class="top-nav">
             <button id="sidebar-toggle" class="sidebar-toggle">
@@ -42,10 +104,11 @@
 
                 <div class="guide-detail">
 
-                    <div class="guide-detail-image-container"></div>
+                    <div class="guide-detail-image-container">
+                        <img src="../guides/custom-ascom-driver-nina.jpg" alt="Building Custom ASCOM Drivers" class="guide-detail-image">
+                    </div>
 
-                    <div class="guide-detail-content">
-                        <!-- Content populated by guides-data.js -->
+                    <div class="guide-detail-content"><p>This guide covers building ASCOM drivers to integrate custom hardware with NINA and other imaging software. It focuses on practical implementation and what actually matters for reliability.</p><p><strong>Prerequisites:</strong> You should understand serial communication (Arduino/ESP32) and basic programming. This guide focuses on what's involved in making a working driver.</p><h2>What ASCOM Does</h2><p>ASCOM provides standard interfaces between astronomy software and hardware. It lets NINA control your mount, camera, focuser, and other devices through a common protocol. Custom hardware needs an ASCOM driver to integrate properly.</p><p>The driver translates ASCOM method calls into commands your hardware understands, sends them over serial, and reports status back to the software.</p><h2>Getting Started</h2><p>Use Visual Studio with ASCOM Platform 7 driver templates. Download <a href="https://ascom-standards.org/" target="_blank">ASCOM Platform</a> and install the Visual Studio extensions. Templates generate the structure. You implement the hardware communication.</p><p>Pick your device interface:</p><ul><li><strong>ICoverCalibratorV2</strong> - Flat panels with motorized covers and lights</li><li><strong>IFocuserV3</strong> - Motorized focusers with position tracking</li><li><strong>IFilterWheelV3</strong> - Filter wheels with named positions</li><li><strong>IRotatorV3</strong> - Camera rotators with angle control</li><li><strong>ISwitchV3</strong> - Power switches and relay control</li><li><strong>ISafetyMonitorV3</strong> - Weather sensors and safety monitors</li></ul><p>Each interface defines required methods and properties. Templates include these. You fill in the serial communication logic.</p><h2>Driver Architecture</h2><p><strong>Driver Class:</strong> Implements the ASCOM interface. Handles connection state for each client. Routes method calls to hardware class. Provides setup dialog for COM port selection.</p><p><strong>Hardware Class:</strong> Manages the serial connection. Single shared instance for all clients. Tracks actual hardware state. Runs background threads for reading serial responses.</p><p>This structure lets multiple programs connect to your driver while maintaining one hardware connection.</p><h2>Serial Communication Pattern</h2><p>When NINA calls OpenCover(), your driver sends "open" over serial. Hardware responds with status messages. Driver updates internal state and reports back to NINA.</p><p>Commands like <code>open</code>, <code>close</code>, <code>led:50</code>. Responses like <code>OPENING</code>, <code>OPEN</code>, <code>CLOSED</code>.</p><p>Run a background thread that continuously reads serial and updates state variables. Never block ASCOM method calls waiting for hardware responses. Methods must return quickly (under 1 second).</p><p>NINA polls properties like CoverState or IsMoving to track completion. Your background thread updates these as hardware sends status messages.</p><h2>Problems I Hit Building Mine</h2><p>These weren't obvious from ASCOM documentation. Most broke during real imaging sessions, not bench testing.</p><p><strong>USB Serial Reliability</strong><br>Connections drop randomly. Packets get lost. Implement retry logic for failed commands. Send critical status messages multiple times from hardware with short delays between each. If one packet drops, others get through.</p><p><strong>Hardware Timing</strong><br>Servo takes 3 seconds to fully open. Without progress updates, NINA thinks the driver hung. Send status messages during operation so software knows it's executing, not stuck.</p><p><strong>Initialization Delay</strong><br>Wait 1.5 seconds after opening serial port before sending commands. Microcontroller needs time to initialize. First command fails without this delay.</p><p><strong>State Synchronization</strong><br>Send status request immediately after connecting. Syncs driver state with actual hardware position. Otherwise driver might report wrong state.</p><p><strong>Timeout Recovery</strong><br>If operation flag stays true for 10+ seconds without completion, reset it. Prevents driver from getting stuck if completion message gets lost.</p><h2>Testing Your Driver</h2><p><strong>ConformU</strong><br>Official ASCOM validation tool. Tests all required methods, timing, edge cases. Download from <a href="https://github.com/ASCOMInitiative/ConformU" target="_blank">ASCOM GitHub</a>. Run it before releasing your driver.</p><p><strong>Break Things Deliberately</strong></p><ul><li>Unplug USB during operation</li><li>Power cycle hardware mid-command</li><li>Send rapid repeated commands</li><li>Connect multiple programs simultaneously</li></ul><p>Driver should recover from all failures without crashing or leaving hardware in bad state.</p><p><strong>Logging</strong><br>Enable ASCOM TraceLogger. Log every command sent, response received, state change. When something breaks during unattended imaging, logs are your only diagnostic.</p><h2>Common Mistakes</h2><ul><li>Writing directly to registry instead of using ASCOM Profile object</li><li>Opening permanent modeless windows instead of modal setup dialogs</li><li>Not implementing all required interface methods</li></ul><h2>Configuration</h2><p>Store COM port and device settings in ASCOM Profile. Provides persistent storage across sessions. Use the Profile object, don't write directly to registry.</p><p>Setup dialog should have COM port dropdown with refresh button. If user opens setup while connected, disconnect temporarily, allow changes, reconnect after.</p><h2>Integration</h2><p>Register driver with ASCOM using regasm or an installer. Connect in NINA via Equipment menu. Test full imaging sequence. Run unattended overnight to verify reliability under real conditions.</p>
                     </div>
 
                     <div class="back-button">
@@ -60,12 +123,7 @@
 
         </section>
 
-    </main>
-
-    <script src="../guides-data.js"></script>
-    <script src="../sidebar.js"></script>
-    <script src="../load-sidebar.js"></script>
-
+    </main>    <script src="../sidebar.js"></script>
 </body>
 
 </html>
