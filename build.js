@@ -50,7 +50,7 @@ function loadData(filename, exportName) {
 function renderGalleryItems(items) {
   return items.map(item => `
         <a href="${escapeHtml(item.link)}" class="gallery-item" data-category="${escapeHtml(item.categories.join(' '))}">
-            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt)}" class="gallery-image loaded">
+            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt)}" loading="lazy" class="gallery-image loaded">
             <div class="gallery-info">
                 <h3>${escapeHtml(item.title)}</h3>
                 <p>${escapeHtml(item.filters)} · ${escapeHtml(item.duration)} · ${escapeHtml(item.categories[0] || '')}</p>
@@ -61,7 +61,7 @@ function renderGalleryItems(items) {
 function renderGuideItems(items) {
   return items.map(guide => `
         <a href="${escapeHtml(guide.link)}" class="guide-card" data-category="${escapeHtml(guide.category)}">
-            <img src="${escapeHtml(guide.image)}" alt="${escapeHtml(guide.title)}" class="guide-image loaded">
+            <img src="${escapeHtml(guide.image)}" alt="${escapeHtml(guide.title)}" loading="lazy" class="guide-image loaded">
             <div class="guide-content">
                 <h3>${escapeHtml(guide.title)}</h3>
                 <p>${escapeHtml(guide.shortDescription)}</p>
@@ -156,6 +156,12 @@ function injectSidebar(content, sidebarHtml) {
     }
     return '';
   });
+
+  // Normalize the menu toggle button for accessibility (idempotent across rebuilds).
+  content = content.replace(
+    /<button id="sidebar-toggle" class="sidebar-toggle"[^>]*>/,
+    '<button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Open menu" aria-expanded="false">'
+  );
 
   return content;
 }
@@ -312,8 +318,13 @@ function buildGalleryDetailPages(galleryImages, sidebarHtml) {
     content = replaceNthHtmlElement(content, '<div class="info-section">', 'div', 2, `<div class="info-section">${detailContent.aboutHtml}
                         </div>`, 'gallery detail info section');
 
+    const ogImage = `https://astrotaca.github.io/${item.image}`;
+    content = replaceRegex(content, /<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${escapeHtml(ogImage)}">`, 'og:image meta');
+    content = replaceRegex(content, /<meta property="og:image:alt" content="[^"]*">/, `<meta property="og:image:alt" content="${escapeHtml(item.alt)}">`, 'og:image:alt meta');
+    content = replaceRegex(content, /<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${escapeHtml(ogImage)}">`, 'twitter:image meta');
+
     content = replaceRegex(content, /<img src="[^"]*" alt="[^"]*" class="detail-image">/, `<img src="${detailContent.imageSrc}" alt="${escapeHtml(item.alt)}" class="detail-image">`, 'detail image');
-    content = replaceRegex(content, /<a href="[^"]*" target="_blank" class="btn-link">/, `<a href="${detailContent.detailHref}" target="_blank" class="btn-link">`, 'detail link');
+    content = replaceRegex(content, /<a href="[^"]*" target="_blank"[^>]*class="btn-link">/, `<a href="${detailContent.detailHref}" target="_blank" rel="noopener" class="btn-link">`, 'detail link');
 
     content = replaceOptional(content, /\s*<script src="\.\.\/gallery-data\.js"><\/script>\r?\n/);
     content = injectSidebar(content, sidebarHtml);
@@ -328,6 +339,10 @@ function buildGuideDetailPages(guidesData, sidebarHtml) {
     let content = normalize(fs.readFileSync(filePath, 'utf8'));
 
     const guideContent = renderGuideDetailContent(guide);
+
+    const guideOgImage = `https://astrotaca.github.io/${guide.image}`;
+    content = replaceRegex(content, /<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${escapeHtml(guideOgImage)}">`, 'guide og:image meta');
+    content = replaceRegex(content, /<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${escapeHtml(guideOgImage)}">`, 'guide twitter:image meta');
 
     content = replaceHtmlElement(content, '<div class="guide-detail-image-container">', 'div', `<div class="guide-detail-image-container">
                         <img src="${guideContent.imageSrc}" alt="${escapeHtml(guide.title)}" class="guide-detail-image">

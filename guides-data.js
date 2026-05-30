@@ -105,7 +105,7 @@ const guidesData = [
         { type: 'paragraph', content: 'ASCOM provides standard interfaces between astronomy software and hardware. It lets NINA control your mount, camera, focuser, and other devices through a common protocol. Custom hardware needs an ASCOM driver to integrate properly.' },
         { type: 'paragraph', content: 'The driver translates ASCOM method calls into commands your hardware understands, sends them over serial, and reports status back to the software.' },
         { type: 'heading', content: 'Getting Started' },
-        { type: 'paragraph', content: 'Use Visual Studio with ASCOM Platform 7 driver templates. Download <a href="https://ascom-standards.org/" target="_blank">ASCOM Platform</a> and install the Visual Studio extensions. Templates generate the structure. You implement the hardware communication.' },
+        { type: 'paragraph', content: 'Use Visual Studio with ASCOM Platform 7 driver templates. Download <a href="https://ascom-standards.org/" target="_blank" rel="noopener">ASCOM Platform</a> and install the Visual Studio extensions. Templates generate the structure. You implement the hardware communication.' },
         { type: 'paragraph', content: 'Pick your device interface:' },
         { type: 'list', items: [
             '<strong>ICoverCalibratorV2</strong> - Flat panels with motorized covers and lights',
@@ -133,7 +133,7 @@ const guidesData = [
         { type: 'paragraph', content: '<strong>State Synchronization</strong><br>Send status request immediately after connecting. Syncs driver state with actual hardware position. Otherwise driver might report wrong state.' },
         { type: 'paragraph', content: '<strong>Timeout Recovery</strong><br>If operation flag stays true for 10+ seconds without completion, reset it. Prevents driver from getting stuck if completion message gets lost.' },
         { type: 'heading', content: 'Testing Your Driver' },
-        { type: 'paragraph', content: '<strong>ConformU</strong><br>Official ASCOM validation tool. Tests all required methods, timing, edge cases. Download from <a href="https://github.com/ASCOMInitiative/ConformU" target="_blank">ASCOM GitHub</a>. Run it before releasing your driver.' },
+        { type: 'paragraph', content: '<strong>ConformU</strong><br>Official ASCOM validation tool. Tests all required methods, timing, edge cases. Download from <a href="https://github.com/ASCOMInitiative/ConformU" target="_blank" rel="noopener">ASCOM GitHub</a>. Run it before releasing your driver.' },
         { type: 'paragraph', content: '<strong>Break Things Deliberately</strong>' },
         { type: 'list', items: [
             'Unplug USB during operation',
@@ -205,71 +205,3 @@ const guidesData = [
     ]
 }
 ];
-
-function renderGuides() {
-    const guidesGrid = document.querySelector('.guides-grid');
-    if (!guidesGrid) return;
-
-    guidesGrid.innerHTML = guidesData.map(guide => `
-        <a href="${guide.link}" class="guide-card" data-category="${guide.category}">
-            <img src="${guide.image}" alt="${guide.title}" class="guide-image">
-            <div class="guide-content">
-                <h3>${guide.title}</h3>
-                <p>${guide.shortDescription}</p>
-            </div>
-        </a>
-    `).join('');
-
-    guidesGrid.querySelectorAll('.guide-image').forEach(img => {
-        if (img.complete) {
-            img.classList.add('loaded');
-        } else {
-            img.addEventListener('load', () => img.classList.add('loaded'));
-        }
-    });
-
-    if (window.initFilters) window.initFilters();
-}
-
-function renderGuideDetail() {
-    const currentPage = window.location.pathname.split('/').pop();
-    const guideId = currentPage.replace('.html', '');
-
-    const guide = guidesData.find(g => g.id === guideId);
-    if (!guide || !guide.fullContent) return;
-
-    document.title = `${guide.title} - Astrotaca`;
-    const pageTitle = document.querySelector('.page-title');
-    if (pageTitle) pageTitle.textContent = guide.title;
-
-    const sectionHeader = document.querySelector('.section-header h1');
-    if (sectionHeader) sectionHeader.textContent = guide.title;
-
-    const detailImageContainer = document.querySelector('.guide-detail-image-container');
-    if (detailImageContainer && guide.detailImage) {
-        detailImageContainer.innerHTML = `<img src="${guide.detailImage}" alt="${guide.title}" class="guide-detail-image">`;
-    }
-
-    const guideContent = document.querySelector('.guide-detail-content');
-    if (guideContent && guide.fullContent) {
-        guideContent.innerHTML = guide.fullContent.map(block => {
-            switch(block.type) {
-                case 'heading':   return `<h2>${block.content}</h2>`;
-                case 'paragraph': return `<p>${block.content}</p>`;
-                case 'list':      return `<ul>${block.items.map(item => `<li>${item}</li>`).join('')}</ul>`;
-                case 'image':     return `<img src="${block.src}" alt="${block.alt}" class="guide-detail-image">`;
-                default:          return '';
-            }
-        }).join('');
-    }
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        renderGuides();
-        renderGuideDetail();
-    });
-} else {
-    renderGuides();
-    renderGuideDetail();
-}

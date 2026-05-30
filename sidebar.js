@@ -1,5 +1,4 @@
 const sidebarOverlay = document.getElementById("sidebar-overlay")
-const mainContent = document.querySelector(".main-content")
 
 window.initSidebar = function () {
 
@@ -34,6 +33,8 @@ window.initSidebar = function () {
                 sidebar.style.width = "100vw"
                 if (sidebarOverlay) sidebarOverlay.classList.add("active")
             }
+
+            sidebarToggle.setAttribute("aria-expanded", isOpen ? "false" : "true")
         })
     }
 
@@ -42,6 +43,7 @@ window.initSidebar = function () {
             sidebar.classList.remove("open")
             sidebar.style.width = baseWidth
             sidebarOverlay.classList.remove("active")
+            if (sidebarToggle) sidebarToggle.setAttribute("aria-expanded", "false")
         })
     }
 
@@ -122,6 +124,7 @@ window.initSidebar = function () {
         sidebar.classList.remove("open")
         sidebar.style.width = baseWidth
         if (sidebarOverlay) sidebarOverlay.classList.remove("active")
+        if (sidebarToggle) sidebarToggle.setAttribute("aria-expanded", "false")
     })
 }
 
