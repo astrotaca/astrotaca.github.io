@@ -1,45 +1,40 @@
-# Astrotaca Static Site Build
+# Astrotaca
 
-A small build step renders static HTML from `gallery-data.js` and `guides-data.js`.
+My astrophotography website, with my image gallery, some guides I've written, and the motorized flat panel I'm building. It's live at [astrotaca.com](https://astrotaca.com).
 
-## Use this order
+## How it's built
 
-1. Run the build:
+It's a static site (plain HTML, CSS and JavaScript, no framework). A small Node script, `build.js`, generates the pages so I'm not pasting the sidebar and the gallery cards into every file by hand.
 
-```powershell
-node build.js
+The content lives in two data files:
+
+- `gallery-data.js` for the images and their acquisition details
+- `guides-data.js` for the guides
+
+The build reads those and writes out the home page cards, the gallery and guides pages, and each individual gallery and guide page. It also drops the shared sidebar into every page and fills in the per-page meta tags (title, canonical link, social preview image).
+
+Hosted on GitHub Pages with Cloudflare in front for DNS, HTTPS and caching.
+
+## Running it locally
+
+```
+node build.js      # generate the pages
+npx serve .        # preview locally
 ```
 
-2. Preview the generated site:
+Rebuild after changing a data file, a page template, or the sidebar. CSS and image changes don't need a rebuild.
 
-```powershell
-npx serve .
+## Structure
+
+```
+build.js                         build script
+gallery-data.js, guides-data.js  content for the gallery and guides
+sidebar.html                     shared sidebar, injected at build time
+sidebar.js, gallery-filter.js    runtime behavior (menu, filtering)
+styles.css                       styles
+*.html                           pages, written by the build
+gallery/, guides/                individual image and guide pages
+images/, avatar/                 assets
 ```
 
-If `serve` is not installed:
-
-```powershell
-npm install -g serve
-serve .
-```
-
-## When to run the build
-
-Run `node build.js` after changing:
-- `gallery-data.js`
-- `guides-data.js`
-- `index.html`, `gallery.html`, `guides.html`
-- any `gallery/*.html` or `guides/*.html` template
-
-No build is needed for CSS, images, sidebar content, or static scripts.
-
-## What it does
-
-- generates gallery and guide cards in the main pages
-- inlines the shared sidebar
-- builds full HTML for `gallery/*.html` and `guides/*.html`
-
-## Notes
-
-- `gallery-data.js` and `guides-data.js` are the source of truth.
-- Keep `sidebar.js` and `gallery-filter.js` for runtime interaction.
+The data files are the source of truth, so I edit those and rebuild instead of editing the generated HTML directly.
