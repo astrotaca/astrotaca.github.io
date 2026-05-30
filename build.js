@@ -318,7 +318,7 @@ function buildGalleryDetailPages(galleryImages, sidebarHtml) {
     content = replaceNthHtmlElement(content, '<div class="info-section">', 'div', 2, `<div class="info-section">${detailContent.aboutHtml}
                         </div>`, 'gallery detail info section');
 
-    const ogImage = `https://astrotaca.github.io/${item.image}`;
+    const ogImage = `https://astrotaca.com/${item.image}`;
     content = replaceRegex(content, /<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${escapeHtml(ogImage)}">`, 'og:image meta');
     content = replaceRegex(content, /<meta property="og:image:alt" content="[^"]*">/, `<meta property="og:image:alt" content="${escapeHtml(item.alt)}">`, 'og:image:alt meta');
     content = replaceRegex(content, /<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${escapeHtml(ogImage)}">`, 'twitter:image meta');
@@ -340,7 +340,7 @@ function buildGuideDetailPages(guidesData, sidebarHtml) {
 
     const guideContent = renderGuideDetailContent(guide);
 
-    const guideOgImage = `https://astrotaca.github.io/${guide.image}`;
+    const guideOgImage = `https://astrotaca.com/${guide.image}`;
     content = replaceRegex(content, /<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${escapeHtml(guideOgImage)}">`, 'guide og:image meta');
     content = replaceRegex(content, /<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${escapeHtml(guideOgImage)}">`, 'guide twitter:image meta');
 

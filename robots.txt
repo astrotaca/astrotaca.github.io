@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://astrotaca.github.io/sitemap.xml
+Sitemap: https://astrotaca.com/sitemap.xml
