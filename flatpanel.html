@@ -111,61 +111,103 @@
                 <div class="about-content">
                     <div class="about-text">
                         <h2>Overview</h2>
-                        <p class="box-subtitle">Motorized flat panel for automated astrophotography flat frame capture</p>
-                        <p>This motorized flat panel mounts on a telescope and automates flat frame capture.</p>
-                        <p>The panel opens and closes automatically, controls brightness, and integrates directly with NINA through a custom ASCOM driver.</p>
-                        <p>Current prototype in progress mounted on ZWO FF65 APO, compatible with ASKAR 65 PHQ.</p>
-
-                        <hr>
+                        <p class="box-subtitle">A fully automated flat panel that lives on your telescope.</p>
+                        <p>Flats are the most tedious part of an imaging session, and the easiest to put off until you are half asleep. This motorized flat panel stays mounted on your scope and captures them for you from start to finish, with nothing to hold up, drape over, or remember.</p>
+                        <p>It opens and closes on command, sets its own brightness, and is fully ASCOM-compatible, so it drops straight into your NINA sequence. A full night, flats included, can run completely unattended.</p>
+                        <p>The unit shown in these renders is the AT-65, built to fit 65mm refractors like the ZWO FF65 APO and Askar 65PHQ.</p>
 
                         <figure>
                             <img src="images/flatpanel/front-view.png" loading="lazy" alt="motorized flat panel mounted on ZWO FF65 APO telescope front view" class="detail-image">
-                            <figcaption>Motorized flat panel mounted on ZWO FF65 APO</figcaption>
+                            <figcaption>The flat panel mounted on a ZWO FF65 APO.</figcaption>
                         </figure>
-
-                        <hr>
 
                         <figure>
                             <img src="images/flatpanel/side-view.png" loading="lazy" alt="motorized flat panel mounted on telescope side view" class="detail-image">
-                            <figcaption>Panel arm open position showing mounting and clearance.</figcaption>
+                            <figcaption>Side profile of the flat panel.</figcaption>
                         </figure>
-
-                        <hr>
 
                         <h2>What it does</h2>
                         <ul>
-                            <li>Motorized flap, opens and closes from NINA sequence</li>
-                            <li>Brightness control for repeatable flat frames</li>
-                            <li>ASCOM integration, no manual steps</li>
-                            <li>Uniform illumination across the panel</li>
-                            <li>Compact design stays mounted on the scope</li>
-                            <li>Custom PCB with integrated electronics</li>
+                            <li>Opens and closes automatically from your imaging sequence</li>
+                            <li>Self-adjusting brightness for consistent, repeatable flats</li>
+                            <li>Fully ASCOM-compatible, no manual steps and no babysitting</li>
+                            <li>Even, uniform illumination across the whole panel</li>
+                            <li>Stays mounted on the scope, set it once and leave it</li>
+                            <li>Compact, self-contained, and tidy on the rig</li>
                         </ul>
 
-                        <hr>
-
                         <h2>Why I built it</h2>
-                        <p>My previous setup was a t-shirt in front of the scope and a screen showing a white image.</p>
-                        <p>It worked, but it completely broke the idea of an automated workflow.</p>
-                        <p>I wanted a flat panel that could stay mounted and handle flats without me being there.</p>
-
-                        <hr>
+                        <p>Taking flats was always the improvised step in my setup, a t-shirt over the scope or a tablet showing a white screen. It works, but it means being at the telescope at the end of every session. The rest of my rig already runs on its own, so I built a panel that handles flats the same way.</p>
 
                         <h2>Status</h2>
-                        <p>Currently in active prototyping.</p>
-                        <p>The system works, but I am still refining the mechanical design.</p>
+                        <p>It is an active build in progress. Right now I am deep in prototyping, designing and testing the hardware to make it reliable enough to run unattended, night after night. It is not ready to ship yet, but it gets closer with every iteration, and I am sharing the milestones along the way.</p>
 
-                        <hr>
-
-                        <h2>Interested?</h2>
-                        <p>If you would use this, join the Discord for updates and early access.</p>
-                        <a href="https://discord.gg/Xcgum8ekWb" target="_blank" rel="noopener" class="btn-link">Join the Discord for updates and early access</a>
+                        <h2>Want one for your scope?</h2>
+                        <p>Right now the AT-65 fits 65mm refractors. If you image with something else, tell me what you have and I will work toward a panel that fits it. Measure the outer diameter of your dew shield in millimeters, drop it below with your email, and I will let you know when there is one for your scope.</p>
+                        <form id="flatpanel-fit" action="https://formspree.io/f/meevojgy" method="POST" class="contact-form">
+                            <input type="hidden" name="_subject" value="Flat panel fit request">
+                            <input type="hidden" name="interest" value="flat-panel-fit-request">
+                            <label>
+                                Your email
+                                <input type="email" name="email" required>
+                            </label>
+                            <label>
+                                Your telescope
+                                <input type="text" name="telescope" placeholder="e.g. ZWO FF65 APO" required>
+                            </label>
+                            <label>
+                                Dew shield outer diameter (mm)
+                                <input type="number" name="dew_shield_mm" min="0" step="1" placeholder="e.g. 95">
+                                <span class="contact-note">Measure across the front opening of your scope or dew shield. I recommend a digital vernier caliper for the most accurate reading.</span>
+                            </label>
+                            <button type="submit" class="btn-link">Send it over</button>
+                            <p id="flatpanel-feedback" class="contact-feedback" aria-live="polite"></p>
+                        </form>
+                        <p class="cta-or">Or join the Discord for progress and first looks.</p>
+                        <a href="https://discord.gg/Xcgum8ekWb" target="_blank" rel="noopener" class="btn-link">Join the Discord</a>
                     </div>
                 </div>
             </div>
         </section>
 
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.getElementById('flatpanel-fit');
+            var feedback = document.getElementById('flatpanel-feedback');
+            if (!form || !feedback) return;
+            var button = form.querySelector('button[type="submit"]');
+            if (!button) return;
+
+            form.addEventListener('submit', function (event) {
+                if (!window.fetch) return;
+                event.preventDefault();
+                var formData = new FormData(form);
+                feedback.textContent = 'Sending...';
+                button.disabled = true;
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                }).then(function (response) {
+                    if (response.ok) {
+                        feedback.textContent = 'Thanks! I will reach out when there is an AT for your scope.';
+                        form.reset();
+                    } else {
+                        return response.json().then(function (data) {
+                            feedback.textContent = (data && data.error) || 'Something went wrong. Please try again.';
+                        });
+                    }
+                }).catch(function () {
+                    feedback.textContent = 'Something went wrong. Please try again.';
+                }).finally(function () {
+                    button.disabled = false;
+                });
+            });
+        });
+    </script>
 
     <script src="sidebar.js"></script>
 </body>
