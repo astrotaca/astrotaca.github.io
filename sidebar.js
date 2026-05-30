@@ -102,21 +102,15 @@ window.initSidebar = function () {
 
     const links = sidebar.querySelectorAll(".nav-link")
 
-    const path = window.location.pathname
-    const section = path.split("/")[1]
+    const normalizePath = (p) => p.replace(/\.html$/, "").replace(/\/+$/, "") || "/"
+    const path = normalizePath(window.location.pathname)
 
     links.forEach(link => {
 
-        const href = link.getAttribute("href")
+        const href = normalizePath(link.getAttribute("href"))
 
-        if (
-            path === href ||
-            href === `/${section}.html`
-        ) {
-            link.classList.add("active")
-        } else {
-            link.classList.remove("active")
-        }
+        const isActive = path === href || (href !== "/" && path.startsWith(href + "/"))
+        link.classList.toggle("active", isActive)
 
     })
 

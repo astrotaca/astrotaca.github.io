@@ -49,7 +49,7 @@ function loadData(filename, exportName) {
 
 function renderGalleryItems(items) {
   return items.map(item => `
-        <a href="${escapeHtml(item.link)}" class="gallery-item" data-category="${escapeHtml(item.categories.join(' '))}">
+        <a href="${escapeHtml(item.link).replace(/\.html$/, '')}" class="gallery-item" data-category="${escapeHtml(item.categories.join(' '))}">
             <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt)}" loading="lazy" class="gallery-image loaded">
             <div class="gallery-info">
                 <h3>${escapeHtml(item.title)}</h3>
@@ -60,7 +60,7 @@ function renderGalleryItems(items) {
 
 function renderGuideItems(items) {
   return items.map(guide => `
-        <a href="${escapeHtml(guide.link)}" class="guide-card" data-category="${escapeHtml(guide.category)}">
+        <a href="${escapeHtml(guide.link).replace(/\.html$/, '')}" class="guide-card" data-category="${escapeHtml(guide.category)}">
             <img src="${escapeHtml(guide.image)}" alt="${escapeHtml(guide.title)}" loading="lazy" class="guide-image loaded">
             <div class="guide-content">
                 <h3>${escapeHtml(guide.title)}</h3>
@@ -305,8 +305,8 @@ function buildGalleryDetailPages(galleryImages, sidebarHtml) {
     content = replaceOptional(content, /<p class="lead">[\s\S]*?<\/p>\r?\n/);
     content = replaceOptional(content, /<div class="detail-nav">[\s\S]*?<\/div>\s*\r?\n?/);
     const galleryNavHtml = `        <div class="detail-nav">
-            <a href="${escapeHtml(galleryImages[index - 1]?.id ? `${galleryImages[index - 1].id}.html` : '#')}" title="${galleryImages[index - 1] ? `Previous: ${escapeHtml(galleryImages[index - 1].title)}` : 'No previous image'}" class="${galleryImages[index - 1] ? '' : 'disabled'}">←</a>
-            <a href="${escapeHtml(galleryImages[index + 1]?.id ? `${galleryImages[index + 1].id}.html` : '#')}" title="${galleryImages[index + 1] ? `Next: ${escapeHtml(galleryImages[index + 1].title)}` : 'No next image'}" class="${galleryImages[index + 1] ? '' : 'disabled'}">→</a>
+            <a href="${escapeHtml(galleryImages[index - 1]?.id ? `${galleryImages[index - 1].id}` : '#')}" title="${galleryImages[index - 1] ? `Previous: ${escapeHtml(galleryImages[index - 1].title)}` : 'No previous image'}" class="${galleryImages[index - 1] ? '' : 'disabled'}">←</a>
+            <a href="${escapeHtml(galleryImages[index + 1]?.id ? `${galleryImages[index + 1].id}` : '#')}" title="${galleryImages[index + 1] ? `Next: ${escapeHtml(galleryImages[index + 1].title)}` : 'No next image'}" class="${galleryImages[index + 1] ? '' : 'disabled'}">→</a>
         </div>
 `;
     content = replaceRegex(content, /(<\/header>\s*\r?\n)/, `$1${galleryNavHtml}`, 'gallery detail navigation insertion');
