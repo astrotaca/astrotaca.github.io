@@ -41,7 +41,7 @@ const galleryImages = [
         acquisition: [
             { filter: 'Hα (656nm)', exposure: '300s', count: 30, total: '2.5h' },
             { filter: 'SII (672nm)', exposure: '300s', count: 30, total: '2.5h' },
-            { filter: 'OIII (496nm)', exposure: '300s', count: 12, total: '1' }
+            { filter: 'OIII (496nm)', exposure: '300s', count: 12, total: '1h' }
         ],
         equipment: [
             { label: 'Telescope', value: 'ZWO FF65 APO' },

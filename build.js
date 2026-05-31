@@ -166,6 +166,25 @@ function injectSidebar(content, sidebarHtml) {
   return content;
 }
 
+function injectFavicon(content) {
+  // Remove any previously injected favicon block so rebuilds stay idempotent.
+  content = content.replace(/\s*<!-- favicons -->[\s\S]*?<!-- \/favicons -->/g, '');
+
+  const block = `
+    <!-- favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- /favicons -->`;
+
+  const viewportRegex = /<meta name="viewport"[^>]*>/i;
+  if (!viewportRegex.test(content)) {
+    throw new Error('Unable to locate viewport meta for favicon injection.');
+  }
+  return content.replace(viewportRegex, match => `${match}${block}`);
+}
+
 function replaceRegex(source, regex, replacement, description) {
   const matcher = new RegExp(regex.source, regex.flags);
   if (!matcher.test(source)) {
@@ -253,6 +272,7 @@ function buildIndex(galleryImages, guidesData, sidebarHtml) {
   content = replaceOptional(content, /\s*<script src="gallery-data\.js"><\/script>\r?\n\s*<script src="guides-data\.js"><\/script>\r?\n/);
   content = replaceOptional(content, /<script>[\s\S]*?const homeGuides = document.getElementById\('home-guides'\);[\s\S]*?<\/script>\r?\n/);
   content = injectSidebar(content, sidebarHtml);
+  content = injectFavicon(content);
 
   writeFile(filePath, content);
   console.log('Updated index.html');
@@ -268,6 +288,7 @@ function buildGallery(galleryImages, sidebarHtml) {
                 </div>`, 'gallery grid container');
   content = replaceOptional(content, /\s*<script src="gallery-data\.js"><\/script>\r?\n/);
   content = injectSidebar(content, sidebarHtml);
+  content = injectFavicon(content);
   writeFile(filePath, content);
   console.log('Updated gallery.html');
 }
@@ -281,6 +302,7 @@ function buildGuides(guidesData, sidebarHtml) {
                 </div>`, 'guides grid container');
   content = replaceOptional(content, /\s*<script src="guides-data\.js"><\/script>\r?\n/);
   content = injectSidebar(content, sidebarHtml);
+  content = injectFavicon(content);
   writeFile(filePath, content);
   console.log('Updated guides.html');
 }
@@ -290,6 +312,7 @@ function buildStaticSidebarPages(pagePaths, sidebarHtml) {
     const filePath = path.join(root, relativePath);
     let content = normalize(fs.readFileSync(filePath, 'utf8'));
     content = injectSidebar(content, sidebarHtml);
+    content = injectFavicon(content);
     writeFile(filePath, content);
     console.log(`Updated ${relativePath}`);
   });
@@ -328,6 +351,7 @@ function buildGalleryDetailPages(galleryImages, sidebarHtml) {
 
     content = replaceOptional(content, /\s*<script src="\.\.\/gallery-data\.js"><\/script>\r?\n/);
     content = injectSidebar(content, sidebarHtml);
+    content = injectFavicon(content);
     writeFile(filePath, content);
     console.log(`Updated gallery/${item.id}.html`);
   });
@@ -351,6 +375,7 @@ function buildGuideDetailPages(guidesData, sidebarHtml) {
                     </div>`, 'guide detail content');
     content = replaceOptional(content, /\s*<script src="\.\.\/guides-data\.js"><\/script>\r?\n/);
     content = injectSidebar(content, sidebarHtml);
+    content = injectFavicon(content);
 
     writeFile(filePath, content);
     console.log(`Updated guides/${guide.id}.html`);
