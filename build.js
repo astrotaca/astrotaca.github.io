@@ -98,10 +98,30 @@ function renderGalleryDetailContent(item) {
   };
 }
 
+function slugify(text) {
+  return String(text)
+    .replace(/<[^>]*>/g, '')
+    .replace(/&[a-z]+;/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 function renderGuideDetailContent(guide) {
+  const tocEntries = [];
+  const usedIds = new Set();
+
   const bodyHtml = guide.fullContent.map(block => {
     switch (block.type) {
-      case 'heading': return `<h2>${block.content}</h2>`;
+      case 'heading': {
+        const base = slugify(block.content) || 'section';
+        let id = base;
+        let n = 2;
+        while (usedIds.has(id)) { id = `${base}-${n}`; n += 1; }
+        usedIds.add(id);
+        tocEntries.push({ id, text: block.content });
+        return `<h2 id="${id}">${block.content}</h2>`;
+      }
       case 'paragraph': return `<p>${block.content}</p>`;
       case 'list': return `<ul>${block.items.map(item => `<li>${item}</li>`).join('')}</ul>`;
       case 'image': return `<img src="${escapeHtml(block.src)}" alt="${escapeHtml(block.alt)}" class="guide-detail-image">`;
@@ -109,9 +129,20 @@ function renderGuideDetailContent(guide) {
     }
   }).join('');
 
+  // Only worth a contents list when there are a few sections to jump between.
+  const tocHtml = tocEntries.length >= 3
+    ? `<aside class="guide-toc" aria-label="Table of contents">
+                            <p class="guide-toc-title">On this page</p>
+                            <ul>
+${tocEntries.map(e => `                                <li><a class="guide-toc-link" href="#${e.id}">${e.text}</a></li>`).join('\n')}
+                            </ul>
+                        </aside>`
+    : '';
+
   return {
     imageSrc: escapeHtml(guide.detailImage),
     contentHtml: bodyHtml,
+    tocHtml,
   };
 }
 
@@ -373,6 +404,16 @@ function buildGuideDetailPages(guidesData, sidebarHtml) {
                     </div>`, 'guide detail image container');
     content = replaceHtmlElement(content, '<div class="guide-detail-content">', 'div', `<div class="guide-detail-content">${guideContent.contentHtml}
                     </div>`, 'guide detail content');
+
+    // Table of contents: clear any previous injection, then re-add (idempotent across rebuilds).
+    content = replaceOptional(content, /\s*<aside class="guide-toc"[\s\S]*?<\/aside>/i);
+    content = replaceOptional(content, /\n\s*<script src="\.\.\/guide-toc\.js"><\/script>/i);
+    if (guideContent.tocHtml) {
+      content = content.replace('<div class="guide-detail">', `<div class="guide-detail">
+                        ${guideContent.tocHtml}`);
+      content = content.replace('<script src="../sidebar.js"></script>', '<script src="../sidebar.js"></script>\n    <script src="../guide-toc.js"></script>');
+    }
+
     content = replaceOptional(content, /\s*<script src="\.\.\/guides-data\.js"><\/script>\r?\n/);
     content = injectSidebar(content, sidebarHtml);
     content = injectFavicon(content);

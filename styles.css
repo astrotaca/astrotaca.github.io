@@ -40,7 +40,7 @@ body {
     font-weight: var(--font-weight);
     color: var(--body-color);
     background-color: var(--body-bg);
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -293,7 +293,7 @@ a:hover {
 .main-content {
     position: relative;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: clip;
     margin-left: var(--sidebar-width);
     width: calc(100% - var(--sidebar-width));
 }
@@ -1249,7 +1249,7 @@ body.ready {
 
 .guide-detail {
     max-width: 750px;
-    margin: 0 auto;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -1417,4 +1417,128 @@ body.ready {
 
 .sequence-structure .indent-2 {
     padding-left: 3rem;
+}
+
+/* Guide table of contents */
+.guide-toc {
+    display: none;
+}
+
+.guide-toc-title {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--gray-text);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 0.75rem;
+}
+
+.guide-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid var(--border-color);
+    position: relative;
+}
+
+.guide-toc li {
+    margin: 0;
+}
+
+.guide-toc-link {
+    display: block;
+    padding: 0.3rem 0 0.3rem 0.9rem;
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    color: var(--gray-text);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.guide-toc-link:hover {
+    color: var(--body-color);
+    text-decoration: none;
+}
+
+.guide-toc-link.active {
+    color: var(--accent-color);
+}
+
+.guide-toc-indicator {
+    position: absolute;
+    left: -1px;
+    top: 0;
+    width: 2px;
+    height: 0;
+    background: var(--accent-color);
+    border-radius: 2px;
+    opacity: 0;
+    transform: translateY(0);
+    transition: transform 0.25s ease, height 0.25s ease, opacity 0.2s ease;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .guide-toc-indicator {
+        transition: none;
+    }
+}
+
+.guide-detail-content h2 {
+    scroll-margin-top: 5rem;
+}
+
+/* Two-column guide layout with a sticky TOC in the right gutter (wide screens only) */
+/* Guide pages: cap the title to the content/image width so it wraps instead of running
+   wide — keeps it aligned with the body and clear of the TOC. */
+.container:has(.guide-detail) .section-header {
+    max-width: 750px;
+}
+
+/* Both the sidebar and the TOC are gone (narrow screens): center the guide on screen. */
+@media (max-width: 1199px) {
+    .container:has(.guide-detail) .guide-detail {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .container:has(.guide-detail) .section-header {
+        max-width: 750px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 1750px) {
+    /* Wide screens (sidebar + TOC visible): content sits left-aligned at the Guides-page
+       position, nudged right a touch so it isn't left-heavy against the sidebar; the header
+       shares the content's left edge; the TOC floats in the right gutter. */
+    .container:has(.guide-detail) .section-header,
+    .container:has(.guide-detail) .guide-detail {
+        margin-left: 7rem;
+    }
+
+    .guide-toc {
+        display: block;
+        position: fixed;
+        top: 50%;
+        right: calc(var(--sidebar-width) / 2 + 1rem);
+        transform: translateY(-50%);
+        width: 16rem;
+        max-height: calc(100vh - 4rem);
+        overflow-y: auto;
+        z-index: 10;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }
