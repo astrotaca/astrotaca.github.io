@@ -883,6 +883,10 @@ body.ready {
     margin-bottom: 0;
 }
 
+.flatpanel-page .contact-feedback {
+    text-align: center;
+}
+
 .about-text p {
     font-size: 1.1rem;
     line-height: 1.8;
