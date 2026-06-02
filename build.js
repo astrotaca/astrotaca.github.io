@@ -188,11 +188,25 @@ function injectSidebar(content, sidebarHtml) {
     return '';
   });
 
-  // Normalize the menu toggle button for accessibility (idempotent across rebuilds).
-  content = content.replace(
-    /<button id="sidebar-toggle" class="sidebar-toggle"[^>]*>/,
-    '<button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Open menu" aria-expanded="false">'
-  );
+  // Rebuild the top nav from a canonical template so every page carries the same
+  // accessible hamburger plus the light/dark theme toggle (idempotent across rebuilds).
+  const topNavHtml = `<nav class="top-nav">
+            <button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false" title="Toggle light and dark mode">
+                <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                </svg>
+                <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </nav>`;
+  content = replaceHtmlElement(content, '<nav class="top-nav">', 'nav', topNavHtml, 'top navigation');
 
   return content;
 }

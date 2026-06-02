@@ -1,3 +1,13 @@
+// Apply the saved theme before the page is revealed (the body stays hidden until
+// `.ready` is added below), so a light-mode visitor never sees a flash of dark.
+;(function () {
+    try {
+        if (localStorage.getItem("theme") === "light") {
+            document.documentElement.classList.add("light-mode")
+        }
+    } catch (e) {}
+})()
+
 const sidebarOverlay = document.getElementById("sidebar-overlay")
 
 window.initSidebar = function () {
@@ -122,10 +132,34 @@ window.initSidebar = function () {
     })
 }
 
+function initThemeToggle() {
+    const toggle = document.getElementById("theme-toggle")
+    if (!toggle) return
+
+    const root = document.documentElement
+
+    const syncState = () => {
+        const isLight = root.classList.contains("light-mode")
+        toggle.setAttribute("aria-pressed", isLight ? "true" : "false")
+        toggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode")
+    }
+
+    syncState()
+
+    toggle.addEventListener("click", () => {
+        const isLight = root.classList.toggle("light-mode")
+        try {
+            localStorage.setItem("theme", isLight ? "light" : "dark")
+        } catch (e) {}
+        syncState()
+    })
+}
+
 function initSidebarOnLoad() {
     if (typeof window.initSidebar === 'function') {
         window.initSidebar()
     }
+    initThemeToggle()
     document.body.classList.add('ready')
 }
 

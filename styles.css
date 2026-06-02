@@ -8,6 +8,7 @@
 :root {
     --body-bg: #2D2D2D;
     --body-color: #CCCCCC;
+    --heading-color: #CCCCCC;
     --sidebar-bg: #161616;
     --sidebar-color: #FFFFFF;
     --accent-color: #0E78E3;
@@ -48,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: var(--font-weight-heading);
     line-height: 1.3;
     margin-bottom: 1rem;
-    color: #cccccc;
+    color: var(--heading-color);
 }
 
 h1 { font-size: 2rem; }
@@ -488,13 +489,50 @@ a:hover {
 .sidebar-toggle span {
     width: 100%;
     height: 2px;
-    background: #cccccc;
+    background: var(--heading-color);
     border-radius: 2px;
     transition: all var(--transition-speed);
 }
 
 .sidebar-toggle:hover span {
     background: var(--accent-color);
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    margin-left: 1.25rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: var(--heading-color);
+    cursor: pointer;
+    transition: color var(--transition-speed);
+}
+
+.theme-toggle:hover {
+    color: var(--accent-color);
+}
+
+.theme-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.theme-icon-moon {
+    display: none;
+}
+
+:root.light-mode .theme-icon-sun {
+    display: none;
+}
+
+:root.light-mode .theme-icon-moon {
+    display: block;
 }
 
 body {
@@ -1538,4 +1576,40 @@ html {
     html {
         scroll-behavior: auto;
     }
+}
+
+/* ===== Light mode ===== */
+/* Opt-in light theme, toggled from the top-nav button (see sidebar.js) and remembered
+   in localStorage. Dark is the default and is left untouched — everything here applies
+   only when <html> carries .light-mode. The sidebar stays dark by design: a dark rail
+   against light content, which avoids re-theming its white-on-dark internals. */
+:root.light-mode {
+    --body-bg: #F4F5F7;
+    --body-color: #2E3338;
+    --heading-color: #1A1D21;
+    --border-color: #DDE1E6;
+    --card-bg: #FFFFFF;
+    --card-hover-bg: #EEF1F5;
+    --gray-text: #5C6470;
+}
+
+/* A few elements hardcode faint white-on-dark fills that disappear on a light
+   background; give them an equivalent dark-on-light fill in light mode. */
+:root.light-mode .detail-nav a {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: var(--border-color);
+    color: var(--body-color);
+}
+
+:root.light-mode .detail-nav a:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+:root.light-mode .guide-detail-content code {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+:root.light-mode .guide-detail-content pre,
+:root.light-mode .sequence-structure {
+    background: rgba(0, 0, 0, 0.03);
 }
