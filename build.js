@@ -48,9 +48,9 @@ function loadData(filename, exportName) {
 }
 
 function renderGalleryItems(items) {
-  return items.map(item => `
+  return items.map((item, index) => `
         <a href="${escapeHtml(item.link).replace(/\.html$/, '')}" class="gallery-item" data-category="${escapeHtml(item.categories.join(' '))}">
-            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt)}" loading="lazy" class="gallery-image loaded">
+            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt)}" ${index === 0 ? 'fetchpriority="high"' : 'loading="lazy"'} class="gallery-image loaded">
             <div class="gallery-info">
                 <h3>${escapeHtml(item.title)}</h3>
                 <p>${escapeHtml(item.filters)} · ${escapeHtml(item.duration)} · ${escapeHtml(item.categories[0] || '')}</p>
@@ -161,6 +161,10 @@ function extractSidebarHtml() {
 }
 
 function injectSidebar(content, sidebarHtml) {
+  // The dark-mode class on <body> is unused — the theme is driven by
+  // :root.light-mode on <html>. Drop it so the markup isn't misleading.
+  content = content.replace(/<body class="dark-mode">/i, '<body>');
+
   content = content.replace(/\s*<script[^>]*src="(?:\.\.\/)?load-sidebar\.js"[^>]*>\s*<\/script>\s*/gi, '');
 
   const fullContainerRegex = /<div id="sidebar-container">[\s\S]*?<aside\b[\s\S]*?<\/aside>\s*<\/div>/i;
