@@ -1,0 +1,11 @@
+# Dependencies
+node_modules/
+
+# Claude local tooling (worktrees, locks, launch config)
+.claude/
+
+# OS and editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log

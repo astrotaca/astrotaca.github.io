@@ -1,0 +1,10 @@
+# Normalize all text files to LF in the repository and on checkout.
+# Stops the CRLF churn that makes files look "modified" with no real changes.
+* text=auto eol=lf
+
+# Always treat these as binary so git never tries to normalize them.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary

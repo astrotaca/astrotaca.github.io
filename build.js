@@ -468,7 +468,7 @@ function main() {
   buildGuides(guidesData, sidebarHtml);
   buildGalleryDetailPages(galleryImages, sidebarHtml);
   buildGuideDetailPages(guidesData, sidebarHtml);
-  buildStaticSidebarPages(['about.html', 'contact.html', 'software.html', 'flatpanel.html'], sidebarHtml);
+  buildStaticSidebarPages(['about.html', 'contact.html', 'software.html', 'flatpanel.html', '404.html'], sidebarHtml);
 
   console.log('Static HTML generation complete.');
 }
