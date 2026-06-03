@@ -535,14 +535,6 @@ a:hover {
     display: block;
 }
 
-body {
-    visibility: hidden;
-}
-
-body.ready {
-    visibility: visible;
-}
-
 .page-title {
     font-size: 1.5rem;
     color: var(--body-color);

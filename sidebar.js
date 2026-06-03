@@ -1,13 +1,6 @@
-// Apply the saved theme before the page is revealed (the body stays hidden until
-// `.ready` is added below), so a light-mode visitor never sees a flash of dark.
-;(function () {
-    try {
-        if (localStorage.getItem("theme") === "light") {
-            document.documentElement.classList.add("light-mode")
-        }
-    } catch (e) {}
-})()
-
+// The saved theme is applied pre-paint by the inline theme-init script in <head>,
+// so there's no flash of the wrong theme and the page never depends on this file
+// to become visible.
 const sidebarOverlay = document.getElementById("sidebar-overlay")
 
 window.initSidebar = function () {
@@ -160,7 +153,6 @@ function initSidebarOnLoad() {
         window.initSidebar()
     }
     initThemeToggle()
-    document.body.classList.add('ready')
 }
 
 if (document.readyState === 'loading') {

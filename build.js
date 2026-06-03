@@ -227,7 +227,24 @@ function injectFavicon(content) {
   if (!viewportRegex.test(content)) {
     throw new Error('Unable to locate viewport meta for favicon injection.');
   }
-  return content.replace(viewportRegex, match => `${match}${block}`);
+  content = content.replace(viewportRegex, match => `${match}${block}`);
+  return injectThemeBootstrap(content);
+}
+
+function injectThemeBootstrap(content) {
+  // Set the saved theme on <html> before first paint so a light-mode visitor
+  // never sees a flash of dark. It's inline and early in <head> so it runs
+  // without any external script — the page no longer depends on JS to render.
+  content = content.replace(/\s*<!-- theme-init -->[\s\S]*?<!-- \/theme-init -->/g, '');
+  const block = `
+    <!-- theme-init -->
+    <script>(function(){try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.add('light-mode');}}catch(e){}})();</script>
+    <!-- /theme-init -->`;
+  const charsetRegex = /<meta charset="[^"]*">/i;
+  if (!charsetRegex.test(content)) {
+    throw new Error('Unable to locate charset meta for theme-init injection.');
+  }
+  return content.replace(charsetRegex, match => `${match}${block}`);
 }
 
 function replaceRegex(source, regex, replacement, description) {
@@ -452,4 +469,5 @@ function main() {
   console.log('Static HTML generation complete.');
 }
 
+// Build entry point.
 main();
