@@ -69,6 +69,37 @@ function renderGuideItems(items) {
         </a>`).join('');
 }
 
+// Minimal JPEG dimension reader (scans for the SOF marker) so the build can
+// tag portrait images without adding a dependency or a data field.
+function readJpegSize(filePath) {
+  const buf = fs.readFileSync(filePath);
+  if (buf.length < 4 || buf[0] !== 0xFF || buf[1] !== 0xD8) return null;
+  let offset = 2;
+  while (offset + 9 < buf.length) {
+    if (buf[offset] !== 0xFF) { offset += 1; continue; }
+    const marker = buf[offset + 1];
+    const isSof = marker >= 0xC0 && marker <= 0xCF && marker !== 0xC4 && marker !== 0xC8 && marker !== 0xCC;
+    if (isSof) {
+      return { height: buf.readUInt16BE(offset + 5), width: buf.readUInt16BE(offset + 7) };
+    }
+    if (marker === 0xD8 || (marker >= 0xD0 && marker <= 0xD9)) { offset += 2; continue; }
+    const length = buf.readUInt16BE(offset + 2);
+    if (length < 2) return null;
+    offset += 2 + length;
+  }
+  return null;
+}
+
+function isPortraitImage(relativePath) {
+  const filePath = path.join(root, relativePath.replace(/^(?:\.\.\/)+/, ''));
+  try {
+    const size = readJpegSize(filePath);
+    return !!(size && size.height > size.width);
+  } catch (error) {
+    return false;
+  }
+}
+
 function renderGalleryDetailContent(item) {
   const rows = item.acquisition.map(row => `
                 <tr>
@@ -418,7 +449,8 @@ function buildGalleryDetailPages(galleryImages, sidebarHtml) {
     content = replaceRegex(content, /<meta property="og:image:alt" content="[^"]*">/, `<meta property="og:image:alt" content="${escapeHtml(item.alt)}">`, 'og:image:alt meta');
     content = replaceRegex(content, /<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${escapeHtml(ogImage)}">`, 'twitter:image meta');
 
-    content = replaceRegex(content, /<img src="[^"]*" alt="[^"]*" class="detail-image">/, `<img src="${detailContent.imageSrc}" alt="${escapeHtml(item.alt)}" class="detail-image">`, 'detail image');
+    const detailImageClass = isPortraitImage(item.webImage || item.detailImage) ? 'detail-image portrait' : 'detail-image';
+    content = replaceRegex(content, /<img src="[^"]*" alt="[^"]*" class="detail-image[^"]*">/, `<img src="${detailContent.imageSrc}" alt="${escapeHtml(item.alt)}" class="${detailImageClass}">`, 'detail image');
     content = replaceRegex(content, /<a href="[^"]*" target="_blank"[^>]*class="btn-link">/, `<a href="${detailContent.detailHref}" target="_blank" rel="noopener" class="btn-link">`, 'detail link');
 
     content = replaceOptional(content, /\s*<script src="\.\.\/gallery-data\.js"><\/script>\r?\n/);
