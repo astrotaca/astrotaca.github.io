@@ -38,3 +38,9 @@ images/, avatar/                 assets
 ```
 
 The data files are the source of truth, so I edit those and rebuild instead of editing the generated HTML directly.
+
+## License
+
+The code (build script, styles, JavaScript, page markup) is licensed under the [MIT License](LICENSE).
+
+The photographs and other images in `images/`, `guides/`, and `avatar/` are **not** covered by that license — they are © taca, all rights reserved. If you'd like to use one, [get in touch](https://astrotaca.com/contact).

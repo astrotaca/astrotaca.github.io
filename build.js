@@ -94,7 +94,7 @@ function renderGalleryDetailContent(item) {
                 </tr>`,
     equipmentHtml,
     aboutHtml: `
-            <h3>About the Target</h3>${descriptionHtml}`,
+            <h2>About the Target</h2>${descriptionHtml}`,
   };
 }
 
@@ -393,9 +393,14 @@ function buildGalleryDetailPages(galleryImages, sidebarHtml) {
 
     content = replaceOptional(content, /<p class="lead">[\s\S]*?<\/p>\r?\n/);
     content = replaceOptional(content, /<div class="detail-nav">[\s\S]*?<\/div>\s*\r?\n?/);
+    // A missing neighbor renders as an inert span: links that go nowhere
+    // shouldn't be reachable with the keyboard.
+    const navArrow = (neighbor, arrow, label) => neighbor
+      ? `<a href="${escapeHtml(neighbor.id)}" title="${label}: ${escapeHtml(neighbor.title)}" aria-label="${label}: ${escapeHtml(neighbor.title)}">${arrow}</a>`
+      : `<span class="disabled" aria-hidden="true">${arrow}</span>`;
     const galleryNavHtml = `        <div class="detail-nav">
-            <a href="${escapeHtml(galleryImages[index - 1]?.id ? `${galleryImages[index - 1].id}` : '#')}" title="${galleryImages[index - 1] ? `Previous: ${escapeHtml(galleryImages[index - 1].title)}` : 'No previous image'}" class="${galleryImages[index - 1] ? '' : 'disabled'}">←</a>
-            <a href="${escapeHtml(galleryImages[index + 1]?.id ? `${galleryImages[index + 1].id}` : '#')}" title="${galleryImages[index + 1] ? `Next: ${escapeHtml(galleryImages[index + 1].title)}` : 'No next image'}" class="${galleryImages[index + 1] ? '' : 'disabled'}">→</a>
+            ${navArrow(galleryImages[index - 1], '←', 'Previous')}
+            ${navArrow(galleryImages[index + 1], '→', 'Next')}
         </div>
 `;
     content = replaceRegex(content, /(<\/header>\s*\r?\n)/, `$1${galleryNavHtml}`, 'gallery detail navigation insertion');
@@ -407,7 +412,8 @@ function buildGalleryDetailPages(galleryImages, sidebarHtml) {
     content = replaceNthHtmlElement(content, '<div class="info-section">', 'div', 2, `<div class="info-section">${detailContent.aboutHtml}
                         </div>`, 'gallery detail info section');
 
-    const ogImage = `https://astrotaca.com/${item.image}`;
+    // Social cards want >=1200px wide; the web rendition qualifies, the 900px preview doesn't.
+    const ogImage = `https://astrotaca.com/${(item.webImage || item.detailImage).replace(/^(?:\.\.\/)+/, '')}`;
     content = replaceRegex(content, /<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${escapeHtml(ogImage)}">`, 'og:image meta');
     content = replaceRegex(content, /<meta property="og:image:alt" content="[^"]*">/, `<meta property="og:image:alt" content="${escapeHtml(item.alt)}">`, 'og:image:alt meta');
     content = replaceRegex(content, /<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${escapeHtml(ogImage)}">`, 'twitter:image meta');
@@ -430,9 +436,11 @@ function buildGuideDetailPages(guidesData, sidebarHtml) {
 
     const guideContent = renderGuideDetailContent(guide);
 
-    const guideOgImage = `https://astrotaca.com/${guide.image}`;
+    const guideOgImage = `https://astrotaca.com/${guide.detailImage.replace(/^(?:\.\.\/)+/, '')}`;
     content = replaceRegex(content, /<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${escapeHtml(guideOgImage)}">`, 'guide og:image meta');
     content = replaceRegex(content, /<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${escapeHtml(guideOgImage)}">`, 'guide twitter:image meta');
+    // Guides are articles, not the site itself.
+    content = replaceRegex(content, /<meta property="og:type" content="[^"]*">/, '<meta property="og:type" content="article">', 'guide og:type meta');
 
     content = replaceHtmlElement(content, '<div class="guide-detail-image-container">', 'div', `<div class="guide-detail-image-container">
                         <img src="${guideContent.imageSrc}" alt="${escapeHtml(guide.title)}" class="guide-detail-image">
@@ -458,6 +466,24 @@ function buildGuideDetailPages(guidesData, sidebarHtml) {
   });
 }
 
+function buildSitemap(galleryImages, guidesData) {
+  const staticPaths = ['', 'gallery', 'guides', 'software', 'about', 'contact', 'flatpanel'];
+  const entries = [
+    ...staticPaths.map(p => ({ path: p })),
+    ...galleryImages.map(item => ({ path: `gallery/${item.id}`, lastmod: item.date })),
+    ...guidesData.map(guide => ({ path: `guides/${guide.id}` })),
+  ];
+
+  const urls = entries.map(({ path: pagePath, lastmod }) => {
+    const lastmodXml = lastmod ? `\n    <lastmod>${escapeHtml(lastmod)}</lastmod>` : '';
+    return `  <url>\n    <loc>https://astrotaca.com/${pagePath}</loc>${lastmodXml}\n  </url>`;
+  }).join('\n');
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  writeFile(path.join(root, 'sitemap.xml'), xml);
+  console.log('Updated sitemap.xml');
+}
+
 function main() {
   const galleryImages = loadData('gallery-data.js', 'galleryImages');
   const guidesData = loadData('guides-data.js', 'guidesData');
@@ -469,6 +495,7 @@ function main() {
   buildGalleryDetailPages(galleryImages, sidebarHtml);
   buildGuideDetailPages(guidesData, sidebarHtml);
   buildStaticSidebarPages(['about.html', 'contact.html', 'software.html', 'flatpanel.html', '404.html'], sidebarHtml);
+  buildSitemap(galleryImages, guidesData);
 
   console.log('Static HTML generation complete.');
 }
