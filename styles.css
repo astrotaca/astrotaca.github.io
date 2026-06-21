@@ -88,6 +88,12 @@ a:hover {
     border-radius: var(--border-radius);
     transition: background var(--transition-speed), transform var(--transition-speed);
     text-decoration: none;
+    /* <button> doesn't inherit type/size by default, so a button.btn-link would
+       fall back to the UA font (Arial 13px) and render smaller than an a.btn-link.
+       Inherit these so buttons and links are the same size and height everywhere. */
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
     font-weight: var(--font-weight-bold);
     cursor: pointer;
     appearance: none;
@@ -902,9 +908,6 @@ a:hover {
     display: block;
     margin: 1.5rem auto 0;
     width: fit-content;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
 }
 
 .flatpanel-page .cta-or {
