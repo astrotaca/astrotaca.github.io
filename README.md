@@ -53,6 +53,12 @@ Below 1200px, the menu has a sticky Close button, closes with Escape, and return
 
 Image and guide filters are native buttons with `aria-pressed` state. Tab moves between them; Enter or Space selects a category. Shared menu markup comes from `sidebar.html` and `build.js`, while the filter buttons are in the home, gallery, and guides page templates.
 
+## Flat panel page
+
+Edit product copy in `flatpanel.html` and its scoped styles in `flatpanel.css`, then run the build to refresh shared navigation. The page presents customer features, NINA automation, 4,096 brightness levels (12-bit), public setup guides, and the existing interest form. Keep implementation details and private repository links out of published content.
+
+`images/flatpanel/astrotaca-design-overview.png` is an earlier design render supplied by the owner. Its caption notes that the current clamp is not shown. Replace it and update the caption when new renders are available. The panel remains in development and is not available to order.
+
 ## License
 
 The code (build script, styles, JavaScript, page markup) is licensed under the [MIT License](LICENSE).

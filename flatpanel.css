@@ -1,0 +1,296 @@
+/* Product-page styles, kept separate from the shared site layout. */
+.flatpanel-page {
+    --panel-accent: #8bd3d7;
+    padding-bottom: 5rem;
+}
+
+:root.light-mode .flatpanel-page {
+    --panel-accent: #23676d;
+}
+
+.flatpanel-page .container {
+    max-width: 1250px;
+}
+
+.fp-intro {
+    max-width: 850px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+}
+
+.fp-status {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+}
+
+.fp-status > span:first-child {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--panel-accent);
+}
+
+.fp-status-detail {
+    border-left: 1px solid var(--gray-text);
+    padding-left: 0.7rem;
+    color: var(--gray-text);
+}
+
+.fp-eyebrow {
+    margin-bottom: 0.8rem;
+    color: var(--panel-accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.fp-intro h1 {
+    font-size: clamp(2.3rem, 4vw, 3.8rem);
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+    margin-bottom: 0.8rem;
+}
+
+.fp-lead {
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    margin-bottom: 1rem;
+}
+
+.fp-intro-copy {
+    max-width: 660px;
+    margin: 0 auto 1.5rem;
+    color: var(--gray-text);
+    font-size: 1.05rem;
+}
+
+.fp-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.75rem;
+}
+
+.flatpanel-page .btn-link {
+    display: inline-flex;
+    margin: 0;
+    min-height: 44px;
+}
+
+.fp-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 44px;
+    color: var(--panel-accent);
+    font-weight: 700;
+}
+
+.fp-compatibility {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    color: var(--gray-text);
+    font-size: 0.88rem;
+}
+
+.fp-visual {
+    margin: 0;
+}
+
+.fp-visual > a {
+    display: block;
+    border-radius: 1rem;
+}
+
+.fp-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+}
+
+.fp-visual figcaption {
+    max-width: 760px;
+    margin: 0.8rem auto 0;
+    text-align: center;
+    color: var(--gray-text);
+    font-size: 0.85rem;
+}
+
+.fp-visual figcaption a,
+.fp-release-note a {
+    color: var(--panel-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.fp-features {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.25rem;
+    padding: 3rem 0;
+}
+
+.fp-icon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 0.85rem;
+    color: var(--panel-accent);
+}
+
+.fp-features h2 {
+    font-size: 1.15rem;
+    line-height: 1.45;
+    margin-bottom: 0.65rem;
+}
+
+.fp-features p,
+.fp-steps p {
+    margin-bottom: 0;
+    color: var(--gray-text);
+}
+
+.fp-section {
+    padding: 3rem 0;
+    border-top: 1px solid var(--border-color);
+    scroll-margin-top: 1.5rem;
+}
+
+.fp-section h2 {
+    font-size: clamp(1.6rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.fp-workflow,
+.fp-software,
+.fp-interest {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 3rem;
+}
+
+.fp-muted {
+    color: var(--gray-text);
+    font-size: 0.95rem;
+}
+
+.fp-steps {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.fp-steps li {
+    display: flex;
+    align-items: start;
+    gap: 1.1rem;
+}
+
+.fp-steps li > span {
+    color: var(--panel-accent);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding-top: 0.1rem;
+}
+
+.fp-steps h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+}
+
+.fp-resource-card {
+    padding: 1.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    background: var(--card-bg);
+}
+
+.fp-resource-card h3 {
+    font-size: 1.2rem;
+}
+
+.fp-resource-card > .fp-text-link {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.fp-release-note {
+    color: var(--gray-text);
+    font-size: 0.85rem;
+    margin: 1.25rem 0 0;
+}
+
+.fp-progress > p:not(.fp-eyebrow) {
+    max-width: 800px;
+}
+
+.fp-interest .contact-form {
+    width: 100%;
+    margin: 0;
+    padding: 1.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    gap: 1rem;
+}
+
+.fp-interest .contact-note,
+.fp-form-note {
+    color: var(--gray-text);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.fp-interest .contact-form button {
+    justify-self: stretch;
+    width: 100%;
+}
+
+.fp-interest .contact-feedback {
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .fp-workflow,
+    .fp-software,
+    .fp-interest {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .fp-features { gap: 1.25rem; }
+}
+
+@media (min-width: 1200px) and (max-width: 1450px) {
+    .flatpanel-page .container { padding: 0 2rem; }
+    .fp-workflow, .fp-software, .fp-interest { gap: 1.75rem; }
+}
+
+@media (max-width: 600px) {
+    .fp-features { grid-template-columns: 1fr; gap: 1.75rem; }
+    .fp-status { font-size: 0.8rem; gap: 0.45rem; }
+    .fp-status-detail { padding-left: 0.5rem; }
+    .fp-section { padding: 2rem 0; }
+    .fp-intro { margin-bottom: 1.75rem; }
+    .fp-features { padding: 2rem 0; }
+    .fp-resource-card, .fp-interest .contact-form { padding: 1.25rem; }
+    .fp-visual figcaption { text-align: left; }
+}

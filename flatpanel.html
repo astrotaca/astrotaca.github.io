@@ -16,25 +16,26 @@
     <link rel="mask-icon" href="/brand/v1/safari-pinned-tab.svg" color="#111318">
     <meta name="theme-color" content="#111318">
     <!-- /favicons -->
-        <meta name="description" content="Discover Astrotaca’s motorized flat panel project for astrophotography flat-field calibration and remote imaging.">
+        <meta name="description" content="Meet the AstroTaca motorized flat panel: automated flats with NINA, adjustable brightness and control at the telescope. In development.">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     <link rel="canonical" href="https://astrotaca.com/flatpanel">
-    <meta property="og:title" content="Motorized Flat Panel | Astrotaca Astrophotography Project">
-    <meta property="og:description" content="Discover Astrotaca’s motorized flat panel project for astrophotography flat-field calibration and remote imaging.">
+    <meta property="og:title" content="AstroTaca Motorized Flat Panel | NINA &amp; ASCOM">
+    <meta property="og:description" content="Meet the AstroTaca motorized flat panel: automated flats with NINA, adjustable brightness and control at the telescope. In development.">
     <meta property="og:url" content="https://astrotaca.com/flatpanel">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://astrotaca.com/brand/v1/open-graph-1200x630.png">
     <meta property="og:image:alt" content="Astrotaca logo">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Motorized Flat Panel | Astrotaca Astrophotography Project">
-    <meta name="twitter:description" content="Discover Astrotaca’s motorized flat panel project for astrophotography flat-field calibration and remote imaging.">
+    <meta name="twitter:title" content="AstroTaca Motorized Flat Panel | NINA &amp; ASCOM">
+    <meta name="twitter:description" content="Meet the AstroTaca motorized flat panel: automated flats with NINA, adjustable brightness and control at the telescope. In development.">
     <meta name="twitter:image" content="https://astrotaca.com/brand/v1/open-graph-1200x630.png">
-    <title>Motorized Flat Panel | Astrotaca Astrophotography Project</title>
+    <title>AstroTaca Motorized Flat Panel | NINA &amp; ASCOM</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700;900&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=nav-v1">
+    <link rel="stylesheet" href="flatpanel.css?v=panel-v1">
 </head>
 
 <body>
@@ -133,69 +134,103 @@
 
         <section class="content-section active flatpanel-page">
             <div class="container">
-                <header class="section-header centered">
+                <header class="fp-intro">
+                    <p class="fp-status"><span aria-hidden="true"></span> In development <span class="fp-status-detail">Not available to order yet</span></p>
+                    <p class="fp-eyebrow">AstroTaca</p>
                     <h1>Motorized Flat Panel</h1>
+                    <p class="fp-lead">Make flats part of your imaging routine.</p>
+                    <p class="fp-intro-copy">A motorized cover and dimmable flat-field light that stays on your telescope. Let NINA handle your flats automatically, or take control from the AstroTaca app and the button on the panel.</p>
+                    <div class="fp-actions">
+                        <a class="btn-link" href="#panel-interest">Keep me updated</a>
+                        <a class="fp-text-link" href="#panel-workflow">See how it works <span aria-hidden="true">↓</span></a>
+                    </div>
+                    <ul class="fp-compatibility" aria-label="Control options">
+                        <li>NINA</li><li>ASCOM</li><li>Windows app</li><li>USB-C connection</li>
+                    </ul>
                 </header>
 
-                <div class="about-content">
-                    <div class="about-text">
-                        <h2>Overview</h2>
-                        <p class="box-subtitle">A fully automated flat panel that lives on your telescope.</p>
-                        <p>Flats are the most tedious part of an imaging session, and the easiest to put off until you are half asleep. This motorized flat panel stays mounted on your scope and captures them for you from start to finish, with nothing to hold up, drape over, or remember.</p>
-                        <p>It opens and closes on command, sets its own brightness, and is fully ASCOM-compatible, so it drops straight into your NINA sequence. A full night, flats included, can run completely unattended.</p>
-                        <p>The unit shown in these renders is the AT-65, built to fit 65mm refractors like the ZWO FF65 APO and Askar 65PHQ.</p>
+                <figure class="fp-visual">
+                    <a href="/images/flatpanel/astrotaca-design-overview.png" target="_blank" rel="noopener" aria-label="Open the earlier flat panel design render at full size in a new tab">
+                        <img src="/images/flatpanel/astrotaca-design-overview.png" width="2600" height="1800" fetchpriority="high" alt="Earlier AstroTaca flat panel design with a motorized cover, dimmable light, external button, USB-C connection and DC power input. The current clamp is not shown.">
+                    </a>
+                    <figcaption><strong>Earlier design render.</strong> The clamp has since been updated and is not shown here. Final appearance and specifications may differ. <a href="/images/flatpanel/astrotaca-design-overview.png" target="_blank" rel="noopener">View full size</a></figcaption>
+                </figure>
 
-                        <figure>
-                            <img src="images/flatpanel/front-view.png" loading="lazy" alt="motorized flat panel mounted on ZWO FF65 APO telescope front view" class="detail-image">
-                            <figcaption>The flat panel mounted on a ZWO FF65 APO.</figcaption>
-                        </figure>
-
-                        <figure>
-                            <img src="images/flatpanel/side-view.png" loading="lazy" alt="motorized flat panel mounted on telescope side view" class="detail-image">
-                            <figcaption>Side profile of the flat panel.</figcaption>
-                        </figure>
-
-                        <h2>What it does</h2>
-                        <ul>
-                            <li>Opens and closes automatically from your imaging sequence</li>
-                            <li>Self-adjusting brightness for consistent, repeatable flats</li>
-                            <li>Fully ASCOM-compatible, no manual steps and no babysitting</li>
-                            <li>Even, uniform illumination across the whole panel</li>
-                            <li>Stays mounted on the scope, set it once and leave it</li>
-                            <li>Compact, self-contained, and tidy on the rig</li>
-                        </ul>
-
-                        <h2>Why I built it</h2>
-                        <p>Taking flats was always the improvised step in my setup, a t-shirt over the scope or a tablet showing a white screen. It works, but it means being at the telescope at the end of every session. The rest of my rig already runs on its own, so I built a panel that handles flats the same way.</p>
-
-                        <h2>Status</h2>
-                        <p>It is an active build in progress. Right now I am deep in prototyping, designing and testing the hardware to make it reliable enough to run unattended, night after night. It is not ready to ship yet, but it gets closer with every iteration, and I am sharing the milestones along the way.</p>
-
-                        <h2>Want one for your scope?</h2>
-                        <p>Right now the AT-65 fits 65mm refractors. If you image with something else, tell me what you have and I will work toward a panel that fits it. Measure the outer diameter of your dew shield in millimeters, drop it below with your email, and I will let you know when there is one for your scope.</p>
-                        <form id="flatpanel-fit" action="https://formspree.io/f/meevojgy" method="POST" class="contact-form">
-                            <input type="hidden" name="_subject" value="Flat panel fit request">
-                            <input type="hidden" name="interest" value="flat-panel-fit-request">
-                            <label>
-                                Your email
-                                <input type="email" name="email" required>
-                            </label>
-                            <label>
-                                Your telescope
-                                <input type="text" name="telescope" placeholder="e.g. ZWO FF65 APO" required>
-                            </label>
-                            <label>
-                                Dew shield outer diameter (mm)
-                                <input type="number" name="dew_shield_mm" min="0" step="1" placeholder="e.g. 95">
-                                <span class="contact-note">Measure across the front opening of your scope or dew shield. I recommend a digital vernier caliper for the most accurate reading.</span>
-                            </label>
-                            <button type="submit" class="btn-link">Send it over</button>
-                            <p id="flatpanel-feedback" class="contact-feedback" aria-live="polite"></p>
-                        </form>
-                        <p class="cta-or">Or join the Discord for progress and first looks.</p>
-                        <a href="https://discord.gg/Xcgum8ekWb" target="_blank" rel="noopener" class="btn-link">Join the Discord</a>
-                    </div>
+                <div class="fp-features">
+                    <section>
+                        <svg class="fp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M8 10l3 3 5-6"/></svg>
+                        <h2>Flats while you sleep</h2>
+                        <p>With your NINA sequence set up, the cover, light and flat exposures can run unattended. No trip back to the telescope to hold a light over the scope.</p>
+                    </section>
+                    <section>
+                        <svg class="fp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v3M12 20v3M1 12h3M20 12h3M4 4l2 2M18 18l2 2M4 20l2-2M18 6l2-2"/></svg>
+                        <h2>4,096 levels of brightness</h2>
+                        <p>Fine-tune your flat-field light with 12-bit brightness control. Let NINA's Flat Wizard adjust the brightness automatically, or choose the level yourself in the AstroTaca app.</p>
+                    </section>
+                    <section>
+                        <svg class="fp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 20V5m0 15h15M5 20L18 7M5 10a10 10 0 0 1 10 10"/><circle cx="5" cy="20" r="2"/></svg>
+                        <h2>An opening that suits your rig</h2>
+                        <p>Set a shorter opening when your setup needs it. The saved setting is used by NINA, the app and the button, with your full opening kept separately.</p>
+                    </section>
                 </div>
+
+                <section class="fp-workflow fp-section" id="panel-workflow" aria-labelledby="workflow-title">
+                    <div>
+                        <p class="fp-eyebrow">At the end of an imaging session</p>
+                        <h2 id="workflow-title">Close. Illuminate. Capture.</h2>
+                        <p>Keep your camera and imaging train in place. A configured NINA sequence can handle the cover, light and flat exposures together, so calibration becomes part of the night rather than another task at the telescope.</p>
+                        <p class="fp-muted">The light only turns on with the cover closed. Opening switches it off.</p>
+                    </div>
+                    <ol class="fp-steps">
+                        <li><span aria-hidden="true">01</span><div><h3>Close the cover</h3><p>Ask NINA or the AstroTaca app to close the panel, then wait for it to settle.</p></div></li>
+                        <li><span aria-hidden="true">02</span><div><h3>Capture your flats</h3><p>Use Flat Wizard for automatic brightness, or your chosen flat settings in a NINA sequence.</p></div></li>
+                        <li><span aria-hidden="true">03</span><div><h3>Finish your sequence</h3><p>Switch the light off when done. Open the cover when you are ready to image again.</p></div></li>
+                    </ol>
+                </section>
+
+                <section class="fp-software fp-section" aria-labelledby="panel-software-title">
+                    <div>
+                        <p class="fp-eyebrow">At your desk or beside the telescope</p>
+                        <h2 id="panel-software-title">Your choice of control</h2>
+                        <p>The AstroTaca Windows app gives you cover controls, a brightness slider and guided setup. It can stay connected alongside NINA, so closing the app does not disconnect your imaging software.</p>
+                        <p>For hands-on sessions, use the panel's button to open, close, stop and cycle three saved brightness presets. Set those levels once in the app, then use them without a computer connected.</p>
+                    </div>
+                    <aside class="fp-resource-card" aria-labelledby="panel-guides-title">
+                        <h3 id="panel-guides-title">Setup guides are ready to read</h3>
+                        <p>See the connection steps, NINA controls and everyday settings in the public user guides.</p>
+                        <a class="fp-text-link" href="https://github.com/astrotaca/AT-Downloads/blob/main/manual/QUICK-START.md" target="_blank" rel="noopener">Read the quick start <span aria-hidden="true">↗</span></a>
+                        <a class="fp-text-link" href="https://github.com/astrotaca/AT-Downloads/blob/main/manual/README.md" target="_blank" rel="noopener">Read the full guide <span aria-hidden="true">↗</span></a>
+                        <p class="fp-release-note">A public installer is not available yet. Software releases will be listed in <a href="https://github.com/astrotaca/AT-Downloads" target="_blank" rel="noopener">AstroTaca Downloads</a>.</p>
+                    </aside>
+                </section>
+
+                <section class="fp-progress fp-section" aria-labelledby="panel-progress-title">
+                    <p class="fp-eyebrow">Built from my own imaging routine</p>
+                    <h2 id="panel-progress-title">From an improvised light to a dedicated panel</h2>
+                    <p>Taking flats used to mean a T-shirt over the scope or a tablet showing a white screen. The rest of my setup was already automated, so I started building a panel that could fit into the same routine.</p>
+                    <p>The project now has working prototype controls in NINA and the Windows app, saved button brightness and adjustable opening settings. The complete panel is still being developed and tested, including mounting, illumination and use on the telescope. Updated product images will follow as the design progresses.</p>
+                </section>
+
+                <section class="fp-interest fp-section" id="panel-interest" aria-labelledby="panel-interest-title">
+                    <div>
+                        <p class="fp-eyebrow">Tell me about your setup</p>
+                        <h2 id="panel-interest-title">Interested in a panel for your telescope?</h2>
+                        <p>Leave your telescope model and email for availability and fit updates. Compatibility will depend on the outside diameter of your dew shield and the space around it, not just the telescope's aperture.</p>
+                        <p class="fp-muted">Supported sizes, final specifications and pricing will be shared when ready. This is an expression of interest, not an order or reservation.</p>
+                        <a class="fp-text-link" href="https://discord.gg/Xcgum8ekWb" target="_blank" rel="noopener">Follow the project on Discord <span aria-hidden="true">↗</span></a>
+                    </div>
+                    <form id="flatpanel-fit" action="https://formspree.io/f/meevojgy" method="POST" class="contact-form">
+                        <input type="hidden" name="_subject" value="Flat panel fit request">
+                        <input type="hidden" name="interest" value="flat-panel-fit-request">
+                        <label>Your email<input type="email" name="email" autocomplete="email" required></label>
+                        <label>Your telescope<input type="text" name="telescope" placeholder="e.g. ZWO FF65 APO" required></label>
+                        <label>Dew shield outside diameter (mm, optional)<input type="number" name="dew_shield_mm" min="1" step="0.1" placeholder="Leave blank if unsure" aria-describedby="panel-diameter-help"></label>
+                        <p class="contact-note" id="panel-diameter-help">Measure across the outside of the dew shield where the clamp would sit, not the clear opening. The telescope model alone is fine if you cannot measure it yet.</p>
+                        <p class="fp-form-note">Your email is used to reply about panel availability and fit. This form is handled by Formspree.</p>
+                        <button type="submit" class="btn-link">Register my interest</button>
+                        <p id="flatpanel-feedback" class="contact-feedback" aria-live="polite"></p>
+                    </form>
+                </section>
             </div>
         </section>
 
@@ -222,7 +257,7 @@
                     headers: { 'Accept': 'application/json' }
                 }).then(function (response) {
                     if (response.ok) {
-                        feedback.textContent = 'Thanks! I will reach out when there is an AT for your scope.';
+                        feedback.textContent = 'Thanks for your interest! I will be in touch about panel availability and fit.';
                         form.reset();
                     } else {
                         return response.json().then(function (data) {
