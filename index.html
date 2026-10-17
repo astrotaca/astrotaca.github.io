@@ -38,7 +38,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700;900&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css?v=brand-v1">
+    <link rel="stylesheet" href="styles.css?v=nav-v1">
 </head>
 
 <body>
@@ -46,6 +46,12 @@
 
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
     <div id="sidebar-container"><aside id="sidebar" class="sidebar">
+    <div class="sidebar-controls">
+        <button id="sidebar-close" class="sidebar-close" type="button" aria-label="Close menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+            Close
+        </button>
+    </div>
     <div class="sidebar-resize-handle"></div>
     <div class="sidebar-bg"></div>
 
@@ -58,7 +64,7 @@
             <p class="site-subtitle">20 year old Student & Astrophotographer</p>
         </div>
 
-        <nav class="sidebar-nav">
+        <nav class="sidebar-nav" aria-label="Main navigation">
             <ul>
                 <li><a href="/" class="nav-link">Home</a></li>
                 <li><a href="/gallery" class="nav-link">Gallery</a></li>
@@ -113,7 +119,7 @@
 <main class="main-content">
 
         <nav class="top-nav">
-            <button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+            <button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -135,11 +141,11 @@
 
                 <header class="section-header">
                     <h1>Latest Images</h1>
-                    <div class="tags">
-                        <span class="tag active" data-filter="all">All</span>
-                        <span class="tag" data-filter="nebulae">Nebulae</span>
-                        <span class="tag" data-filter="galaxies">Galaxies</span>
-                        <span class="tag" data-filter="widefield">Wide Field</span>
+                    <div class="tags" role="group" aria-label="Filter images">
+                        <button type="button" class="tag active" data-filter="all" aria-pressed="true">All</button>
+                        <button type="button" class="tag" data-filter="nebulae" aria-pressed="false">Nebulae</button>
+                        <button type="button" class="tag" data-filter="galaxies" aria-pressed="false">Galaxies</button>
+                        <button type="button" class="tag" data-filter="widefield" aria-pressed="false">Wide Field</button>
                     </div>
                 </header>
 
@@ -180,10 +186,10 @@
 
                 <header class="section-header home-section-gap">
                     <h2>Latest Guides</h2>
-                    <div class="tags">
-                        <span class="tag active" data-filter="all">All Guides</span>
-                        <span class="tag" data-filter="advanced">Advanced</span>
-                        <span class="tag" data-filter="basics">Basics</span>
+                    <div class="tags" role="group" aria-label="Filter guides">
+                        <button type="button" class="tag active" data-filter="all" aria-pressed="true">All Guides</button>
+                        <button type="button" class="tag" data-filter="advanced" aria-pressed="false">Advanced</button>
+                        <button type="button" class="tag" data-filter="basics" aria-pressed="false">Basics</button>
                     </div>
                 </header>
 
@@ -219,8 +225,8 @@
 
         </section>
 
-    </main>    <script src="sidebar.js"></script>
-    <script src="gallery-filter.js"></script>
+    </main>    <script src="sidebar.js?v=nav-v1"></script>
+    <script src="gallery-filter.js?v=nav-v1"></script>
     
 </body>
 </html>

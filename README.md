@@ -45,7 +45,13 @@ The data files are the source of truth, so I edit those and rebuild instead of e
 
 `sidebar.html` and `build.js` provide the shared logo and icon markup. The root page templates use the branded social card; gallery and guide detail pages retain their own image previews. Rebuild with `node build.js` after changing these templates. The root favicon files are fallbacks for browsers that request them automatically.
 
-The `/brand/v1/` paths and `styles.css?v=brand-v1` URL distinguish this update from previously cached assets. Use a new version when replacing them. Publishing still uses the existing GitHub Pages and Cloudflare setup.
+The `/brand/v1/` paths version the brand assets. Styles and navigation scripts use the `nav-v1` query version in `build.js` to keep cached files in sync with the page markup. Use a new version when replacing them. Publishing still uses the existing GitHub Pages and Cloudflare setup.
+
+## Navigation
+
+Below 1200px, the menu has a sticky Close button, closes with Escape, and returns keyboard focus to the opener. The open menu contains Tab navigation and disables the page behind it; the closed sidebar is excluded from keyboard and screen-reader navigation. Desktop navigation remains available at 1200px and above.
+
+Image and guide filters are native buttons with `aria-pressed` state. Tab moves between them; Enter or Space selects a category. Shared menu markup comes from `sidebar.html` and `build.js`, while the filter buttons are in the home, gallery, and guides page templates.
 
 ## License
 

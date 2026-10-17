@@ -30,9 +30,12 @@ function initFilters() {
         }
 
         tags.forEach(tag => {
+            tag.setAttribute('aria-pressed', String(tag.classList.contains('active')));
             tag.addEventListener('click', () => {
-                tags.forEach(t => t.classList.remove('active'));
-                tag.classList.add('active');
+                tags.forEach(t => {
+                    t.classList.toggle('active', t === tag);
+                    t.setAttribute('aria-pressed', String(t === tag));
+                });
                 applyFilter(tag.getAttribute('data-filter') || 'all');
             });
         });

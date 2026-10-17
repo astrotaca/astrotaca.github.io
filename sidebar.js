@@ -9,6 +9,9 @@ window.initSidebar = function () {
     if (!sidebar) return
 
     const sidebarToggle = document.getElementById("sidebar-toggle")
+    const sidebarClose = document.getElementById("sidebar-close")
+    const main = document.querySelector("main")
+    const desktop = window.matchMedia("(min-width: 1200px)")
 
     const baseWidthValue = getComputedStyle(document.documentElement)
         .getPropertyValue('--sidebar-width')
@@ -23,34 +26,77 @@ window.initSidebar = function () {
     let startX = 0
     let startWidth = 0
 
-    if (sidebarToggle) {
-        sidebarToggle.addEventListener("click", () => {
-            const isOpen = sidebar.classList.contains("open")
+    function setMenuOpen(open, restoreFocus = false) {
+        open = open && !desktop.matches
+        sidebar.classList.toggle("open", open)
+        sidebar.style.width = open ? "100%" : baseWidth
+        if (sidebarOverlay) sidebarOverlay.classList.toggle("active", open)
+        document.documentElement.classList.toggle("menu-open", open)
+        if (main) main.inert = open
+        sidebar.inert = false
 
-            if (isOpen) {
-                sidebar.classList.remove("open")
-                sidebar.style.width = baseWidth
-                if (sidebarOverlay) sidebarOverlay.classList.remove("active")
-            } else {
-                sidebar.classList.add("open")
-                sidebar.style.width = "100vw"
-                if (sidebarOverlay) sidebarOverlay.classList.add("active")
+        if (sidebarToggle) {
+            sidebarToggle.setAttribute("aria-expanded", String(open))
+            sidebarToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu")
+        }
+
+        if (open) {
+            sidebar.removeAttribute("aria-hidden")
+            sidebar.setAttribute("role", "dialog")
+            sidebar.setAttribute("aria-modal", "true")
+            sidebar.setAttribute("aria-label", "Navigation menu")
+            sidebar.scrollTop = 0
+            if (sidebarClose) sidebarClose.focus({ preventScroll: true })
+        } else {
+            // Move focus out before hiding the off-screen sidebar.
+            if (!desktop.matches && (restoreFocus || sidebar.contains(document.activeElement))) {
+                if (sidebarToggle) sidebarToggle.focus({ preventScroll: true })
             }
-
-            sidebarToggle.setAttribute("aria-expanded", isOpen ? "false" : "true")
-        })
+            sidebar.removeAttribute("role")
+            sidebar.removeAttribute("aria-modal")
+            sidebar.removeAttribute("aria-label")
+            sidebar.inert = !desktop.matches
+            if (desktop.matches) sidebar.removeAttribute("aria-hidden")
+            else sidebar.setAttribute("aria-hidden", "true")
+        }
     }
 
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener("click", () => {
-            sidebar.classList.remove("open")
-            sidebar.style.width = baseWidth
-            sidebarOverlay.classList.remove("active")
-            if (sidebarToggle) sidebarToggle.setAttribute("aria-expanded", "false")
-        })
+    if (sidebarToggle) sidebarToggle.addEventListener("click", () => setMenuOpen(!sidebar.classList.contains("open"), true))
+    if (sidebarClose) sidebarClose.addEventListener("click", () => setMenuOpen(false, true))
+    if (sidebarOverlay) sidebarOverlay.addEventListener("click", () => setMenuOpen(false, true))
+
+    sidebar.addEventListener("keydown", (event) => {
+        if (!sidebar.classList.contains("open") || desktop.matches) return
+        if (event.key === "Escape") {
+            event.preventDefault()
+            setMenuOpen(false, true)
+        } else if (event.key === "Tab") {
+            const focusable = [...sidebar.querySelectorAll('a[href], button:not([disabled])')]
+                .filter(element => element.getClientRects().length > 0)
+            const first = focusable[0]
+            const last = focusable[focusable.length - 1]
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault()
+                last.focus()
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault()
+                first.focus()
+            }
+        }
+    })
+
+    function syncViewport() {
+        const focusWasOnClose = document.activeElement === sidebarClose ||
+            (desktop.matches && sidebar.classList.contains("open") && document.activeElement === document.body)
+        setMenuOpen(false)
+        if (desktop.matches && focusWasOnClose) sidebar.querySelector('.brand-link').focus()
     }
+    desktop.addEventListener("change", syncViewport)
+    syncViewport()
 
     sidebar.addEventListener("mousedown", (e) => {
+
+        if (!desktop.matches || e.button !== 0) return
 
         const interactive = e.target.closest("a, button, input, textarea, select")
 
@@ -114,15 +160,11 @@ window.initSidebar = function () {
 
         const isActive = path === href || (href !== "/" && path.startsWith(href + "/"))
         link.classList.toggle("active", isActive)
+        if (isActive) link.setAttribute("aria-current", path === href ? "page" : "location")
+        else link.removeAttribute("aria-current")
 
     })
 
-    window.addEventListener("resize", () => {
-        sidebar.classList.remove("open")
-        sidebar.style.width = baseWidth
-        if (sidebarOverlay) sidebarOverlay.classList.remove("active")
-        if (sidebarToggle) sidebarToggle.setAttribute("aria-expanded", "false")
-    })
 }
 
 function initThemeToggle() {

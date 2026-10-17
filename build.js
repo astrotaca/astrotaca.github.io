@@ -226,7 +226,7 @@ function injectSidebar(content, sidebarHtml) {
   // Rebuild the top nav from a canonical template so every page carries the same
   // accessible hamburger plus the light/dark theme toggle (idempotent across rebuilds).
   const topNavHtml = `<nav class="top-nav">
-            <button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+            <button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -267,8 +267,9 @@ function injectFavicon(content) {
     throw new Error('Unable to locate viewport meta for favicon injection.');
   }
   content = content.replace(viewportRegex, match => `${match}${block}`);
-  // Version the stylesheet alongside the new markup for browser/Cloudflare caches.
-  content = content.replace(/href="((?:\.\.\/|\/)?styles\.css)(?:\?[^"]*)?"/g, 'href="$1?v=brand-v1"');
+  // Keep cached styles and navigation scripts in sync with the generated markup.
+  content = content.replace(/href="((?:\.\.\/|\/)?styles\.css)(?:\?[^"]*)?"/g, 'href="$1?v=nav-v1"');
+  content = content.replace(/src="((?:\.\.\/|\/)?(?:sidebar|gallery-filter)\.js)(?:\?[^"]*)?"/g, 'src="$1?v=nav-v1"');
   return injectThemeBootstrap(content);
 }
 
@@ -492,7 +493,7 @@ function buildGuideDetailPages(guidesData, sidebarHtml) {
     if (guideContent.tocHtml) {
       content = content.replace('<div class="guide-detail">', `<div class="guide-detail">
                         ${guideContent.tocHtml}`);
-      content = content.replace('<script src="../sidebar.js"></script>', '<script src="../sidebar.js"></script>\n    <script src="../guide-toc.js"></script>');
+      content = content.replace(/(<script src="\.\.\/sidebar\.js(?:\?[^"]*)?"><\/script>)/, '$1\n    <script src="../guide-toc.js"></script>');
     }
 
     content = replaceOptional(content, /\s*<script src="\.\.\/guides-data\.js"><\/script>\r?\n/);
