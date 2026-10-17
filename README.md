@@ -41,7 +41,7 @@ The data files are the source of truth, so I edit those and rebuild instead of e
 
 ## Brand assets
 
-`brand/v1/` contains the production website assets from [AT-Brand-Kit](https://github.com/astrotaca/AT-Brand-Kit), revision `706c73d9991e14867d511f7aefb991daad9192ef`. The stacked white SVG is used in dark mode and the charcoal SVG in light mode, in the sidebar and expanded mobile menu. CSS switches the two assets with the saved theme. The top bar stays unbranded when the sidebar is hidden. Both SVGs include outlined lettering and need no additional font.
+`brand/v1/` contains the production website assets from [AT-Brand-Kit](https://github.com/astrotaca/AT-Brand-Kit), revision `706c73d9991e14867d511f7aefb991daad9192ef`. The stacked white SVG is used in dark mode and the charcoal SVG in light mode, in the sidebar and expanded mobile menu. The sidebar has no age/student subtitle. CSS switches the two assets with the saved theme. The top bar stays unbranded when the sidebar is hidden. Both SVGs include outlined lettering and need no additional font.
 
 `sidebar.html` and `build.js` provide the shared logo and icon markup. The root page templates use the branded social card; gallery and guide detail pages retain their own image previews. Rebuild with `node build.js` after changing these templates. The root favicon files are fallbacks for browsers that request them automatically.
 
@@ -53,7 +53,11 @@ Light-mode overrides live at the end of `styles.css`: a white sidebar, off-white
 
 Below 1200px, the menu has a sticky Close button, closes with Escape, and returns keyboard focus to the opener. The open menu contains Tab navigation and disables the page behind it; the closed sidebar is excluded from keyboard and screen-reader navigation. Desktop navigation remains available at 1200px and above.
 
-Image and guide filters are native buttons with `aria-pressed` state. Tab moves between them; Enter or Space selects a category. Shared menu markup comes from `sidebar.html` and `build.js`, while the filter buttons are in the home, gallery, and guides page templates.
+Image and guide filters are native buttons with `aria-pressed` state. Tab moves between them; Enter or Space selects a category. Shared menu markup comes from `sidebar.html` and `build.js`, while the filter buttons are in the gallery and guides page templates.
+
+## Homepage
+
+`index.html` and `home.css` arrange Home as two featured guides, a compact flat-panel section, then the latest four images. Both grids reuse the same cards and responsive layout as Gallery and Guides. `buildIndex` in `build.js` selects guides by ID and reads images from the existing data files. There are no homepage filters; the collection pages retain their complete collections and filters. Missing featured guides fail the build.
 
 ## Flat panel page
 

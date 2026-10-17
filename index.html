@@ -17,21 +17,21 @@
     <meta name="theme-color" content="#111318">
     <!-- /favicons -->
 
-        <meta name="description" content="Astrotaca shares astrophotography images, guides, and resources for deep sky and wide-field night sky imaging.">
+        <meta name="description" content="Explore the AstroTaca motorized flat panel in development, practical NINA and image-processing guides, and astrophotography from the telescope.">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
     <link rel="canonical" href="https://astrotaca.com/">
-    <meta property="og:title" content="Astrotaca | Astrophotography Gallery, Guides & Night Sky Imaging">
-    <meta property="og:description" content="Astrotaca shares astrophotography images, guides, and resources for deep sky and wide-field night sky imaging.">
+    <meta property="og:title" content="AstroTaca | Astrophotography Equipment &amp; Practical Guides">
+    <meta property="og:description" content="Explore the AstroTaca motorized flat panel in development, practical NINA and image-processing guides, and astrophotography from the telescope.">
     <meta property="og:url" content="https://astrotaca.com/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://astrotaca.com/brand/v1/open-graph-1200x630.png">
     <meta property="og:image:alt" content="Astrotaca logo">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Astrotaca | Astrophotography Gallery, Guides & Night Sky Imaging">
-    <meta name="twitter:description" content="Astrotaca shares astrophotography images, guides, and resources for deep sky and wide-field night sky imaging.">
+    <meta name="twitter:title" content="AstroTaca | Astrophotography Equipment &amp; Practical Guides">
+    <meta name="twitter:description" content="Explore the AstroTaca motorized flat panel in development, practical NINA and image-processing guides, and astrophotography from the telescope.">
     <meta name="twitter:image" content="https://astrotaca.com/brand/v1/open-graph-1200x630.png">
 
-    <title>Astrotaca | Astrophotography Gallery, Guides & Night Sky Imaging</title>
+    <title>AstroTaca | Astrophotography Equipment &amp; Practical Guides</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,6 +39,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700;900&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css?v=light-v1">
+    <link rel="stylesheet" href="home.css?v=home-v2">
 </head>
 
 <body>
@@ -62,7 +63,6 @@
                 <img src="/brand/v1/astrotaca-stacked-white.svg" alt="AstroTaca" class="sidebar-logo sidebar-logo-dark" width="1200" height="900">
                 <img src="/brand/v1/astrotaca-stacked-charcoal.svg" alt="AstroTaca" class="sidebar-logo sidebar-logo-light" width="1200" height="900">
             </a>
-            <p class="site-subtitle">20 year old Student & Astrophotographer</p>
         </div>
 
         <nav class="sidebar-nav" aria-label="Main navigation">
@@ -136,23 +136,55 @@
             </button>
         </nav>
 
-        <section class="content-section active">
-
+        <section class="content-section active home-page">
             <div class="container">
+                <section aria-labelledby="home-guides-title">
+                    <header class="section-header home-section-heading">
+                        <h1 id="home-guides-title">Practical Guides</h1>
+                        <a href="/guides" class="home-section-link">View all guides <span aria-hidden="true">&rarr;</span></a>
+                    </header>
+                    <div class="gallery-grid" id="home-guides">
+        <a href="guides/sleep-while-using-telescope-nina" class="guide-card" data-category="advanced">
+            <img src="guides/previews/sleep-while-using-telescope-nina-preview.jpg" alt="Sleep While Using Your Telescope: A Guide to NINA" fetchpriority="high" class="guide-image loaded">
+            <div class="guide-content">
+                <h3>Sleep While Using Your Telescope: A Guide to NINA</h3>
+                <p>Building NINA sequences that handle target acquisition through shutdown, manage failures automatically, and let you sleep while imaging.</p>
+            </div>
+        </a>
+        <a href="guides/stacked-images-look-like" class="guide-card" data-category="basics">
+            <img src="guides/previews/stacked-images-look-like.jpg" alt="What Should Stacked Images Look Like?" loading="lazy" class="guide-image loaded">
+            <div class="guide-content">
+                <h3>What Should Stacked Images Look Like?</h3>
+                <p>Understanding why your stacked astrophotography images look dim, flat, and green before processing.</p>
+            </div>
+        </a>
+                </div>
+                </section>
 
-                <header class="section-header">
-                    <h1>Latest Images</h1>
-                    <div class="tags" role="group" aria-label="Filter images">
-                        <button type="button" class="tag active" data-filter="all" aria-pressed="true">All</button>
-                        <button type="button" class="tag" data-filter="nebulae" aria-pressed="false">Nebulae</button>
-                        <button type="button" class="tag" data-filter="galaxies" aria-pressed="false">Galaxies</button>
-                        <button type="button" class="tag" data-filter="widefield" aria-pressed="false">Wide Field</button>
+                <section class="home-panel" aria-labelledby="home-panel-title">
+                    <div class="home-panel-copy">
+                        <p class="home-status"><span aria-hidden="true"></span> In development</p>
+                        <h2 id="home-panel-title">Motorized Flat Panel</h2>
+                        <p>Make flats part of your imaging sequence. A motorized cover and dimmable light, controlled through NINA or the AstroTaca Windows app.</p>
+                        <a href="/flatpanel" class="btn-link">Explore the flat panel <span aria-hidden="true">&rarr;</span></a>
+                        <p class="home-availability">Not available to order yet.</p>
                     </div>
-                </header>
+                    <figure class="home-panel-visual">
+                        <a href="/flatpanel" aria-label="Explore the AstroTaca motorized flat panel">
+                            <img src="/images/flatpanel/astrotaca-design-overview.png" width="2600" height="1800" loading="lazy" alt="Earlier exterior design render of the AstroTaca motorized flat panel.">
+                        </a>
+                        <figcaption>Earlier design render. The current clamp is not shown.</figcaption>
+                    </figure>
+                </section>
 
-                <div class="gallery-grid" id="home-gallery">
+                <section aria-labelledby="home-photo-title">
+                    <header class="section-header home-section-heading">
+                        <h2 id="home-photo-title">Latest Images</h2>
+                        <a href="/gallery" class="home-section-link">View full gallery <span aria-hidden="true">&rarr;</span></a>
+                    </header>
+                    <div class="gallery-grid" id="home-gallery">
         <a href="gallery/milky-way-minas-de-san-jose" class="gallery-item" data-category="widefield">
-            <img src="images/previews/mw-tenerife-2.jpg" alt="Winter Milky Way rising above volcanic formations in Minas de San José, Teide National Park, Tenerife" fetchpriority="high" class="gallery-image loaded">
+            <img src="images/previews/mw-tenerife-2.jpg" alt="Winter Milky Way rising above volcanic formations in Minas de San José, Teide National Park, Tenerife" loading="lazy" class="gallery-image loaded">
             <div class="gallery-info">
                 <h3>Winter Milky Way above Minas de San José in Tenerife</h3>
                 <p>RGB · 48 minutes · widefield</p>
@@ -180,54 +212,12 @@
             </div>
         </a>
                 </div>
-
-                <div class="home-view-all">
-                    <a href="gallery" class="btn-link">View All Images →</a>
-                </div>
-
-                <header class="section-header home-section-gap">
-                    <h2>Latest Guides</h2>
-                    <div class="tags" role="group" aria-label="Filter guides">
-                        <button type="button" class="tag active" data-filter="all" aria-pressed="true">All Guides</button>
-                        <button type="button" class="tag" data-filter="advanced" aria-pressed="false">Advanced</button>
-                        <button type="button" class="tag" data-filter="basics" aria-pressed="false">Basics</button>
-                    </div>
-                </header>
-
-                <div class="gallery-grid" id="home-guides">
-        <a href="guides/sleep-while-using-telescope-nina" class="guide-card" data-category="advanced">
-            <img src="guides/previews/sleep-while-using-telescope-nina-preview.jpg" alt="Sleep While Using Your Telescope: A Guide to NINA" loading="lazy" class="guide-image loaded">
-            <div class="guide-content">
-                <h3>Sleep While Using Your Telescope: A Guide to NINA</h3>
-                <p>Building NINA sequences that handle target acquisition through shutdown, manage failures automatically, and let you sleep while imaging.</p>
+                </section>
             </div>
-        </a>
-        <a href="guides/custom-ascom-driver-nina" class="guide-card" data-category="advanced">
-            <img src="guides/previews/custom-ascom-driver-nina.jpg" alt="Building Custom ASCOM Drivers" loading="lazy" class="guide-image loaded">
-            <div class="guide-content">
-                <h3>Building Custom ASCOM Drivers</h3>
-                <p>Building ASCOM drivers to integrate custom hardware with NINA and other imaging software.</p>
-            </div>
-        </a>
-        <a href="guides/stacked-images-look-like" class="guide-card" data-category="basics">
-            <img src="guides/previews/stacked-images-look-like.jpg" alt="What Should Stacked Images Look Like?" loading="lazy" class="guide-image loaded">
-            <div class="guide-content">
-                <h3>What Should Stacked Images Look Like?</h3>
-                <p>Understanding why your stacked astrophotography images look dim, flat, and green before processing.</p>
-            </div>
-        </a>
-                </div>
-
-                <div class="home-view-all">
-                    <a href="guides" class="btn-link">View All Guides →</a>
-                </div>
-
-            </div>
-
         </section>
 
+
     </main>    <script src="sidebar.js?v=nav-v1"></script>
-    <script src="gallery-filter.js?v=nav-v1"></script>
     
 </body>
 </html>

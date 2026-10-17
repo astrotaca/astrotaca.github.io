@@ -365,8 +365,14 @@ function buildIndex(galleryImages, guidesData, sidebarHtml) {
   const filePath = path.join(root, 'index.html');
   let content = normalize(fs.readFileSync(filePath, 'utf8'));
 
-  const galleryHtml = renderGalleryItems(galleryImages.slice(0, 4));
-  const guidesHtml = renderGuideItems(guidesData.slice(0, 4));
+  // Reuse the collection cards, with a smaller selection on the homepage.
+  const featuredGuideIds = ['sleep-while-using-telescope-nina', 'stacked-images-look-like'];
+  const featuredGuides = featuredGuideIds.map(id => guidesData.find(guide => guide.id === id));
+  if (featuredGuides.some(guide => !guide)) {
+    throw new Error('A featured homepage guide is missing from the content data.');
+  }
+  const galleryHtml = renderGalleryItems(galleryImages.slice(0, 4)).replace('fetchpriority="high"', 'loading="lazy"');
+  const guidesHtml = renderGuideItems(featuredGuides).replace('loading="lazy"', 'fetchpriority="high"');
 
   content = replaceHtmlElement(content, '<div class="gallery-grid" id="home-gallery"', 'div', `<div class="gallery-grid" id="home-gallery">${galleryHtml}
                 </div>`, 'home gallery container');

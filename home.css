@@ -1,0 +1,52 @@
+/* Home reuses the same guide and gallery cards as the collection pages. */
+.home-page { padding-bottom: 4rem; }
+
+.home-section-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+}
+
+.home-section-heading h1,
+.home-section-heading h2 { margin-bottom: 0; }
+
+.home-section-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #8BBAFF;
+}
+
+:root.light-mode .home-section-link { color: var(--accent-color); }
+.home-section-link:hover { color: var(--heading-color); }
+
+.home-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: 2.5rem;
+    padding: 2.5rem 0;
+    margin: 3rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.home-panel h2 { font-size: 1.8rem; }
+.home-status { color: var(--gray-text); font-size: 0.85rem; margin-bottom: 0.6rem; }
+.home-status span { display: none; }
+.home-panel .btn-link { gap: 0.8rem; min-height: 44px; }
+.home-availability { color: var(--gray-text); font-size: 0.8rem; margin: 0.65rem 0 0; }
+.home-panel-visual { margin: 0; min-width: 0; }
+.home-panel-visual a { display: block; border-radius: var(--border-radius); }
+.home-panel-visual img { display: block; width: 100%; height: auto; border-radius: var(--border-radius); }
+.home-panel-visual figcaption { color: var(--gray-text); font-size: 0.78rem; margin-top: 0.6rem; }
+
+@media (max-width: 900px) {
+    .home-panel { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 0; margin: 2.5rem 0; }
+    .home-panel-visual { max-width: 650px; }
+}
