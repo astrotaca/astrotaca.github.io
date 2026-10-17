@@ -41,7 +41,7 @@ The `astrotaca.com` custom domain is declared in `wrangler.jsonc`. A proxied `ww
 
 Preserve the domain's scanner-blocking rule, managed protection, and AI crawler policies when changing hosting. `robots.txt` continues to allow crawlers. Cloudflare manages the custom domain certificate; serving the website no longer depends on a GitHub Pages origin certificate.
 
-GitHub Pages publishing is disabled (publishing branch: None). Pushing to `master` still triggers Cloudflare Workers Builds automatically; GitHub remains the source repository.
+GitHub Pages is unpublished. Its source is set to GitHub Actions, with no Pages deployment workflow, to prevent automatic branch publishing. Setting the branch to None alone reactivated Pages on the next push for this user-site repository. Pushing to `master` still triggers Cloudflare Workers Builds automatically; GitHub remains the source repository.
 
 If a hosting release breaks routes or assets, first use the Worker's deployment rollback. Returning hosting to GitHub Pages requires re-enabling Pages for `master` at `/`, configuring `astrotaca.com`, and provisioning and verifying its origin certificate before switching traffic. The repository's `CNAME` file is retained for that purpose and is not deployed to Cloudflare. The former DNS configuration used four proxied apex A records (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) and a proxied `www` CNAME to `astrotaca.github.io`; the Worker's custom domain must be removed before restoring those apex records. Keep Full (strict) TLS and the security rules enabled. Do not alter email DNS records.
 
