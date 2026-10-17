@@ -13,7 +13,7 @@ The content lives in two data files:
 
 The build reads those and writes out the home page cards, the gallery and guides pages, and each individual gallery and guide page. It also drops the shared sidebar into every page and fills in the per-page meta tags (title, canonical link, social preview image).
 
-Hosted on GitHub Pages with Cloudflare in front for DNS, HTTPS and caching.
+Deployed from GitHub to Cloudflare Workers + Static Assets. Cloudflare handles hosting, DNS, HTTPS, caching and the existing domain security rules.
 
 ## Running it locally
 
@@ -23,6 +23,23 @@ npx serve .        # preview locally
 ```
 
 Rebuild after changing a data file, a page template, or the sidebar. CSS and image changes don't need a rebuild.
+
+## Cloudflare deployment
+
+`npm ci` installs the pinned Wrangler version. `npm run build` regenerates the pages and packages  public files into `dist/`. Only that directory is deployed; source data, build tools, repository metadata and local files are excluded.
+
+- Worker: `astrotaca-website`, on the Workers Free plan.
+- Production branch: `master`, connected through Cloudflare Workers Builds.
+- Build command: `npm run build`.
+- Deploy command: `npx wrangler deploy`.
+- Root directory: repository root.
+- `npm run dev` previews the same routing locally; `node check-deployment.js http://127.0.0.1:8787` checks the preview. Pass a deployment URL to check it remotely.
+
+`wrangler.jsonc` serves extensionless URLs without trailing slashes and uses the existing `404.html` with a real 404 status. No application Worker script, database or API is needed. Form submissions continue to use Formspree. Static requests and storage are free; Workers Builds has a free monthly build allowance. Keep paid features disabled unless explicitly needed.
+
+The production custom domain and the `www` redirect are managed in Cloudflare. Preserve the domain's scanner-blocking rule, managed protection, and AI crawler policies when changing hosting. `robots.txt` continues to allow crawlers.
+
+For rollback, GitHub Pages remains configured for `master` at `/` with HTTPS enforced and `CNAME` set to `astrotaca.com`. If a hosting release breaks routes or assets, first use the Worker's deployment rollback. To return hosting to GitHub Pages, remove the Worker's custom domain and restore the four proxied apex A records (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) and the proxied `www` CNAME to `astrotaca.github.io`. Verify the GitHub origin certificate before reverting, since it may expire while unused. Keep Full (strict) TLS and the security rules enabled. Do not alter email DNS records.
 
 ## Structure
 
@@ -45,7 +62,7 @@ The data files are the source of truth, so I edit those and rebuild instead of e
 
 `sidebar.html` and `build.js` provide the shared logo and icon markup. The root page templates use the branded social card; gallery and guide detail pages retain their own image previews. Rebuild with `node build.js` after changing these templates. The root favicon files are fallbacks for browsers that request them automatically.
 
-The `/brand/v1/` paths version the brand assets. Shared styles use `light-v1` and navigation scripts use `nav-v1` query versions in `build.js` to keep cached files in sync with the page markup. Use a new version when replacing them. Publishing still uses the existing GitHub Pages and Cloudflare setup.
+The `/brand/v1/` paths version the brand assets. Shared styles use `light-v1` and navigation scripts use `nav-v1` query versions in `build.js` to keep cached files in sync with the page markup. Use a new version when replacing them.
 
 Light-mode overrides live at the end of `styles.css`: a white sidebar, off-white page, blue navigation and focus states, subtle card shadows and contrasting form borders. Product-page teal accents remain in `flatpanel.css`. Layout and dark-mode styling are shared with the existing site.
 

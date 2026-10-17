@@ -1,0 +1,12 @@
+{
+  "name": "astrotaca-website",
+  "private": true,
+  "scripts": {
+    "build": "node build-cloudflare.js",
+    "dev": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.151.1"
+  }
+}

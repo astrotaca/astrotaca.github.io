@@ -1,5 +1,7 @@
 # Dependencies
 node_modules/
+dist/
+.wrangler/
 
 # Claude local tooling (worktrees, locks, launch config)
 .claude/
