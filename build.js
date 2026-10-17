@@ -268,7 +268,7 @@ function injectFavicon(content) {
   }
   content = content.replace(viewportRegex, match => `${match}${block}`);
   // Keep cached styles and navigation scripts in sync with the generated markup.
-  content = content.replace(/href="((?:\.\.\/|\/)?styles\.css)(?:\?[^"]*)?"/g, 'href="$1?v=nav-v1"');
+  content = content.replace(/href="((?:\.\.\/|\/)?styles\.css)(?:\?[^"]*)?"/g, 'href="$1?v=light-v1"');
   content = content.replace(/src="((?:\.\.\/|\/)?(?:sidebar|gallery-filter)\.js)(?:\?[^"]*)?"/g, 'src="$1?v=nav-v1"');
   return injectThemeBootstrap(content);
 }

@@ -41,11 +41,13 @@ The data files are the source of truth, so I edit those and rebuild instead of e
 
 ## Brand assets
 
-`brand/v1/` contains the production website assets from [AT-Brand-Kit](https://github.com/astrotaca/AT-Brand-Kit), revision `706c73d9991e14867d511f7aefb991daad9192ef`. The stacked white SVG sits above the subtitle in the dark sidebar, including the expanded mobile menu. The top bar stays unbranded when the sidebar is hidden. The SVG includes outlined lettering and needs no additional font.
+`brand/v1/` contains the production website assets from [AT-Brand-Kit](https://github.com/astrotaca/AT-Brand-Kit), revision `706c73d9991e14867d511f7aefb991daad9192ef`. The stacked white SVG is used in dark mode and the charcoal SVG in light mode, in the sidebar and expanded mobile menu. CSS switches the two assets with the saved theme. The top bar stays unbranded when the sidebar is hidden. Both SVGs include outlined lettering and need no additional font.
 
 `sidebar.html` and `build.js` provide the shared logo and icon markup. The root page templates use the branded social card; gallery and guide detail pages retain their own image previews. Rebuild with `node build.js` after changing these templates. The root favicon files are fallbacks for browsers that request them automatically.
 
-The `/brand/v1/` paths version the brand assets. Styles and navigation scripts use the `nav-v1` query version in `build.js` to keep cached files in sync with the page markup. Use a new version when replacing them. Publishing still uses the existing GitHub Pages and Cloudflare setup.
+The `/brand/v1/` paths version the brand assets. Shared styles use `light-v1` and navigation scripts use `nav-v1` query versions in `build.js` to keep cached files in sync with the page markup. Use a new version when replacing them. Publishing still uses the existing GitHub Pages and Cloudflare setup.
+
+Light-mode overrides live at the end of `styles.css`: a white sidebar, off-white page, blue navigation and focus states, subtle card shadows and contrasting form borders. Product-page teal accents remain in `flatpanel.css`. Layout and dark-mode styling are shared with the existing site.
 
 ## Navigation
 

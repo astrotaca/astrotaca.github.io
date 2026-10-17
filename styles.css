@@ -225,6 +225,10 @@ textarea:focus-visible {
     height: auto;
 }
 
+.sidebar-logo-light {
+    display: none;
+}
+
 .site-subtitle {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
@@ -1636,18 +1640,129 @@ html {
 }
 
 /* ===== Light mode ===== */
-/* Opt-in light theme, toggled from the top-nav button (see sidebar.js) and remembered
-   in localStorage. Dark is the default and is left untouched — everything here applies
-   only when <html> carries .light-mode. The sidebar stays dark by design: a dark rail
-   against light content, which avoids re-theming its white-on-dark internals. */
+/* Opt-in light theme, remembered in localStorage. These overrides keep the
+   shared layout while giving light surfaces their own contrast and depth. */
 :root.light-mode {
-    --body-bg: #F4F5F7;
-    --body-color: #2E3338;
-    --heading-color: #1A1D21;
-    --border-color: #DDE1E6;
+    color-scheme: light;
+    --body-bg: #F5F7FA;
+    --body-color: #303C4B;
+    --heading-color: #1C2530;
+    --sidebar-bg: #FFFFFF;
+    --sidebar-color: #303C4B;
+    --accent-color: #0963BE;
+    --accent-color-hover: #074C92;
+    --border-color: #D8E0E9;
     --card-bg: #FFFFFF;
-    --card-hover-bg: #EEF1F5;
-    --gray-text: #5C6470;
+    --card-hover-bg: #EDF3F9;
+    --gray-text: #566477;
+    --light-surface-shadow: 0 3px 14px rgba(28, 48, 73, 0.05);
+}
+
+:root.light-mode .sidebar {
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    box-shadow: 3px 0 18px rgba(28, 48, 73, 0.035);
+}
+
+:root.light-mode .sidebar-logo-dark { display: none; }
+:root.light-mode .sidebar-logo-light { display: block; }
+
+:root.light-mode .site-subtitle { color: var(--gray-text); }
+
+:root.light-mode .nav-link {
+    color: var(--sidebar-color);
+    transform: none;
+}
+
+:root.light-mode .nav-link:hover {
+    color: var(--accent-color);
+    background: #F0F5FB;
+}
+
+:root.light-mode .nav-link.active {
+    color: #074C92;
+    background: #E7F0FC;
+    box-shadow: inset 3px 0 var(--accent-color);
+}
+
+:root.light-mode .sidebar-social a {
+    color: #46576C;
+    background: #F0F3F7;
+    border: 1px solid var(--border-color);
+}
+
+:root.light-mode .sidebar-social a:hover {
+    color: white;
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+:root.light-mode .sidebar-close {
+    color: var(--sidebar-color);
+    background: white;
+    border-color: #8492A6;
+    box-shadow: var(--light-surface-shadow);
+}
+
+:root.light-mode .sidebar-close:hover { background: var(--card-hover-bg); }
+
+:root.light-mode a:focus-visible,
+:root.light-mode button:focus-visible,
+:root.light-mode input:focus-visible,
+:root.light-mode textarea:focus-visible {
+    outline-color: var(--accent-color);
+}
+
+:root.light-mode .gallery-item,
+:root.light-mode .guide-card,
+:root.light-mode .software-card,
+:root.light-mode .contact-link,
+:root.light-mode .fp-resource-card,
+:root.light-mode .fp-interest .contact-form {
+    box-shadow: var(--light-surface-shadow);
+}
+
+:root.light-mode .contact-form input,
+:root.light-mode .contact-form textarea {
+    background: #FFFFFF;
+    border-color: #8492A6;
+    box-shadow: inset 0 1px 2px rgba(28, 48, 73, 0.03);
+}
+
+:root.light-mode .contact-form input::placeholder,
+:root.light-mode .contact-form textarea::placeholder {
+    color: #66758A;
+    opacity: 1;
+}
+
+:root.light-mode .contact-form input:focus,
+:root.light-mode .contact-form textarea:focus {
+    border-color: var(--accent-color);
+}
+
+:root.light-mode .tag {
+    background: #FFFFFF;
+    border-color: #8492A6;
+}
+
+:root.light-mode .tag:hover {
+    color: var(--accent-color);
+    background: #E7F0FC;
+    border-color: var(--accent-color);
+}
+
+:root.light-mode .tag.active {
+    color: #FFFFFF;
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+:root.light-mode .btn-link {
+    box-shadow: 0 2px 5px rgba(9, 99, 190, 0.14);
+}
+
+:root.light-mode .btn-link:hover {
+    color: #FFFFFF;
 }
 
 /* A few elements hardcode faint white-on-dark fills that disappear on a light
