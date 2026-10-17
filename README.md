@@ -26,7 +26,7 @@ Rebuild after changing a data file, a page template, or the sidebar. CSS and ima
 
 ## Cloudflare deployment
 
-`npm ci` installs the pinned Wrangler version. `npm run build` regenerates the pages and packages  public files into `dist/`. Only that directory is deployed; source data, build tools, repository metadata and local files are excluded.
+`npm ci` installs the pinned Wrangler version. `npm run build` regenerates the pages and packages public files into `dist/`. Only that directory is deployed; source data, build tools, repository metadata and local files are excluded.
 
 - Worker: `astrotaca-website`, on the Workers Free plan.
 - Production branch: `master`, connected through Cloudflare Workers Builds.
@@ -37,7 +37,9 @@ Rebuild after changing a data file, a page template, or the sidebar. CSS and ima
 
 `wrangler.jsonc` serves extensionless URLs without trailing slashes and uses the existing `404.html` with a real 404 status. No application Worker script, database or API is needed. Form submissions continue to use Formspree. Static requests and storage are free; Workers Builds has a free monthly build allowance. Keep paid features disabled unless explicitly needed.
 
-The production custom domain and the `www` redirect are managed in Cloudflare. Preserve the domain's scanner-blocking rule, managed protection, and AI crawler policies when changing hosting. `robots.txt` continues to allow crawlers.
+The `astrotaca.com` custom domain is declared in `wrangler.jsonc`. A proxied `www` CNAME points to `astrotaca.com`, and the Cloudflare rule `Redirect www to astrotaca.com` sends HTTPS visitors to the apex with a 301 while preserving paths and query strings. Always Use HTTPS handles HTTP requests. Public `workers.dev` and version preview URLs are disabled after migration so visitors use the protected domain. Preview builds are disabled; use the local preview for development.
+
+Preserve the domain's scanner-blocking rule, managed protection, and AI crawler policies when changing hosting. `robots.txt` continues to allow crawlers. Cloudflare manages the custom domain certificate; serving the website no longer depends on a GitHub Pages origin certificate.
 
 For rollback, GitHub Pages remains configured for `master` at `/` with HTTPS enforced and `CNAME` set to `astrotaca.com`. If a hosting release breaks routes or assets, first use the Worker's deployment rollback. To return hosting to GitHub Pages, remove the Worker's custom domain and restore the four proxied apex A records (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) and the proxied `www` CNAME to `astrotaca.github.io`. Verify the GitHub origin certificate before reverting, since it may expire while unused. Keep Full (strict) TLS and the security rules enabled. Do not alter email DNS records.
 

@@ -2,7 +2,11 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "astrotaca-website",
   "compatibility_date": "2026-10-17",
-  "workers_dev": true,
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "astrotaca.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./dist",
     "html_handling": "drop-trailing-slash",
