@@ -252,10 +252,14 @@ function injectFavicon(content) {
 
   const block = `
     <!-- favicons -->
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/brand/v1/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand/v1/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand/v1/favicon-16x16.png">
+    <link rel="icon" type="image/svg+xml" href="/brand/v1/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand/v1/apple-touch-icon.png">
+    <link rel="manifest" href="/brand/v1/site.webmanifest">
+    <link rel="mask-icon" href="/brand/v1/safari-pinned-tab.svg" color="#111318">
+    <meta name="theme-color" content="#111318">
     <!-- /favicons -->`;
 
   const viewportRegex = /<meta name="viewport"[^>]*>/i;
@@ -263,6 +267,8 @@ function injectFavicon(content) {
     throw new Error('Unable to locate viewport meta for favicon injection.');
   }
   content = content.replace(viewportRegex, match => `${match}${block}`);
+  // Version the stylesheet alongside the new markup for browser/Cloudflare caches.
+  content = content.replace(/href="((?:\.\.\/|\/)?styles\.css)(?:\?[^"]*)?"/g, 'href="$1?v=brand-v1"');
   return injectThemeBootstrap(content);
 }
 

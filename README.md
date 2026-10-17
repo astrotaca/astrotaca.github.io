@@ -39,8 +39,18 @@ images/, avatar/                 assets
 
 The data files are the source of truth, so I edit those and rebuild instead of editing the generated HTML directly.
 
+## Brand assets
+
+`brand/v1/` contains the production website assets from [AT-Brand-Kit](https://github.com/astrotaca/AT-Brand-Kit), revision `706c73d9991e14867d511f7aefb991daad9192ef`. The stacked white SVG sits above the subtitle in the dark sidebar, including the expanded mobile menu. The top bar stays unbranded when the sidebar is hidden. The SVG includes outlined lettering and needs no additional font.
+
+`sidebar.html` and `build.js` provide the shared logo and icon markup. The root page templates use the branded social card; gallery and guide detail pages retain their own image previews. Rebuild with `node build.js` after changing these templates. The root favicon files are fallbacks for browsers that request them automatically.
+
+The `/brand/v1/` paths and `styles.css?v=brand-v1` URL distinguish this update from previously cached assets. Use a new version when replacing them. Publishing still uses the existing GitHub Pages and Cloudflare setup.
+
 ## License
 
 The code (build script, styles, JavaScript, page markup) is licensed under the [MIT License](LICENSE).
 
 The photographs and other images in `images/`, `guides/`, and `avatar/` are **not** covered by that license — they are © taca, all rights reserved. If you'd like to use one, [get in touch](https://astrotaca.com/contact).
+
+The AstroTaca marks in `brand/` and the root favicon and touch-icon files are also excluded from the code's MIT license; all rights reserved.
