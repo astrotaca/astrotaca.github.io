@@ -211,6 +211,8 @@ textarea:focus-visible {
     display: block;
     width: min(100%, 240px);
     margin: 0 auto 0.5rem;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .brand-link:focus-visible {
@@ -223,6 +225,9 @@ textarea:focus-visible {
     display: block;
     width: 100%;
     height: auto;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .sidebar-logo-light {

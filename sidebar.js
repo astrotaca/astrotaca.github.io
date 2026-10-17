@@ -25,6 +25,16 @@ window.initSidebar = function () {
     let isResizing = false
     let startX = 0
     let startWidth = 0
+    let resizingFromLogo = false
+    let suppressLogoClick = false
+    const brandLink = sidebar.querySelector('.brand-link')
+
+    brandLink?.addEventListener('click', (event) => {
+        // A drag ends with a click in some browsers. Keep ordinary clicks and
+        // keyboard activation working, but don't navigate after resizing.
+        if (suppressLogoClick && event.detail !== 0) event.preventDefault()
+        suppressLogoClick = false
+    })
 
     function setMenuOpen(open, restoreFocus = false) {
         open = open && !desktop.matches
@@ -96,13 +106,15 @@ window.initSidebar = function () {
 
     sidebar.addEventListener("mousedown", (e) => {
 
+        suppressLogoClick = false
         if (!desktop.matches || e.button !== 0) return
 
         const interactive = e.target.closest("a, button, input, textarea, select")
 
-        if (interactive) return
+        if (interactive && interactive !== brandLink) return
 
         isResizing = true
+        resizingFromLogo = interactive === brandLink
         startX = e.clientX
         startWidth = sidebar.offsetWidth
 
@@ -119,6 +131,10 @@ window.initSidebar = function () {
         if (e.buttons === 0) return
 
         const deltaX = e.clientX - startX
+        if (resizingFromLogo) {
+            if (!suppressLogoClick && Math.abs(deltaX) < 5) return
+            suppressLogoClick = true
+        }
         const newWidth = Math.max(315, Math.min(window.innerWidth, startWidth + deltaX))
 
         sidebar.style.width = newWidth + "px"

@@ -66,7 +66,7 @@ The data files are the source of truth, so I edit those and rebuild instead of e
 
 `sidebar.html` and `build.js` provide the shared logo and icon markup. The root page templates use the branded social card; gallery and guide detail pages retain their own image previews. Rebuild with `node build.js` after changing these templates. The root favicon files are fallbacks for browsers that request them automatically.
 
-The `/brand/v1/` paths version the brand assets. Shared styles use `light-v1` and navigation scripts use `nav-v1` query versions in `build.js` to keep cached files in sync with the page markup. Use a new version when replacing them.
+The `/brand/v1/` paths version the brand assets. Shared styles use `light-v2` and navigation scripts use `nav-v2` query versions in `build.js` to keep cached files in sync with the page markup. Use a new version when replacing them.
 
 Light-mode overrides live at the end of `styles.css`: a white sidebar, off-white page, blue navigation and focus states, subtle card shadows and contrasting form borders. Product-page teal accents remain in `flatpanel.css`. Layout and dark-mode styling are shared with the existing site.
 
@@ -75,6 +75,8 @@ Light-mode overrides live at the end of `styles.css`: a white sidebar, off-white
 Below 1200px, the menu has a sticky Close button, closes with Escape, and returns keyboard focus to the opener. The open menu contains Tab navigation and disables the page behind it; the closed sidebar is excluded from keyboard and screen-reader navigation. Desktop navigation remains available at 1200px and above.
 
 Image and guide filters are native buttons with `aria-pressed` state. Tab moves between them; Enter or Space selects a category. Shared menu markup comes from `sidebar.html` and `build.js`, while the filter buttons are in the gallery and guides page templates.
+
+On desktop, dragging the logo resizes the sidebar like its background. Logo images and their link disable native image dragging and selection. A horizontal movement of at least 5 pixels counts as a resize and suppresses the resulting link click; an ordinary click or keyboard activation still opens Home.
 
 ## Homepage
 
