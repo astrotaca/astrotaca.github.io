@@ -1,5 +1,37 @@
 const galleryImages = [
     {
+        id: 'm31-lrgbha',
+        title: 'The Andromeda Galaxy in LRGB and Hα',
+        date: '2026-11-06',
+        image: 'images/previews/m31-lrgbha.jpg',
+        alt: 'The Andromeda Galaxy M31 with its companions M32 and M110, red hydrogen-alpha star-forming regions along its spiral arms',
+        filters: 'LRGB + Hα',
+        duration: '20 hours',
+        categories: ['galaxies'],
+        link: 'gallery/m31-lrgbha.html',
+        detailImage: '../images/m31-lrgbha.jpg',
+        webImage: '../images/web/m31-lrgbha.jpg',
+        acquisition: [
+            { filter: 'Luminance', exposure: '180s', count: 140, total: '7h' },
+            { filter: 'Red', exposure: '180s', count: 46, total: '2h 18m' },
+            { filter: 'Green', exposure: '180s', count: 46, total: '2h 18m' },
+            { filter: 'Blue', exposure: '180s', count: 46, total: '2h 18m' },
+            { filter: 'Hα (656nm)', exposure: '600s', count: 36, total: '6h' }
+        ],
+        equipment: [
+            { label: 'Telescope', value: 'ZWO FF65 APO' },
+            { label: 'Filter Wheel', value: 'ZWO EFW' },
+            { label: 'Filters', value: 'Antlia V-Pro LRGB + Antlia 3nm Hα' },
+            { label: 'Camera', value: 'ZWO ASI2600MM Pro' },
+            { label: 'Mount', value: 'ZWO AM5N' }
+        ],
+        description: [
+            'My second go at the Andromeda Galaxy, and the first with a mono camera and filters. Over three nights in early November 2026 I collected just under 20 hours: luminance and RGB on the first two nights, then six hours of hydrogen-alpha on the third.',
+            'The Hα data brings out the pink star-forming regions strung along the spiral arms, which barely show in broadband colour. M32 sits just beside the bright core, and the elongated M110 lies below the galaxy.',
+            'After culling, 320 subs went into the stack, drizzled 2x and calibrated with flats and bias. I processed it in PixInsight, adding the continuum-subtracted Hα to the spiral arms and handling the stars separately from the galaxy.'
+        ]
+    },
+    {
         id: 'milky-way-minas-de-san-jose',
         title: 'Winter Milky Way above Minas de San José in Tenerife',
         date: '2026-02-20',
