@@ -1,0 +1,4 @@
+#!/bin/sh
+# Blocks commits that contain Stripe keys or other secrets.
+# Enabled once per clone with: git config core.hooksPath .githooks
+exec node scripts/check-secrets.js --staged

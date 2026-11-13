@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "astrotaca-website",
+  "main": "worker/index.mjs",
   "compatibility_date": "2026-10-17",
   "workers_dev": false,
   "preview_urls": false,
@@ -9,7 +10,27 @@
   ],
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "html_handling": "drop-trailing-slash",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // Only the shop API runs the Worker; every other request is a free static-asset request.
+    "run_worker_first": ["/api/*"]
+  },
+  // Public, non-secret shop settings. Secrets are set with `npx wrangler secret put` (see SHOP.md).
+  "vars": {
+    "SITE_URL": "https://astrotaca.com",
+    // Master switch. "false" keeps /shop, /order-complete and /terms off the site and the shop API closed.
+    // Set to "true" (and push) to open the shop; see SHOP.md.
+    "SHOP_ENABLED": "false",
+    // Two-letter country codes you ship to, e.g. "NO,SE,DK". Checkout stays closed while this is empty.
+    "SHOP_SHIP_COUNTRIES": "",
+    // Optional Stripe shipping rate IDs (shr_...), comma separated, shown as choices at checkout.
+    "SHOP_SHIPPING_RATES": "",
+    // "true" once Stripe Tax is set up in the dashboard.
+    "SHOP_AUTOMATIC_TAX": "false",
+    // "true" to show a promotion code box at checkout.
+    "SHOP_ALLOW_PROMOTION_CODES": "false",
+    // Default limit per item per order; a product's max_per_order metadata overrides it.
+    "SHOP_MAX_QUANTITY": "5"
   }
 }

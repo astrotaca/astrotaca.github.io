@@ -2,9 +2,14 @@
   "name": "astrotaca-website",
   "private": true,
   "scripts": {
-    "build": "node build-cloudflare.js",
+    "build": "node scripts/check-secrets.js && node build-cloudflare.js",
+    "build:shop": "node scripts/check-secrets.js && node build-cloudflare.js --with-shop",
     "dev": "npm run build && wrangler dev",
-    "deploy": "npm run build && wrangler deploy"
+    "dev:shop": "npm run build:shop && wrangler dev --var SHOP_ENABLED:true",
+    "deploy": "npm run build && wrangler deploy",
+    "test": "node --test test/*.test.mjs",
+    "check-secrets": "node scripts/check-secrets.js",
+    "setup-hooks": "git config core.hooksPath .githooks"
   },
   "devDependencies": {
     "wrangler": "4.151.1"

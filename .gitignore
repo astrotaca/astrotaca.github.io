@@ -3,6 +3,16 @@ node_modules/
 dist/
 .wrangler/
 
+# Secrets: Stripe keys live only in .dev.vars (local) and Cloudflare (production).
+# Never commit these. .dev.vars.example is the safe, committed template.
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.env
+.env.*
+*.pem
+*.key
+
 # Claude local tooling (worktrees, locks, launch config)
 .claude/
 

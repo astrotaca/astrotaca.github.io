@@ -35,7 +35,7 @@ Rebuild after changing a data file, a page template, or the sidebar. CSS and ima
 - Root directory: repository root.
 - `npm run dev` previews the same routing locally; `node check-deployment.js http://127.0.0.1:8787` checks the preview. Pass a deployment URL to check it remotely.
 
-`wrangler.jsonc` serves extensionless URLs without trailing slashes and uses the existing `404.html` with a real 404 status. No application Worker script, database or API is needed. Form submissions continue to use Formspree. Static requests and storage are free; Workers Builds has a free monthly build allowance. Keep paid features disabled unless explicitly needed.
+`wrangler.jsonc` serves extensionless URLs without trailing slashes and uses the existing `404.html` with a real 404 status. A small Worker script (`worker/`) handles only `/api/*` for the shop; every other request is served as a static asset without running it. There is no database. Form submissions continue to use Formspree. Static requests and storage are free; Workers Builds has a free monthly build allowance. Keep paid features disabled unless explicitly needed.
 
 The `astrotaca.com` custom domain is declared in `wrangler.jsonc`. A proxied `www` CNAME points to `astrotaca.com`, and the Cloudflare rule `Redirect www to astrotaca.com` sends HTTPS visitors to the apex with a 301 while preserving paths and query strings. Always Use HTTPS handles HTTP requests. Public `workers.dev` and version preview URLs are disabled after migration so visitors use the protected domain. Preview builds are disabled; use the local preview for development.
 
@@ -45,6 +45,12 @@ GitHub Pages is unpublished. Its source is set to GitHub Actions, with no Pages 
 
 If a hosting release breaks routes or assets, first use the Worker's deployment rollback. Returning hosting to GitHub Pages requires re-enabling Pages for `master` at `/`, configuring `astrotaca.com`, and provisioning and verifying its origin certificate before switching traffic. The repository's `CNAME` file is retained for that purpose and is not deployed to Cloudflare. The former DNS configuration used four proxied apex A records (`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) and a proxied `www` CNAME to `astrotaca.github.io`; the Worker's custom domain must be removed before restoring those apex records. Keep Full (strict) TLS and the security rules enabled. Do not alter email DNS records.
 
+## Shop
+
+The shop is switched off until launch: with `SHOP_ENABLED` set to `"false"` in `wrangler.jsonc`, the build leaves `/shop`, `/order-complete` and `/terms` out of the deploy and the shop API stays closed. Use `npm run dev:shop` to work on it locally.
+
+`/shop` sells products set up in Stripe. Stripe holds the products, prices, stock and orders, and its hosted checkout handles payment. Keys are kept in Cloudflare secrets and a gitignored `.dev.vars`, never in the repository; a pre-commit hook (`npm run setup-hooks`) and the build both refuse to continue if a key shows up in tracked files. Setup, adding products and opening the shop are covered in [SHOP.md](SHOP.md).
+
 ## Structure
 
 ```
@@ -52,6 +58,10 @@ build.js                         build script
 gallery-data.js, guides-data.js  content for the gallery and guides
 sidebar.html                     shared sidebar, injected at build time
 sidebar.js, gallery-filter.js    runtime behavior (menu, filtering)
+shop.html, shop.js, shop.css     shop page and cart
+worker/                          shop API (Cloudflare Worker, /api/* only)
+scripts/check-secrets.js         blocks commits and builds that contain keys
+test/                            shop API tests (npm test)
 styles.css                       styles
 *.html                           pages, written by the build
 gallery/, guides/                individual image and guide pages
@@ -86,7 +96,7 @@ On desktop, dragging the logo resizes the sidebar like its background. Logo imag
 
 Edit product copy in `flatpanel.html` and its scoped styles in `flatpanel.css`, then run the build to refresh shared navigation. The page presents customer features, NINA automation, 4,096 brightness levels (12-bit), public setup guides, and the existing interest form. Keep implementation details and private repository links out of published content.
 
-`images/flatpanel/astrotaca-design-overview.png` is an earlier design render supplied by the owner. Its caption notes that the current clamp is not shown. Replace it and update the caption when new renders are available. The panel remains in development and is not available to order.
+The flat panel page and the home page use design renders supplied by the owner: `images/flatpanel/panel-on-refractor-wide.jpg` (16:10, page hero), `panel-on-refractor.jpg` and `panel-on-refractor-side.jpg` (4:3, home page and shop). They are cropped around the panel from the original 1920 × 1080 renders. The panel remains in development and is not available to order.
 
 ## License
 

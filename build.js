@@ -539,7 +539,7 @@ function main() {
   buildGuides(guidesData, sidebarHtml);
   buildGalleryDetailPages(galleryImages, sidebarHtml);
   buildGuideDetailPages(guidesData, sidebarHtml);
-  buildStaticSidebarPages(['about.html', 'contact.html', 'software.html', 'flatpanel.html', '404.html'], sidebarHtml);
+  buildStaticSidebarPages(['about.html', 'contact.html', 'software.html', 'flatpanel.html', 'shop.html', 'order-complete.html', 'terms.html', '404.html'], sidebarHtml);
   buildSitemap(galleryImages, guidesData);
 
   console.log('Static HTML generation complete.');

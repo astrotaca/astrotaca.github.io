@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- theme-init -->
+    <script>(function(){try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.add('light-mode');}}catch(e){}})();</script>
+    <!-- /theme-init -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicons -->
+    <link rel="icon" href="/brand/v1/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand/v1/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/brand/v1/favicon-16x16.png">
+    <link rel="icon" type="image/svg+xml" href="/brand/v1/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand/v1/apple-touch-icon.png">
+    <link rel="manifest" href="/brand/v1/site.webmanifest">
+    <link rel="mask-icon" href="/brand/v1/safari-pinned-tab.svg" color="#111318">
+    <meta name="theme-color" content="#111318">
+    <!-- /favicons -->
+    <!-- Remove noindex (and add 'terms' to the sitemap in build.js) when the shop opens. -->
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Terms of sale for the AstroTaca shop: prices, payment, delivery, your 14-day right to cancel, faults and complaints.">
+    <title>Terms of sale | AstroTaca</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700;900&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=light-v2">
+    <link rel="stylesheet" href="shop.css?v=shop-v3">
+</head>
+
+<body>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <div id="sidebar-container"><aside id="sidebar" class="sidebar">
+    <div class="sidebar-controls">
+        <button id="sidebar-close" class="sidebar-close" type="button" aria-label="Close menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M6 18L18 6"/></svg>
+            Close
+        </button>
+    </div>
+    <div class="sidebar-resize-handle"></div>
+    <div class="sidebar-bg"></div>
+
+    <div class="sidebar-content">
+
+        <div class="sidebar-header">
+            <a href="/" class="brand-link" aria-label="AstroTaca home" draggable="false">
+                <img src="/brand/v1/astrotaca-stacked-white.svg" alt="AstroTaca" class="sidebar-logo sidebar-logo-dark" width="1200" height="900" draggable="false">
+                <img src="/brand/v1/astrotaca-stacked-charcoal.svg" alt="AstroTaca" class="sidebar-logo sidebar-logo-light" width="1200" height="900" draggable="false">
+            </a>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+            <ul>
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/gallery" class="nav-link">Gallery</a></li>
+                <li><a href="/guides" class="nav-link">Guides</a></li>
+                <li><a href="/flatpanel" class="nav-link">Flat Panel</a></li>
+                <li><a href="/software" class="nav-link">Software</a></li>
+                <li><a href="/about" class="nav-link">About</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-social">
+            <ul>
+
+                <li>
+                    <a href="https://github.com/astrotaca" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://youtube.com/@astrotaca" target="_blank" rel="noopener" title="YouTube" aria-label="YouTube">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.astrobin.com/users/astrotaca/" target="_blank" rel="noopener" title="AstroBin" aria-label="AstroBin">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"/>
+                        </svg>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://www.paypal.com/paypalme/astrotaca" target="_blank" rel="noopener" title="PayPal" aria-label="PayPal">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M9 2h5.5c2.48 0 4.5 2.02 4.5 4.5S16.98 11 14.5 11H10v9H7V2zm3 2H9v7h4.5c1.38 0 2.5-1.12 2.5-2.5S14.88 6 13.5 6H12V4z"/>
+                        </svg>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</aside></div>
+<main class="main-content">
+
+        <nav class="top-nav">
+            <button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false" title="Toggle light and dark mode">
+                <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                </svg>
+                <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Before the shop opens, replace every <mark class="terms-placeholder"> with real text
+             and remove the mark tags. They are all listed in the seller section and the cancellation form. -->
+        <section class="content-section active shop-page">
+            <div class="container">
+                <article class="terms">
+                    <header class="shop-header">
+                        <h1>Terms of sale</h1>
+                        <p class="shop-intro">These terms apply when you buy from the AstroTaca shop for private use. They follow the Norwegian Consumer Council's (Forbrukerrådet) standard terms for consumer purchases online, and they never give you fewer rights than consumer law does.</p>
+                        <p class="terms-updated">Last updated <mark class="terms-placeholder">[date]</mark></p>
+                    </header>
+
+                    <div class="terms-summary">
+                        <h2>In short</h2>
+                        <ul>
+                            <li>The total at checkout is what you pay me. Buyers outside Norway may also have to pay import VAT or customs to their own country.</li>
+                            <li>By law, you can cancel within 14 days of receiving your order, without giving a reason. You can unpack and try the panel first.</li>
+                            <li>By law, you can report a fault for at least 2 years after delivery, and for up to 5 years for products made to last much longer.</li>
+                            <li>Questions or problems? <a href="/contact">Get in touch</a>.</li>
+                        </ul>
+                    </div>
+
+                    <nav class="terms-toc" aria-label="Sections">
+                        <ol>
+                            <li><a href="#seller">Who you are buying from</a></li>
+                            <li><a href="#agreement">The agreement</a></li>
+                            <li><a href="#prices">Prices and payment</a></li>
+                            <li><a href="#delivery">Delivery</a></li>
+                            <li><a href="#cancellation">Your right to cancel</a></li>
+                            <li><a href="#delay">Late or missing delivery</a></li>
+                            <li><a href="#faults">Faults</a></li>
+                            <li><a href="#warranty">Warranty</a></li>
+                            <li><a href="#privacy">Personal data</a></li>
+                            <li><a href="#disputes">Complaints and disputes</a></li>
+                            <li><a href="#cancellation-form">Cancellation form</a></li>
+                        </ol>
+                    </nav>
+
+                    <section id="seller" aria-labelledby="seller-title">
+                        <h2 id="seller-title">1. Who you are buying from</h2>
+                        <p>The seller is:</p>
+                        <dl class="terms-details">
+                            <dt>Name</dt>
+                            <dd><mark class="terms-placeholder">[Legal business name]</mark>, trading as AstroTaca</dd>
+                            <dt>Organisation number</dt>
+                            <dd><mark class="terms-placeholder">[Organisation number]</mark></dd>
+                            <dt>Address</dt>
+                            <dd><mark class="terms-placeholder">[Street address, postcode and town]</mark>, Norway</dd>
+                            <dt>Email</dt>
+                            <dd><mark class="terms-placeholder">[Email address]</mark></dd>
+                            <dt>Phone</dt>
+                            <dd><mark class="terms-placeholder">[Phone number]</mark></dd>
+                            <dt>Contact form</dt>
+                            <dd><a href="/contact">astrotaca.com/contact</a></dd>
+                        </dl>
+                        <p>"You" means the consumer who places the order.</p>
+                    </section>
+
+                    <section id="agreement" aria-labelledby="agreement-title">
+                        <h2 id="agreement-title">2. The agreement</h2>
+                        <p>Our agreement is made up of these terms, the information shown in the shop and at checkout, and anything we agree separately, for example by email. If something we agreed separately conflicts with these terms, the separate agreement applies, unless it gives you fewer rights than the law.</p>
+                        <p>Norwegian law applies alongside these terms, in particular the Consumer Purchases Act (forbrukerkjøpsloven), the Cancellation Act (angrerettloven), the E-commerce Act (ehandelsloven), the Contracts Act (avtaleloven) and the Marketing Control Act (markedsføringsloven). Nothing in these terms limits the rights those laws give you. If you live outside Norway, you also keep the protection of the mandatory consumer law of your own country.</p>
+                        <p>The agreement is binding on both of us once you have paid at checkout. Stripe then emails you a receipt that confirms your order. Neither of us is bound by an obvious typing or pricing mistake in the shop or in your order, if the other party realised or should have realised it was a mistake.</p>
+                        <p>I send you these terms and the cancellation form by email when your order ships, so you have your own copy. You are welcome to save or print this page too.</p>
+                    </section>
+
+                    <section id="prices" aria-labelledby="prices-title">
+                        <h2 id="prices-title">3. Prices and payment</h2>
+                        <p>Prices are shown in the shop in the currency you will pay in. <mark class="terms-placeholder">[VAT: either "Prices include 25 % Norwegian VAT." or "AstroTaca is not registered for VAT, so no VAT is added."]</mark></p>
+                        <p>Shipping is added at checkout, where you choose a delivery option and see the full total before you pay. That total is everything you pay me. Any cost I did not tell you about before you paid is mine to cover.</p>
+                        <h3>Buying from outside Norway</h3>
+                        <p>Orders ship from Norway, which is outside the EU. Your country may charge import VAT, customs duty and a handling fee from the carrier when the parcel arrives. These charges are set by your country's authorities and the carrier, are not included in my prices, and are paid by you.</p>
+                        <h3>Payment</h3>
+                        <p>You pay on Stripe's checkout page, with the payment methods it offers. Your card details go straight to Stripe and never reach me or this site. Your card is charged when you complete the order.</p>
+                    </section>
+
+                    <section id="delivery" aria-labelledby="delivery-title">
+                        <h2 id="delivery-title">4. Delivery</h2>
+                        <p>I ship from Norway to the countries listed at checkout. Each product page shows when it usually ships. If no time is given, I deliver within a reasonable time and no later than 30 days after your order. When your order ships, I email you the tracking details.</p>
+                        <p>Delivery has taken place when you, or someone you have asked to receive it, has the item. Until then, the item is my responsibility: if it is lost or damaged on the way, <a href="/contact">tell me</a> and I will send a new one or refund you, whichever you prefer.</p>
+                    </section>
+
+                    <section id="cancellation" aria-labelledby="cancellation-title">
+                        <h2 id="cancellation-title">5. Your right to cancel</h2>
+                        <p>Under the Cancellation Act (angrerettloven) you can cancel your purchase within 14 days, without giving a reason.</p>
+                        <h3>The deadline</h3>
+                        <ul>
+                            <li>The 14 days start the day after you receive the item. If one order arrives in several parcels, they start the day after you receive the last one.</li>
+                            <li>Every day counts. If the last day is a Saturday, Sunday or public holiday, the deadline moves to the next working day.</li>
+                            <li>You are in time if you send your notice before the deadline ends.</li>
+                        </ul>
+                        <h3>How to cancel</h3>
+                        <p>Tell me that you are cancelling, in any clear way: through the <a href="/contact">contact form</a>, by email or by letter. You can use the <a href="#cancellation-form">cancellation form</a> at the bottom of this page, but you don't have to. Keep a copy of your message, since you may need to show that you cancelled in time. I confirm by email that I have received your notice.</p>
+                        <h3>Sending the item back</h3>
+                        <p>Send the item back without undue delay, and no later than 14 days after you told me you are cancelling. Use the address in <a href="#seller">section 1</a> unless I give you another one. You pay for the return shipping. Pack the item so it is not damaged on the way, and keep the receipt from the carrier.</p>
+                        <h3>Your refund</h3>
+                        <ul>
+                            <li>I refund everything you paid me, including the original shipping, within 14 days of receiving your notice. If you chose a more expensive delivery option than the cheapest one I offered, I refund the cost of the cheapest option.</li>
+                            <li>I can wait with the refund until I have the item back, or until you have shown me that you have sent it, whichever comes first.</li>
+                            <li>The refund goes back to the payment method you used, at no cost to you.</li>
+                            <li>Import VAT or customs paid to your own country are not paid to me, so I can't refund them. Your carrier or customs office can tell you whether you can reclaim them.</li>
+                        </ul>
+                        <h3>Trying the item</h3>
+                        <p>You don't have to keep the item unopened. You can unpack it and try it the way you could in a shop: check that it fits your dew shield, switch it on, and connect it to your computer and software. If you handle the item more than you need to find out what it is, its features and how it works, and its value goes down as a result, I can take the loss in value off your refund.</p>
+                    </section>
+
+                    <section id="delay" aria-labelledby="delay-title">
+                        <h2 id="delay-title">6. Late or missing delivery</h2>
+                        <p>If I don't deliver on time, and it isn't because of something you did, you can under the Consumer Purchases Act:</p>
+                        <ul>
+                            <li>insist that I deliver, unless that is impossible or would cost me far more than it is worth to you;</li>
+                            <li>cancel the purchase and get your money back, if the delay is significant, or if I don't deliver within a reasonable extra deadline you set;</li>
+                            <li>claim compensation for losses the delay causes you, unless the delay was caused by something outside my control.</li>
+                        </ul>
+                        <p>Tell me in writing, for example through the <a href="/contact">contact form</a>.</p>
+                    </section>
+
+                    <section id="faults" aria-labelledby="faults-title">
+                        <h2 id="faults-title">7. Faults</h2>
+                        <p>If the item has a fault, the Consumer Purchases Act gives you these rights.</p>
+                        <h3>Deadlines for telling me</h3>
+                        <ul>
+                            <li>Tell me within a reasonable time after you notice the fault, or should have noticed it. You are always in time if you tell me within 2 months of noticing it.</li>
+                            <li>You can report a fault for 2 years after you received the item. For items, or parts of items, that are meant to last much longer than 2 years in normal use, the limit is 5 years.</li>
+                        </ul>
+                        <h3>What you can ask for</h3>
+                        <ul>
+                            <li><strong>Repair or replacement</strong>, whichever you choose, unless your choice is impossible or would cost me unreasonably much compared with the other. I cover the costs, including shipping both ways, and do it within a reasonable time. As a rule, I get no more than two attempts to fix the same fault.</li>
+                            <li><strong>A price reduction</strong>, if the item is not repaired or replaced.</li>
+                            <li><strong>Cancelling the purchase</strong> and getting your money back, if the item is not repaired or replaced and the fault is not minor.</li>
+                            <li><strong>Compensation</strong> for losses the fault causes you.</li>
+                        </ul>
+                        <p>To report a fault, use the <a href="/contact">contact form</a>. Describe what happens, include your receipt number and, if you can, a photo or short video. I'm happy to help you troubleshoot first, but that never shortens your deadlines.</p>
+                    </section>
+
+                    <section id="warranty" aria-labelledby="warranty-title">
+                        <h2 id="warranty-title">8. Warranty</h2>
+                        <!-- If you ever offer a warranty beyond the law (for example 3 years, or free return shipping),
+                             describe it here: what it covers, for how long and how to claim it. -->
+                        <p>Any warranty from me or from a manufacturer comes on top of your rights under sections 6 and 7. It never limits your right to complain about faults or late delivery.</p>
+                    </section>
+
+                    <section id="privacy" aria-labelledby="privacy-title">
+                        <h2 id="privacy-title">9. Personal data</h2>
+                        <p>I am responsible for the personal data you give when you order: your name, email address, delivery address and phone number. Stripe collects these on its checkout page and handles the payment, under <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Stripe's privacy policy</a>.</p>
+                        <p>I use your data only to deliver your order, send receipts and tracking details, and handle cancellations and complaints. The carrier gets the name, address and phone number it needs to deliver the parcel. I don't sell your data or use it for marketing. I keep order records for as long as Norwegian bookkeeping law requires. Your cart is saved only in your own browser.</p>
+                        <p>You can ask to see, correct or delete your data, except what the law requires me to keep. If you think I handle your data wrongly, you can complain to the Norwegian Data Protection Authority, <a href="https://www.datatilsynet.no/en/" target="_blank" rel="noopener">Datatilsynet</a>.</p>
+                    </section>
+
+                    <section id="disputes" aria-labelledby="disputes-title">
+                        <h2 id="disputes-title">10. Complaints and disputes</h2>
+                        <p>If something goes wrong, <a href="/contact">contact me</a> first, and we'll try to solve it together.</p>
+                        <p>If we can't agree, you can ask the Norwegian Consumer Authority, <a href="https://www.forbrukertilsynet.no/" target="_blank" rel="noopener">Forbrukertilsynet</a>, to mediate. If mediation doesn't solve it, the case can go to the Consumer Disputes Commission, Forbrukerklageutvalget, which decides disputes much like a court. Its decisions are binding, but either of us can take the case to the courts.</p>
+                        <p>If you live in another EU or EEA country, <a href="https://www.forbrukereuropa.no/" target="_blank" rel="noopener">Forbruker Europa</a>, the European Consumer Centre in Norway, can help with cross-border disputes.</p>
+                        <p>These terms may be updated from time to time. Your order is covered by the terms that applied on the day you placed it.</p>
+                    </section>
+
+                    <section id="cancellation-form" aria-labelledby="cancellation-form-title">
+                        <h2 id="cancellation-form-title">11. Cancellation form</h2>
+                        <p>Fill in and send this form only if you want to cancel your purchase. You can copy it into the <a href="/contact">contact form</a> or an email, or print it and send it by post.</p>
+                        <div class="terms-form">
+                            <p class="terms-form-to"><strong>To:</strong> <mark class="terms-placeholder">[Legal business name]</mark> (AstroTaca), <mark class="terms-placeholder">[Street address, postcode and town]</mark>, Norway. Email: <mark class="terms-placeholder">[Email address]</mark></p>
+                            <p>I/we (*) hereby give notice that I/we (*) cancel my/our (*) contract for the purchase of the following item(s):</p>
+                            <div class="terms-form-line" aria-hidden="true"></div>
+                            <dl class="terms-form-fields">
+                                <dt>Ordered on (*) / received on (*)</dt>
+                                <dd></dd>
+                                <dt>Receipt number (if you have it)</dt>
+                                <dd></dd>
+                                <dt>Name of buyer(s)</dt>
+                                <dd></dd>
+                                <dt>Address of buyer(s)</dt>
+                                <dd></dd>
+                                <dt>Date</dt>
+                                <dd></dd>
+                                <dt>Signature of buyer(s) (only if this form is sent on paper)</dt>
+                                <dd></dd>
+                            </dl>
+                            <p class="terms-form-note">(*) Delete as appropriate.</p>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="sidebar.js?v=nav-v2"></script>
+</body>
+</html>

@@ -34,7 +34,11 @@ async function main() {
       assert.equal(response.status, 200, `${url}: linked resource`);
     }
   }));
-  for (const route of ['/missing-migration-check', '/guides/missing-migration-check', '/build.js', '/package.json', '/wrangler.jsonc']) {
+  const sourceRoutes = [
+    '/missing-migration-check', '/guides/missing-migration-check', '/build.js', '/package.json', '/wrangler.jsonc',
+    '/worker/index.mjs', '/worker/stripe.mjs', '/scripts/check-secrets.js', '/.dev.vars', '/.dev.vars.example', '/SHOP.md',
+  ];
+  for (const route of sourceRoutes) {
     const response = await fetch(new URL(route, base));
     assert.equal(response.status, 404, `${route}: must not serve content with a success status`);
     assert.match(await response.text(), /Back to home/, `${route}: custom 404`);
@@ -46,9 +50,34 @@ async function main() {
     assert.equal(target.pathname, route.replace(/\.html$/, '').replace(/\/$/, ''));
     assert.equal(target.search, '?check=1');
   }
+  // Shop API: products always answers (empty until the shop is configured); unknown routes are JSON 404s.
+  const products = await fetch(new URL('/api/products', base));
+  assert.equal(products.status, 200, '/api/products: status');
+  const catalog = await products.json();
+  assert.ok(Array.isArray(catalog.products), '/api/products: product list');
+  // While SHOP_ENABLED is off the build leaves the shop pages out; make sure the site agrees.
+  const shopBuilt = fs.existsSync(path.join(root, 'shop.html'));
+  if (!shopBuilt) {
+    for (const route of ['/shop', '/order-complete', '/terms']) {
+      const response = await fetch(new URL(route, base));
+      assert.equal(response.status, 404, `${route}: shop is switched off, so this page must not be served`);
+    }
+    assert.equal(catalog.open, false, '/api/products: shop is switched off, so it must report closed');
+  }
+  const unknownApi = await fetch(new URL('/api/missing-check', base));
+  assert.equal(unknownApi.status, 404, '/api/missing-check: status');
+  const foreignCheckout = await fetch(new URL('/api/checkout', base), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Origin: 'https://example.com' },
+    body: '{"items":[]}',
+  });
+  assert.equal(foreignCheckout.status, 403, '/api/checkout: other sites are refused');
+  const unsignedWebhook = await fetch(new URL('/api/webhook', base), { method: 'POST', body: '{}' });
+  assert.ok([400, 503].includes(unsignedWebhook.status), '/api/webhook: unsigned events are refused');
+
   const robots = await (await fetch(new URL('/robots.txt', base))).text();
   assert.match(robots, /User-agent: \*\s+Allow: \//);
   assert.match(robots, /Sitemap: https:\/\/astrotaca.com\/sitemap.xml/);
-  console.log(`PASS: ${pages.length} pages, ${links.size} linked resources, clean URLs, custom 404s, source exclusion and robots.txt at ${base.origin}`);
+  console.log(`PASS: ${pages.length} pages, ${links.size} linked resources, clean URLs, custom 404s, source exclusion, shop API (${shopBuilt ? 'shop on' : 'shop switched off'}) and robots.txt at ${base.origin}`);
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });
