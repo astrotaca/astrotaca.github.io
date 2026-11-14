@@ -27,7 +27,7 @@ const galleryImages = [
         ],
         description: [
             'My second go at the Andromeda Galaxy, and the first with a mono camera and filters. Over three nights in early November 2026 I collected just under 20 hours: luminance and RGB on the first two nights, then six hours of hydrogen-alpha on the third.',
-            'The Hα data brings out the pink star-forming regions strung along the spiral arms, which barely show in broadband colour. M32 sits just beside the bright core, and the elongated M110 lies below the galaxy.',
+            'The Hα data brings out the pink star-forming regions strung along the spiral arms, which barely show in broadband color. M32 sits just beside the bright core, and the elongated M110 lies below the galaxy.',
             'After culling, 320 subs went into the stack, drizzled 2x and calibrated with flats and bias. I processed it in PixInsight, adding the continuum-subtracted Hα to the spiral arms and handling the stars separately from the galaxy.'
         ]
     },
@@ -60,10 +60,10 @@ const galleryImages = [
     },
     {
         id: 'ngc7000',
-        title: 'The Cygnus wall in NGC 7000',
+        title: 'The Cygnus Wall in NGC 7000',
         date: '2025-09-24',
         image: 'images/previews/NGC7000.jpg',
-        alt: 'NGC 7000 - North America Nebula',
+        alt: 'The Cygnus Wall in the North America Nebula, NGC 7000, in the SHO palette',
         filters: 'SHO',
         duration: '6 hours',
         categories: ['nebulae'],
@@ -73,18 +73,19 @@ const galleryImages = [
         acquisition: [
             { filter: 'Hα (656nm)', exposure: '300s', count: 30, total: '2.5h' },
             { filter: 'SII (672nm)', exposure: '300s', count: 30, total: '2.5h' },
-            { filter: 'OIII (496nm)', exposure: '300s', count: 12, total: '1h' }
+            { filter: 'OIII (501nm)', exposure: '300s', count: 12, total: '1h' }
         ],
         equipment: [
             { label: 'Telescope', value: 'ZWO FF65 APO' },
             { label: 'Filter Wheel', value: 'ZWO EFW' },
-            { label: 'Filters', value: 'Antlia 3nm (36mm) + LRGB-V pro' },
-            { label: 'Camera', value: 'ZWO ASI2600MM' },
+            { label: 'Filters', value: 'Antlia 3nm SHO + Antlia V-Pro LRGB' },
+            { label: 'Camera', value: 'ZWO ASI2600MM Pro' },
             { label: 'Mount', value: 'ZWO AM5N' }
         ],
         description: [
-            'NGC 7000, the North America Nebula, is an emission nebula in the constellation Cygnus. The Cygnus Wall is a prominent feature within this nebula, showcasing active star formation regions.',
-            'This image was captured using narrowband filters in the SHO (Hubble Palette) configuration, revealing the intricate structures of ionized gases within the nebula.'
+            'The Cygnus Wall is the bright ridge of gas along the edge of the North America Nebula, in the part that looks like Mexico and Central America on a map. New stars are forming inside it.',
+            'I shot it with narrowband filters on my ASI2600MM Pro: 2.5 hours each of Hα and SII and one hour of OIII, about 6 hours in total.',
+            'The colors use the SHO palette, also called the Hubble palette, with sulfur shown as red, hydrogen as green and oxygen as blue.'
         ]
     },
     {
@@ -108,8 +109,9 @@ const galleryImages = [
             { label: 'Mount', value: 'ZWO AM5N' }
         ],
         description: [
-            'M81, Bode\u2019s Galaxy, is a grand design spiral galaxy in the constellation Ursa Major. M82, the Cigar Galaxy, is a nearby starburst galaxy interacting gravitationally with M81, driving intense star formation and outflows.',
-            'This pair is among the brightest galaxies in the northern sky and can be observed together in a wide-field view.'
+            'Bode\u2019s Galaxy (M81) and the Cigar Galaxy (M82) sit close together in Ursa Major, so both fit in one frame with the FF65. They are about 12 million light-years away.',
+            'M81 is a big spiral galaxy. M82 is seen almost edge-on and is forming stars very quickly after a close encounter with M81.',
+            'I took it with my Sony A6000: 178 exposures of 5 minutes, close to 15 hours in total.'
         ]
     },
     {
@@ -133,16 +135,17 @@ const galleryImages = [
             { label: 'Mount', value: 'ZWO AM5N' }
         ],
         description: [
-            'M33, the Triangulum Galaxy, is a spiral galaxy in the constellation Triangulum and a member of the Local Group. Its loosely wound arms are rich in H II regions, with NGC 604 being one of the largest star-forming regions known.',
-            'As one of the closest spiral galaxies to the Milky Way, M33 is a prominent target for both amateur and professional astronomers.'
+            'The Triangulum Galaxy (M33) is the third largest galaxy in our Local Group, after Andromeda and the Milky Way. It is spread out and faint, so it needs a lot of exposure time.',
+            'Its loose spiral arms are full of star-forming regions. The largest one, NGC 604, is one of the biggest known.',
+            'I gave it 270 exposures of 5 minutes, 22.5 hours in total, with my Sony A6000 on the FF65.'
         ]
     },
     {
         id: 'm31',
-        title: 'A closer look at the Andromeda Galaxy',
+        title: 'The Andromeda Galaxy with a Sony A6000',
         date: '2024-11-02',
         image: 'images/previews/m31.jpg',
-        alt: 'Andromeda Galaxy',
+        alt: 'The Andromeda Galaxy M31 with its companions M32 and M110, photographed with a Sony A6000',
         filters: 'RGB',
         duration: '9 hours',
         categories: ['galaxies'],
@@ -158,8 +161,9 @@ const galleryImages = [
             { label: 'Mount', value: 'ZWO AM5N' }
         ],
         description: [
-            'M31, the Andromeda Galaxy, is a massive spiral galaxy in the constellation Andromeda and the largest member of the Local Group. It contains hundreds of billions of stars and several satellite galaxies, including M32 and M110.',
-            'Visible to the naked eye under dark skies, M31 is the closest spiral galaxy to the Milky Way and is on a collision course with it in about 4 billion years.'
+            'My first go at the Andromeda Galaxy, taken a month after I got my first telescope. I used my Sony A6000 on the FF65: 136 exposures of 4 minutes, 9 hours in total.',
+            'Andromeda is the closest large spiral galaxy to us, about 2.5 million light-years away. Two of its small companion galaxies are in the frame too: M32 close to the core and M110 below it.',
+            'In 2026 I went back with a mono camera and filters. You can see the result in <a href="m31-lrgbha">The Andromeda Galaxy in LRGB and Hα</a>.'
         ]
     },
     {
@@ -167,7 +171,7 @@ const galleryImages = [
         title: 'Milky Way from Tenerife',
         date: '2024-02-26',
         image: 'images/previews/mw-tenerife.jpg',
-        alt: 'Milky Way from Tenerife',
+        alt: 'The core of the Milky Way above a rock formation in Teide National Park, Tenerife',
         filters: 'RGB',
         duration: '1 hour',
         categories: ['widefield'],
@@ -183,8 +187,8 @@ const galleryImages = [
             { label: 'Mount', value: 'SkyWatcher Star Adventurer 2i' }
         ],
         description: [
-            'The Milky Way is our home galaxy, containing hundreds of billions of stars. This wide-field image captures the galactic core with its dense star fields and dark dust lanes.',
-            'Captured from Teide National Park in Tenerife at over 2,000 meters elevation, where dark skies and clear atmospheric conditions make it an exceptional location for astrophotography.'
+            'I took this on a trip to Tenerife, from Teide National Park more than 2,000 meters up. The skies there are dark and the air is often very clear, which makes it a great place for night sky photos.',
+            'It shows the core of the Milky Way with its dark dust lanes. It is 42 exposures of 101 seconds, just over an hour in total, with my Sony A6000 and a Sigma 16mm F1.4 on a Star Adventurer 2i tracker.'
         ]
     },
 ];

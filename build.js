@@ -100,6 +100,17 @@ function isPortraitImage(relativePath) {
   }
 }
 
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+// '2026-11-06' -> 'November 2026'. Only the month is shown: most images take several nights.
+function formatMonth(isoDate) {
+  const match = /^(\d{4})-(\d{2})-\d{2}$/.exec(String(isoDate));
+  if (!match || !monthNames[Number(match[2]) - 1]) {
+    throw new Error(`Gallery date "${isoDate}" must look like YYYY-MM-DD.`);
+  }
+  return `${monthNames[Number(match[2]) - 1]} ${match[1]}`;
+}
+
 function renderGalleryDetailContent(item) {
   const rows = item.acquisition.map(row => `
                 <tr>
@@ -243,7 +254,32 @@ function injectSidebar(content, sidebarHtml) {
         </nav>`;
   content = replaceHtmlElement(content, '<nav class="top-nav">', 'nav', topNavHtml, 'top navigation');
 
-  return content;
+  return injectFooter(content);
+}
+
+// Shared footer at the end of <main> on every page (idempotent across rebuilds).
+function injectFooter(content) {
+  content = content.replace(/\s*<footer class="site-footer">[\s\S]*?<\/footer>/i, '');
+  const year = new Date().getFullYear();
+  const footerHtml = `
+        <footer class="site-footer">
+            <div class="container site-footer-inner">
+                <p>&copy; ${year} AstroTaca. All images are my own, so please ask before using them.</p>
+                <ul class="site-footer-links">
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="https://discord.gg/Xcgum8ekWb" target="_blank" rel="noopener">Discord</a></li>
+                    <li><a href="https://www.astrobin.com/users/astrotaca/" target="_blank" rel="noopener">AstroBin</a></li>
+                    <li><a href="https://youtube.com/@astrotaca" target="_blank" rel="noopener">YouTube</a></li>
+                    <li><a href="https://github.com/astrotaca" target="_blank" rel="noopener">GitHub</a></li>
+                </ul>
+            </div>
+        </footer>
+`;
+  const mainEnd = content.lastIndexOf('</main>');
+  if (mainEnd === -1) {
+    throw new Error('Unable to locate </main> for footer injection.');
+  }
+  return content.slice(0, mainEnd).replace(/\s*$/, '\n') + footerHtml.replace(/^\n/, '') + '\n    ' + content.slice(mainEnd);
 }
 
 function injectFavicon(content) {
@@ -268,7 +304,7 @@ function injectFavicon(content) {
   }
   content = content.replace(viewportRegex, match => `${match}${block}`);
   // Keep cached styles and navigation scripts in sync with the generated markup.
-  content = content.replace(/href="((?:\.\.\/|\/)?styles\.css)(?:\?[^"]*)?"/g, 'href="$1?v=light-v2"');
+  content = content.replace(/href="((?:\.\.\/|\/)?styles\.css)(?:\?[^"]*)?"/g, 'href="$1?v=light-v3"');
   content = content.replace(/src="((?:\.\.\/|\/)?(?:sidebar|gallery-filter)\.js)(?:\?[^"]*)?"/g, 'src="$1?v=nav-v2"');
   return injectThemeBootstrap(content);
 }
@@ -436,18 +472,29 @@ function buildGalleryDetailPages(galleryImages, sidebarHtml) {
     const detailContent = renderGalleryDetailContent(item);
 
     content = replaceOptional(content, /<p class="lead">[\s\S]*?<\/p>\r?\n/);
-    content = replaceOptional(content, /<div class="detail-nav">[\s\S]*?<\/div>\s*\r?\n?/);
+    // Older pages had the arrows after the header; they now live inside it.
+    content = replaceOptional(content, /\s*<div class="detail-nav">[\s\S]*?<\/div>(?=\s*<div class="image-detail">)/);
     // A missing neighbor renders as an inert span: links that go nowhere
     // shouldn't be reachable with the keyboard.
     const navArrow = (neighbor, arrow, label) => neighbor
       ? `<a href="${escapeHtml(neighbor.id)}" title="${label}: ${escapeHtml(neighbor.title)}" aria-label="${label}: ${escapeHtml(neighbor.title)}">${arrow}</a>`
       : `<span class="disabled" aria-hidden="true">${arrow}</span>`;
-    const galleryNavHtml = `        <div class="detail-nav">
-            ${navArrow(galleryImages[index - 1], '←', 'Previous')}
-            ${navArrow(galleryImages[index + 1], '→', 'Next')}
-        </div>
-`;
-    content = replaceRegex(content, /(<\/header>\s*\r?\n)/, `$1${galleryNavHtml}`, 'gallery detail navigation insertion');
+    // Title, capture month and arrows all come from gallery-data.js so the page can't drift from its card.
+    const headerHtml = `<header class="section-header detail-header">
+                    <div class="detail-heading">
+                        <h1>${escapeHtml(item.title)}</h1>
+                        <p class="detail-date">Captured ${escapeHtml(formatMonth(item.date))}</p>
+                    </div>
+                    <div class="detail-nav">
+                        ${navArrow(galleryImages[index - 1], '←', 'Previous')}
+                        ${navArrow(galleryImages[index + 1], '→', 'Next')}
+                    </div>
+                </header>`;
+    content = replaceHtmlElement(content, '<header class="section-header', 'header', headerHtml, 'gallery detail header');
+    const pageTitle = escapeHtml(`${item.title} - AstroTaca`);
+    content = replaceRegex(content, /<title>[^<]*<\/title>/, `<title>${pageTitle}</title>`, 'page title');
+    content = replaceRegex(content, /<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${pageTitle}">`, 'og:title meta');
+    content = replaceRegex(content, /<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${pageTitle}">`, 'twitter:title meta');
 
     content = replaceRegex(content, /<tbody>[\s\S]*?<\/tbody>/, `<tbody>${detailContent.tableRows}
                             </tbody>`, 'detail table body');

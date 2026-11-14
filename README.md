@@ -1,4 +1,4 @@
-# Astrotaca
+# AstroTaca
 
 My astrophotography website, with my image gallery, some guides I've written, and the motorized flat panel I'm building. It's live at [astrotaca.com](https://astrotaca.com).
 
@@ -76,7 +76,7 @@ The data files are the source of truth, so I edit those and rebuild instead of e
 
 `sidebar.html` and `build.js` provide the shared logo and icon markup. The root page templates use the branded social card; gallery and guide detail pages retain their own image previews. Rebuild with `node build.js` after changing these templates. The root favicon files are fallbacks for browsers that request them automatically.
 
-The `/brand/v1/` paths version the brand assets. Shared styles use `light-v2` and navigation scripts use `nav-v2` query versions in `build.js` to keep cached files in sync with the page markup. Use a new version when replacing them.
+The `/brand/v1/` paths version the brand assets. Shared styles use `light-v3` and navigation scripts use `nav-v2` query versions in `build.js` to keep cached files in sync with the page markup. Use a new version when replacing them.
 
 Light-mode overrides live at the end of `styles.css`: a white sidebar, off-white page, blue navigation and focus states, subtle card shadows and contrasting form borders. Product-page teal accents remain in `flatpanel.css`. Layout and dark-mode styling are shared with the existing site.
 

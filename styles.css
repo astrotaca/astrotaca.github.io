@@ -355,6 +355,52 @@ textarea:focus-visible {
     position: relative;
     min-height: 100vh;
     overflow-x: clip;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Shared footer, added to every page by build.js. Short pages push it to the bottom of the window. */
+.main-content > .content-section {
+    min-height: 0;
+}
+
+.site-footer {
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+    color: var(--gray-text);
+}
+
+.site-footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem 1.5rem;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+.site-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.site-footer-links a {
+    color: var(--gray-text);
+    text-decoration: none;
+}
+
+.site-footer-links a:hover,
+.site-footer-links a:focus-visible {
+    color: var(--accent-color);
 }
 
 .detail-page .content-section {
@@ -381,16 +427,27 @@ textarea:focus-visible {
     margin: 0 0 0.25rem;
 }
 
-.detail-nav {
-    position: absolute;
-    top: 0;
-    right: 0;
-
+/* Gallery image pages: title and capture month on the left, previous/next on the right. */
+.detail-header {
     display: flex;
-    gap: 0.5rem;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 1080px;
+}
 
-    min-width: 6rem;
+.section-header.detail-header h1 {
+    margin-bottom: 0.35rem;
+}
+
+.detail-date {
+    margin: 0;
+    color: var(--gray-text);
+}
+
+.detail-header .detail-nav {
+    flex-shrink: 0;
+    margin-top: 0.6rem;
 }
 
 .detail-page .section-header h1 {
@@ -923,6 +980,17 @@ textarea:focus-visible {
     margin-bottom: 1.5rem;
 }
 
+.software-downloads {
+    max-width: 640px;
+    margin: 2.5rem auto 0;
+    text-align: center;
+}
+
+.software-downloads p {
+    color: var(--gray-text);
+    margin-bottom: 1.25rem;
+}
+
 .about-content {
     max-width: 800px;
     margin: 0 auto;
@@ -1322,6 +1390,12 @@ textarea:focus-visible {
 
 .acquisition-table td {
     color: var(--gray-text);
+}
+
+/* Keep values like "2h 18m" on one line on phones; only the filter name may wrap. */
+.acquisition-table th:not(:first-child),
+.acquisition-table td:not(:first-child) {
+    white-space: nowrap;
 }
 
 .acquisition-table .total-row td {
